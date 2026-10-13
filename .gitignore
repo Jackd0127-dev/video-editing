@@ -1,0 +1,19 @@
+# Local reference media and generated study/export material
+local-media/
+local-study/
+exports/
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.wav
+*.mp3
+*.m4a
+*.srt
+
+# Local environments and private configuration
+.DS_Store
+.venv/
+__pycache__/
+.env
+.env.*

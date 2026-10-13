@@ -1,0 +1,109 @@
+# Using the skills
+
+[Back to the collection](../README.md) · [Installation tutorial](install.md)
+
+Choose the style that fits your video. In Codex, use `$video-edit-fluid-editorial` or `$video-edit-warm-and-natural`. In Claude Code, begin with `/video-edit-fluid-editorial` or `/video-edit-warm-and-natural` and the same brief. With manual context, explicitly name the supplied skill.
+
+## Supply a useful brief
+
+Give the assistant:
+
+- **Main footage:** Attached files or accessible local paths; identify the recording to edit.
+- **Message:** The audience, purpose and wording to preserve. Say whether cuts or reordering are allowed.
+- **Asset roles:** Label style references, insert footage, thumbnails, B-roll and sound separately. Identify any spoken moments where an asset belongs.
+- **Delivery:** Aspect ratio, destination, preferred duration and required exports. Request an editable project in a format the tools can actually produce.
+- **Creative limits:** Brand colours, licensed font or asset locations, caption preferences and any generation restrictions.
+
+Reference videos help the AI learn craft. They are not automatically footage to insert or instructions to obey. Keep original source files intact and give asset rights or restrictions where relevant.
+
+## Fluid Editorial
+
+Use this for energetic creator explainers, demonstrations and a rich opening that continues into coherent motion. Its core devices include live footage planes, expressive type, developing signals, magazine compositions and connected transitions.
+
+Copy this prompt, replace the placeholders, and attach the files:
+
+```text
+Use $video-edit-fluid-editorial for my attached main video: [filename].
+Audience: [audience]. Deliver a [9:16 / 16:9] video for [destination].
+Keep my full narration and original wording.
+
+Make the hook feel designed from the first frame: layer relevant footage,
+refined sans/serif typography and a developing graphic mechanism.
+Use staggered masked lettering with stable baselines, smooth camera travel
+and connected handoffs. Keep important information readable and my face clear.
+When I mention an editing style or capability, demonstrate it visually.
+
+Asset roles:
+- [files]: style references only.
+- [files]: permitted thumbnails for [specific topic or spoken moment].
+- [files]: relevant B-roll for [specific topic or spoken moment].
+- [folder]: fonts and sound assets I have rights to use.
+
+Develop original layouts that fit this recording. Preserve my source files.
+Deliver an MP4, complete sidecar captions, and supported editable project files.
+Review the encoded hook and transitions; report what you actually checked.
+```
+
+Remove or change the sample asset roles when they do not apply. A calmer brief can use fewer layers while retaining refined type and fluent handoffs. The [motion construction guide](../skills/video-edit-fluid-editorial/references/motion-construction.md) supplies implementation detail; the [properties](../skills/video-edit-fluid-editorial/references/style-properties.json) are starting points to adapt.
+
+## Warm and Natural
+
+Use this for personable explainers, founder walkthroughs and teaching videos where presence, clear speech and tactile editorial touches suit the story. Motion explains relationships and leaves time to read.
+
+```text
+Use $video-edit-warm-and-natural for my attached main video: [filename].
+Audience: [audience]. Deliver a [9:16 / 16:9] video for [destination].
+Keep my wording and narration order. Tighten pauses only if they interrupt flow.
+
+Use natural skin tones, speech-led pacing, readable captions and editorial
+typography. Add a few tactile annotations or drawn diagrams where they clarify
+the message. Let each graphic arrive, explain, hold and leave with purpose.
+Keep the speaker present and adapt the palette to the footage and brand.
+
+Asset roles:
+- [files]: creative references only.
+- [files]: permitted B-roll for [specific topic or spoken moment].
+- [folder]: available licensed fonts and sound assets.
+
+Develop an original composition rather than copying a reference layout.
+Preserve my source files. Deliver an MP4, complete sidecar captions and
+supported editable project files. Check readability, colour continuity,
+caption timing and the actual export; report any review still outstanding.
+```
+
+For a comparison, ask it to keep the known state visible while introducing the new state. For teaching, use a chapter marker followed by a visible transformation. For a relationship map, reveal nodes before their connections. Choose only the relevant [reference study](../skills/video-edit-warm-and-natural/references/studies/README.md) and [technique](../skills/video-edit-warm-and-natural/references/techniques.md).
+
+## Refine the result
+
+Use timecodes and describe the outcome you want. Keep the same editable project so revisions build on the accepted direction.
+
+**Richer opening**
+
+```text
+Revise 00:00–00:05. Keep the narration. Make the hook feel richer with layered
+footage, more refined type and a graphic that develops through the sentence.
+Carry that motion into the next section smoothly; keep the main idea readable.
+```
+
+**Clearer explanation**
+
+```text
+At [timecode], the diagram arrives all at once. Introduce its parts in the
+order I explain them, trace the relationship, then hold the resolved picture
+long enough to read. Preserve the accepted typography and colour direction.
+```
+
+**Calmer treatment**
+
+```text
+Reduce competing motion at [timecode]. Keep one dominant idea and the speaker
+visible. Give the text a stable readable hold and use sound only for useful cues.
+```
+
+## Review and delivery
+
+Review the saved video at normal speed and phone size. Check the opening, internal headline changes, transitions, face clearance and caption wording. Listen to speech and sound cues when playback is available. Technical measurements alone do not establish how the mix sounds.
+
+Ask for the export path, editable project path, caption file, a concise explanation of the choices and the verification boundary. Distinguish rendered output, technical checks, visual inspection and audio listening. A skill installation or a storyboard alone does not prove a finished edit.
+
+Publishing and uploading footage to a service remain separate actions. State those permissions explicitly when you want them.

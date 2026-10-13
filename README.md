@@ -1,35 +1,75 @@
 # Video Editing
 
-Open-source video editing styles for Codex, Claude and other AI assistants. Select a style that fits the brief, learn its craft and make an original edit.
+Open-source video editing and motion design skills for AI assistants. Choose a style, give your AI the footage and brief, and use the skill to guide an original edit.
 
-## Style collection
+## Choose your style
 
-| Style skill | Use it for |
-| --- | --- |
-| [Fluid Editorial](skills/video-edit-fluid-editorial/SKILL.md) | Layered hooks, refined sans/serif typography, masked lettering, developing graphics and fluent handoffs. |
+| Skill | What it brings | Example |
+| --- | --- | --- |
+| [Fluid Editorial](skills/video-edit-fluid-editorial/SKILL.md) | Energetic layered hooks, refined sans/serif typography, masked lettering and continuous graphic handoffs. | A creator explainer with a busy opening, live magazine treatment and developing diagrams. |
+| [Warm and Natural](skills/video-edit-warm-and-natural/SKILL.md) | Personable, speech-led pacing, editorial type, tactile annotations and purposeful explanatory motion. | A founder walkthrough with natural colour, readable captions and a few useful drawn annotations. |
 
-Fluid Editorial is an adaptable toolkit, not a fixed storyboard. Its skill links to motion construction, reference properties and a sequence breakdown. It requires no paid service or particular editor; rendering requires suitable tools in the target environment.
+Each style is an adaptable toolkit. Choose the techniques that fit your story; invent the composition and sequence around your brief.
 
-The earlier [Warm and Natural style](https://github.com/Jackd0127-dev/video-editing/blob/codex/video-motion-skill/skills/video-edit-warm-and-natural/SKILL.md) remains on its existing branch. This addition does not merge or replace that work.
+## Quick start with Codex
 
-## Use a skill
+Paste **one** of these into Codex:
 
-Copy the complete `skills/video-edit-fluid-editorial/` folder, including `references/`, into your assistant's supported skill location. Keep folder names and relative paths intact. Installation/discovery depend on the assistant; verify loading in your environment.
-
-Example Codex invocation:
+**Fluid Editorial**
 
 ```text
-Use $video-edit-fluid-editorial to edit this explainer with a richer hook,
-refined typography and fluent motion. Keep my full narration and use each
-supplied asset only at its relevant spoken moment.
+$skill-installer install https://github.com/Jackd0127-dev/video-editing/tree/main/skills/video-edit-fluid-editorial
 ```
 
-Without native skill loading, supply `SKILL.md` and its relevant linked references as context. Guidance alone does not provide file access or rendering tools.
+**Warm and Natural**
 
-## Contribute
+```text
+$skill-installer install https://github.com/Jackd0127-dev/video-editing/tree/main/skills/video-edit-warm-and-natural
+```
 
-Use one folder per style under `skills/`. Keep `SKILL.md` concise and substantial recipes/properties under `references/`. Describe purpose, construction, adaptation and evidence limits. Keep source media, credentials, private transcripts and non-redistributable assets out of the repository.
+Then start your next request with the skill name and your footage:
+
+```text
+Use $video-edit-fluid-editorial to edit my attached video.
+Keep my full narration. Build a layered opening with refined typography
+and smooth motion that develops with the explanation. Use the supplied
+references for creative direction and B-roll only at relevant spoken moments.
+Deliver an MP4, captions and editable project files supported by your tools.
+```
+
+Codex supports installing skills from GitHub through `$skill-installer`. If a new skill does not appear, restart your session and check again. See the [official installer examples](https://github.com/openai/skills/blob/main/README.md#installing-a-skill).
+
+**Using Claude Code, installing manually, or adding skills to one project?** Follow the [installation tutorial](docs/install.md).
+
+## How to use each skill
+
+The [usage guide](docs/usage.md) includes ready-to-copy prompts for both styles, a footage checklist, a revision workflow and instructions for keeping reference clips separate from footage intended for the edit.
+
+1. Install the complete skill folder.
+2. Select a style by name.
+3. Supply your footage, references and constraints.
+4. Review the exported video, then request specific refinements.
+
+## What you need
+
+These skills supply creative direction, motion recipes and review guidance. They do not bundle an editor, footage, fonts or a model. To export a video, your assistant needs file access and a working editing or compositing toolchain, such as a local FFmpeg-based workflow. Check its available tools before promising an editable timeline or final render.
+
+No particular editor or paid provider is required by the instructions. Use your own assets and licensed fonts or sounds. Private media can stay in your local project when you use local tools.
+
+## Explore the collection
+
+- [Fluid Editorial motion construction](skills/video-edit-fluid-editorial/references/motion-construction.md): glyph baselines, masks, easing, camera movement and handoffs.
+- [Fluid Editorial style properties](skills/video-edit-fluid-editorial/references/style-properties.json): adaptable palette, type and motion roles.
+- [Warm and Natural techniques](skills/video-edit-warm-and-natural/references/techniques.md): editing, typography, annotations and explanatory motion.
+- [Warm and Natural audio guidance](skills/video-edit-warm-and-natural/references/audio.md): sound design, timing and honest verification.
+- [Warm and Natural reference studies](skills/video-edit-warm-and-natural/references/studies/README.md): six approaches to visual explanation.
+
+## Contribute a style
+
+Add one folder under `skills/` with a concise `SKILL.md`, `name` and `description` frontmatter, and supporting material under `references/`. Explain the style's purpose, how to construct its techniques, how to adapt them, and what evidence was actually verified. Add the style to the table and usage guide.
+
+Keep source footage, private transcripts, credentials and non-redistributable assets outside the repository. Proposed techniques and inferred implementations should be labelled clearly. Use a pull request for contributions.
 
 ## Licence
 
-[MIT](LICENSE) covers original instructions and documentation, not referenced third-party footage, fonts, sounds or logos. Use assets with appropriate rights. This repository distributes no source media or proprietary font binaries.
+[MIT](LICENSE) covers original instructions and documentation. Referenced third-party footage, fonts, sounds and logos retain their own rights. This repository distributes no private source media or proprietary font binaries.
