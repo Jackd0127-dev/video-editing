@@ -1,4 +1,4 @@
 interface:
-  display_name: "Video Edit Editorial Tutorial"
+  display_name: "Presenter Tutorial Video Editing"
   short_description: "Warm paper, crisp type and fluid tutorial graphics"
   default_prompt: "Use $video-edit-editorial-tutorial to edit this video with refined typography, warm paper and white-gradient scenes, live presenter windows and synchronized tutorial graphics."

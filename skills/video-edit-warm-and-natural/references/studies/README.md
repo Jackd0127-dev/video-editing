@@ -1,6 +1,6 @@
-# Video-Edit-Warm-and-Natural reference studies
+# Warm Natural Video Editing reference studies
 
-These studies inform the Video-Edit-Warm-and-Natural style through six user-supplied videos. This is one style in a broader collection; its appearance does not govern other styles. The footage itself, full transcripts, audio, extracted frames, and private analysis artefacts are not bundled. The skill is usable without access to those files.
+These studies inform the Warm Natural Video Editing style through six user-supplied videos. This is one style in a broader collection; its appearance does not govern other styles. The footage itself, full transcripts, audio, extracted frames, and private analysis artefacts are not bundled. The skill is usable without access to those files.
 
 ## Reference identity
 

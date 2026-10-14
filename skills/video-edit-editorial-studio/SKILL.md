@@ -4,11 +4,11 @@ description: Create polished creator explainers with bold sans and editorial ita
 license: MIT
 ---
 
-# Video Edit Editorial Studio
+# Bold Typography Video Editing
 
 Combine expressive editorial typography with a clean demonstration stage. The speaker carries the story; words land on speech, the camera makes room for the explanation, and graphic objects develop into the next idea. This is an adaptable style, not a compulsory sequence or a replacement for the user's brief.
 
-This style was distilled from an approved vertical creator edit. Its defining combination is strong Avenir-style statements, Bodoni-style italic emphasis, warm footage, white explanatory fields, cobalt functional accents and continuously developing graphics. It shares editorial roots with Fluid Editorial but gives clean stages and a movable presenter window a larger role.
+This style was distilled from an approved vertical creator edit. Its defining combination is strong Avenir-style statements, Bodoni-style italic emphasis, warm footage, white explanatory fields, cobalt functional accents and continuously developing graphics. It shares editorial roots with Layered Motion Video Editing but gives clean stages and a movable presenter window a larger role.
 
 ## Choose and prepare
 

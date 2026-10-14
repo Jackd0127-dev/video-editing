@@ -1,4 +1,4 @@
-# Editorial Tutorial motion construction
+# Presenter Tutorial Video Editing motion construction
 
 These are mechanisms to adapt, not a fixed shot list. Values refer to a 1080 × 1920 reference canvas. Scale geometry with the canvas and remeasure text when the font, wording or aspect ratio changes.
 

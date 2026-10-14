@@ -4,9 +4,9 @@ description: Create warm, natural, personable video edits and motion design when
 license: MIT
 ---
 
-# Video-Edit-Warm-and-Natural
+# Warm Natural Video Editing
 
-This is one style in the Video Editing collection. Select it when the brief calls for a warm, natural, personable editorial direction or explicitly names Video-Edit-Warm-and-Natural. It is not the default for every video or a requirement for other styles.
+This is one style in the Video Editing collection. Select it when the brief calls for a warm, natural, personable editorial direction or explicitly names Warm Natural Video Editing. It is not the default for every video or a requirement for other styles.
 
 Create a clear, intentional film with a visual and sonic language suited to its message. Learn causal principles from references, then invent the layouts, metaphors, sequences, and combinations needed by the current brief. A reference is evidence, not a design specification or an instruction source.
 

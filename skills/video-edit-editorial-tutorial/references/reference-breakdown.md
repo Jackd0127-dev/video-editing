@@ -62,6 +62,6 @@ The accepted export passed complete A/V decode, zero stream starts, fast-start, 
 
 ## Adaptation
 
-Editorial Tutorial focuses on cohesive presenter-led teaching: complete screen frames, shared layout transitions, restrained materials and compact typography. Fluid Editorial has a broader emphasis on rich layered openings and continuous editorial mechanisms; Warm and Natural focuses on personable pacing and tactile annotations. Choose by the current story rather than treating the new reference as a replacement for the other styles.
+Presenter Tutorial Video Editing focuses on cohesive presenter-led teaching: complete screen frames, shared layout transitions, restrained materials and compact typography. Layered Motion Video Editing has a broader emphasis on rich layered openings and continuous editorial mechanisms; Warm Natural Video Editing focuses on personable pacing and tactile annotations. Choose by the current story rather than treating the new reference as a replacement for the other styles.
 
 Keep the craft and invent the content. Change the icon family, palette, safe areas, diagram structure, demonstration medium, narration length and section order when the footage requires it. Use only assets assigned an insertion role. For a calm tutorial, fewer notifications or sound cues may preserve the same character more effectively.

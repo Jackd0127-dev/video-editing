@@ -1,4 +1,4 @@
 interface:
-  display_name: "Video-Edit-Warm-and-Natural"
+  display_name: "Warm Natural Video Editing"
   short_description: "Warm, natural edits and purposeful motion design"
   default_prompt: "Use $video-edit-warm-and-natural to create an original warm and natural edit suited to my brief and footage."
