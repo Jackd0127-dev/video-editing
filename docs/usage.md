@@ -2,7 +2,7 @@
 
 [Back to the collection](../README.md) · [Installation tutorial](install.md)
 
-Choose the style that fits your video. In Codex, use `$video-edit-fluid-editorial` or `$video-edit-warm-and-natural`. In Claude Code, begin with `/video-edit-fluid-editorial` or `/video-edit-warm-and-natural` and the same brief. With manual context, explicitly name the supplied skill.
+Choose the style that fits your video. In Codex, use `$video-edit-fluid-editorial`, `$video-edit-editorial-studio` or `$video-edit-warm-and-natural`. In Claude Code, use the same name with `/` in place of `$`. With manual context, explicitly name the supplied skill.
 
 For Editorial Tutorial, use `$video-edit-editorial-tutorial` in Codex or `/video-edit-editorial-tutorial` in Claude Code.
 
@@ -47,6 +47,39 @@ Review the encoded hook and transitions; report what you actually checked.
 ```
 
 Remove or change the sample asset roles when they do not apply. A calmer brief can use fewer layers while retaining refined type and fluent handoffs. The [motion construction guide](../skills/video-edit-fluid-editorial/references/motion-construction.md) supplies implementation detail; the [properties](../skills/video-edit-fluid-editorial/references/style-properties.json) are starting points to adapt.
+
+## Editorial Studio
+
+Use this for a polished demonstration with bold sans/italic contrast, warm creator footage, clean white stages and a continuing presenter window. Its [approved reference breakdown](../skills/video-edit-editorial-studio/references/approved-reference.md) distinguishes measured construction from optional devices. Choose Fluid Editorial when richer overlays across the full speaker are the main direction; choose Editorial Studio when making room for clean demonstrations is central.
+
+```text
+Use $video-edit-editorial-studio for my attached main video: [filename].
+Audience: [audience]. Deliver a [9:16 / 16:9] video for [destination].
+Keep my full narration, wording and timing.
+
+Start close on me with a quick smooth pullback and a layered, readable hook.
+Use a strong heavy sans with high-contrast editorial italics, natural spaces,
+soft shadows and word reveals timed to my speech. Give different text roles
+related motions and enough time to read after they finish arriving.
+
+When the explanation needs room, move me smoothly into a rounded corner
+window on a clean white stage. Show the idea visually with developing
+diagrams, comparisons or steps. Connect sections through shared geometry
+and return to the full speaker when appropriate. Keep my face and hands clear.
+
+Asset roles:
+- [files]: style references only.
+- [files]: permitted media for [specific topic or spoken moment].
+- [folder]: licensed fonts and recorded sound assets.
+
+Use my available typefaces or show suitable licensed substitutes.
+Adapt the style to this story; omit irrelevant reference devices.
+Do not generate or upload media. Preserve my source files.
+Deliver an MP4, complete sidecar captions and supported editable source.
+Check actual encoded text edges, readable holds, transitions and audio.
+```
+
+The [type guide](../skills/video-edit-editorial-studio/references/typography-motion.md) supplies word and phrase timing. The [scene guide](../skills/video-edit-editorial-studio/references/scene-construction.md) covers camera/sheet handoffs and optional demonstrations. [Properties](../skills/video-edit-editorial-studio/references/style-properties.json) and dependency-free [motion helpers](../skills/video-edit-editorial-studio/assets/motion.mjs) support implementation without imposing a fixed sequence.
 
 ## Warm and Natural
 

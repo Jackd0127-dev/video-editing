@@ -1,0 +1,4 @@
+interface:
+  display_name: "Editorial Studio"
+  short_description: "Editorial type, white stages and fluid creator motion"
+  default_prompt: "Use $video-edit-editorial-studio to edit my footage with expressive editorial typography, clean demonstrations and fluent camera and graphic handoffs."
