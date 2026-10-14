@@ -9,6 +9,7 @@ Open-source video editing and motion design skills for AI assistants. Choose a s
 | [Fluid Editorial](skills/video-edit-fluid-editorial/SKILL.md) | Energetic layered hooks, refined sans/serif typography, masked lettering and continuous graphic handoffs. | A creator explainer with a busy opening, live magazine treatment and developing diagrams. |
 | [Editorial Studio](skills/video-edit-editorial-studio/SKILL.md) | Bold editorial type, clean white demonstrations, speech-timed words and fluid corner-camera handoffs. | A polished creator demonstration that moves between warm footage, animated graphics and clear process steps. |
 | [Warm and Natural](skills/video-edit-warm-and-natural/SKILL.md) | Personable, speech-led pacing, editorial type, tactile annotations and purposeful explanatory motion. | A founder walkthrough with natural colour, readable captions and a few useful drawn annotations. |
+| [Editorial Tutorial](skills/video-edit-editorial-tutorial/SKILL.md) | Warm paper, subtle white gradients, compact sans/italic type, complete screen recordings and connected graphics around a live presenter. | A creator tutorial that moves between full presenter, screen walkthrough and developed editorial demonstrations. |
 
 Each style is an adaptable toolkit. Choose the techniques that fit your story; invent the composition and sequence around your brief.
 
@@ -34,6 +35,12 @@ $skill-installer install https://github.com/Jackd0127-dev/video-editing/tree/mai
 $skill-installer install https://github.com/Jackd0127-dev/video-editing/tree/main/skills/video-edit-editorial-studio
 ```
 
+**Editorial Tutorial**
+
+```text
+$skill-installer install https://github.com/Jackd0127-dev/video-editing/tree/main/skills/video-edit-editorial-tutorial
+```
+
 Then start your next request with the skill name and your footage:
 
 ```text
@@ -50,7 +57,7 @@ Codex supports installing skills from GitHub through `$skill-installer`. If a ne
 
 ## How to use each skill
 
-The [usage guide](docs/usage.md) includes ready-to-copy prompts for all three styles, a footage checklist, a revision workflow and instructions for keeping reference clips separate from footage intended for the edit.
+The [usage guide](docs/usage.md) includes ready-to-copy prompts for all four styles, a footage checklist, a revision workflow and instructions for keeping reference clips separate from footage intended for the edit.
 
 1. Install the complete skill folder.
 2. Select a style by name.
@@ -65,6 +72,8 @@ No particular editor or paid provider is required by the instructions. Use your 
 
 ## Explore the collection
 
+- [Editorial Tutorial motion recipes](skills/video-edit-editorial-tutorial/references/motion-recipes.md): compact type, presenter windows, complete walkthroughs, white-gradient demonstrations and connected diagrams.
+- [Editorial Tutorial reference breakdown](skills/video-edit-editorial-tutorial/references/reference-breakdown.md): the full approved reference sequence, exact font identities and measured properties.
 - [Fluid Editorial motion construction](skills/video-edit-fluid-editorial/references/motion-construction.md): glyph baselines, masks, easing, camera movement and handoffs.
 - [Fluid Editorial style properties](skills/video-edit-fluid-editorial/references/style-properties.json): adaptable palette, type and motion roles.
 - [Editorial Studio typography and motion](skills/video-edit-editorial-studio/references/typography-motion.md): exact reference faces, word reveals, phrase slots, spacing and shadows.

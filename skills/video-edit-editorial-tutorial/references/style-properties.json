@@ -1,0 +1,409 @@
+{
+  "name": "Editorial Tutorial",
+  "skill": "video-edit-editorial-tutorial",
+  "status": "Extracted from a creator-approved reference; new independent edit using this skill not yet rendered",
+  "use": "Presenter-led explainers, demonstrations and tutorials that combine live presence, complete screen footage and editorial graphics",
+  "adaptation": "Observed values are a measured reference profile, not a mandatory timeline or fixed template. Recalculate layout, motion and cue density for current footage, narration and destination.",
+  "reference_canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 60,
+    "container_seconds": 91.3,
+    "picture_frames": 5476,
+    "picture_seconds": 91.26666666666667,
+    "presenter_source_fps": 30,
+    "screen_source_fps": 60
+  },
+  "palette": {
+    "paper": "#f0eadf",
+    "ink": "#202420",
+    "action_rust": "#a8432e",
+    "resolved_olive": "#52603d",
+    "warm_white": "#fffaf0",
+    "hairline": "#bcb5a8",
+    "tutorial_panel": "#f4eee3",
+    "prompt_paper": "#fffcf5",
+    "editorial_blue": "#5d7f9b",
+    "editorial_sheet_colours": [
+      "#d6ddd5",
+      "#e4e9ed",
+      "#fbfbf8"
+    ],
+    "natural_board": "#ebe4d5",
+    "natural_type": "#53604c",
+    "botanical_stroke": "#65734f",
+    "natural_swatches": [
+      "#c6a05b",
+      "#e2cf9b",
+      "#d8dec9",
+      "#687659"
+    ]
+  },
+  "materials": {
+    "paper_texture": {
+      "opacity": 0.24,
+      "blend": "multiply"
+    },
+    "moving_shadow": {
+      "opacity": 0.14,
+      "blend": "multiply",
+      "grayscale": 1,
+      "contrast": 1.25,
+      "loop_seconds": 21.2
+    },
+    "white_gradient": {
+      "angle_degrees": 155,
+      "stops": [
+        {
+          "colour": "#ffffff",
+          "position_percent": 12
+        },
+        {
+          "colour": "#fbfbfa",
+          "position_percent": 52
+        },
+        {
+          "colour": "#f2f1ed",
+          "position_percent": 100
+        }
+      ],
+      "radial_glow": {
+        "centre_percent": [
+          79,
+          39
+        ],
+        "rgb": [
+          223,
+          203,
+          161
+        ],
+        "alpha_range": [
+          0.11,
+          0.24
+        ],
+        "transparent_at_percent": 63
+      }
+    },
+    "presenter_grade": {
+      "brightness_multiplier": 1.035,
+      "saturation_multiplier": 0.94,
+      "note": "Small source-specific correction, not a universal skin-tone grade"
+    }
+  },
+  "typography": {
+    "faces": [
+      {
+        "name": "Helvetica Neue LT Std 65 Medium",
+        "weight": 500,
+        "style": "normal",
+        "roles": [
+          "body",
+          "secondary labels",
+          "links"
+        ]
+      },
+      {
+        "name": "Helvetica Neue LT Std 75 Bold",
+        "weight": 700,
+        "style": "normal",
+        "roles": [
+          "sans headlines",
+          "notifications",
+          "lists",
+          "captions"
+        ]
+      },
+      {
+        "name": "Times New Roman Italic",
+        "weight": 400,
+        "style": "italic",
+        "roles": [
+          "editorial emphasis",
+          "paired headings",
+          "featured names",
+          "closing"
+        ]
+      },
+      {
+        "name": "Impact LT Std Roman",
+        "weight": 400,
+        "style": "normal",
+        "roles": [
+          "occasional condensed declaration"
+        ]
+      }
+    ],
+    "font_binaries_included": false,
+    "font_identity_evidence": "Editable composition and actual font metadata; not visual inference",
+    "native_kerning": true,
+    "native_spaces": true,
+    "synthetic_styles": false,
+    "word_line_box_em": 1.12,
+    "horizontal_safety_gutter_em": 0.15,
+    "vertical_word_padding": 0,
+    "generic_word_stagger_seconds": 0.045,
+    "examples_px": {
+      "ordinary_sans_heading": 61,
+      "ordinary_serif_heading": [
+        137,
+        152
+      ],
+      "featured_sans": [
+        105,
+        112
+      ],
+      "featured_serif": [
+        149,
+        151
+      ],
+      "caption_on_footage": 56,
+      "caption_on_paper": 49,
+      "caption_white_chapter": 46,
+      "prompt": 33,
+      "condensed_declaration": 278,
+      "italic_declaration": 239
+    },
+    "line_spacing_examples": {
+      "ordinary_serif_line_height": 1.02,
+      "ordinary_second_line_margin_px": -9,
+      "featured_second_line_margin_px": -42,
+      "prompt_line_height": 1.35
+    },
+    "tracking_examples_px": {
+      "sans_headline": [
+        -1.6,
+        -4.2
+      ],
+      "serif_headline": [
+        -1.6,
+        -4
+      ],
+      "captions": -0.8
+    },
+    "caution": "Remeasure substitutions, actual glyph edges, cap heights, descenders and italic overhangs. Numeric margins depend on these faces."
+  },
+  "layouts": {
+    "full_presenter": {
+      "rect": [
+        0,
+        0,
+        1080,
+        1920
+      ]
+    },
+    "inset_presenter": {
+      "rect": [
+        64,
+        1250,
+        328,
+        583
+      ],
+      "corner_radius_px": 22
+    },
+    "presenter_below_tutorial": {
+      "rect": [
+        0,
+        682,
+        1080,
+        1238
+      ],
+      "crop": "Presenter portrait centred within available lower height"
+    },
+    "tutorial_panel": {
+      "rect": [
+        0,
+        0,
+        1080,
+        682
+      ],
+      "entrance_travel_px": 710
+    },
+    "screen": {
+      "source_dimensions": [
+        3024,
+        1820
+      ],
+      "rect": [
+        44,
+        75,
+        992,
+        597.0370370370371
+      ],
+      "corner_radius_px": 12,
+      "fit": "contain",
+      "extra_screen_zoom_pan_or_crop": false,
+      "preserve_recorded_zooms": true
+    },
+    "caption_white_chapter": {
+      "left": 459,
+      "right_margin": 94,
+      "top": 1640,
+      "alignment": "left"
+    },
+    "caption_other_chapters": {
+      "left": 65,
+      "right_margin": 118,
+      "top_footage": 1660,
+      "top_inset_paper": 1745,
+      "alignment": "center",
+      "adaptation": "Reserve a face-free caption lane; review complete groups, not only highlighted words"
+    },
+    "white_sheet": {
+      "rect": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "presenter_above_departing_artwork": true
+    },
+    "prompt_window": {
+      "rect": [
+        50,
+        111,
+        980,
+        485
+      ],
+      "corner_radius_px": 24,
+      "text_padding_px": [
+        30,
+        34
+      ],
+      "observed_scroll_distance_px": 376.9,
+      "observed_scroll_seconds": 5.3,
+      "recalculate_for_actual_content": true
+    }
+  },
+  "motion": {
+    "progress": "clamped normalized timeline time",
+    "shared_ease": "p^3*(p*(p*6-15)+10)",
+    "fast_arrival_ease": "1-(1-p)^4",
+    "word_rise": {
+      "seconds": 0.34,
+      "translate_start_percent": 105,
+      "opacity_seconds": 0.15
+    },
+    "italic_wipe": {
+      "featured_seconds": [
+        0.42,
+        0.65
+      ],
+      "horizontal_travel_px": 15,
+      "overscan_percent": [
+        -20,
+        -25
+      ]
+    },
+    "notification": {
+      "seconds": 0.36,
+      "horizontal_offset_px": -130,
+      "vertical_offset_px": 22,
+      "rotation_start_degrees": -5,
+      "scale_range": [
+        0.86,
+        1
+      ],
+      "corner_radius_px": 26
+    },
+    "panel": {
+      "entrance_seconds": 0.58,
+      "exit_seconds": 0.42
+    },
+    "scene_exit": {
+      "seconds": 0.32,
+      "horizontal_travel_px": -40,
+      "opacity_to": 0
+    },
+    "white_sheet": {
+      "entrance_and_exit_seconds": 0.62
+    },
+    "opening_camera": {
+      "seconds": 0.88,
+      "scale_range": [
+        1.76,
+        1.025
+      ],
+      "origin_percent": [
+        48,
+        48
+      ]
+    },
+    "editorial_board": {
+      "arrival_seconds": 0.8,
+      "offset_px": [
+        -160,
+        95
+      ],
+      "rotation_start_degrees": -5,
+      "path_draw_seconds": 1.55,
+      "playhead_seconds": 3.15,
+      "handoff_seconds": 0.72,
+      "handoff_travel_px": 1160
+    },
+    "natural_board": {
+      "arrival_seconds": 0.78,
+      "horizontal_offset_px": 1160,
+      "path_draw_seconds": 2.1,
+      "settle_seconds": 2.7,
+      "palette_stagger_seconds": 0.13,
+      "palette_rise_px": 22
+    },
+    "diagram": {
+      "connection_draw_seconds": 2.1,
+      "node_travel_px": 20,
+      "compact_scale": 0.89,
+      "signal_tracks_actual_path": true
+    },
+    "speech_trace": {
+      "source": "Actual voice RMS in100ms windows, interpolated between samples",
+      "paper_bar_count": 39,
+      "white_chapter_bar_count": 35,
+      "purpose": "Low-key continuous activity tied to narration"
+    },
+    "holds": "Readably settled text with live speaker or motivated secondary development; no quota for perpetual element motion"
+  },
+  "sound": {
+    "observed_cue_count": 51,
+    "sources": "Licensed recorded stock effects",
+    "roles": [
+      "notification",
+      "action click",
+      "travel whoosh",
+      "camera pullback",
+      "result confirmation"
+    ],
+    "trim_analysis_window_ms": 5,
+    "pre_normalization_effect_peak_dbfs": [
+      -23,
+      -15.5
+    ],
+    "reference_voice_highpass_hz": 65,
+    "measured_encoded_lufs": -16.07,
+    "measured_encoded_truepeak_dbtp": -1.75,
+    "screen_audio_in_final_mix": false,
+    "agent_direct_audition": false,
+    "cue_count_is_requirement": false
+  },
+  "screen_sync_example": {
+    "measured_offset_seconds": 16.631,
+    "independent_windows": 11,
+    "output_start_frame": 998,
+    "frame_rounding_error_ms": 2.3333333333326,
+    "reuse_this_offset_for_other_sources": false
+  },
+  "evidence": {
+    "creator_visual_approval": true,
+    "matching_reference_hash_verified": true,
+    "existing_decoded_frame_diagnostics": 5476,
+    "existing_timeline_samples": 96,
+    "existing_native_samples": 3,
+    "additional_motion_samples": 250,
+    "additional_mechanisms": 25,
+    "known_fault_candidates": {
+      "uniform": 0,
+      "tiled": 0,
+      "isolated": 0
+    },
+    "rendered_with_new_skill": false
+  }
+}

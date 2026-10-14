@@ -8,7 +8,7 @@ Install whichever styles you want. Always copy the **whole folder**, including `
 
 Use the copyable `$skill-installer` requests in the [quick start](../README.md#quick-start-with-codex). The installer downloads the selected skill folder and preserves an existing installation by refusing to overwrite it. Its default destination is `~/.codex/skills/`, or your configured `$CODEX_HOME/skills/`.
 
-On your next turn, ask Codex to use `$video-edit-fluid-editorial`, `$video-edit-editorial-studio` or `$video-edit-warm-and-natural`. If it cannot find the new skill, restart your session. The supported GitHub install syntax is shown in [OpenAI's skills repository](https://github.com/openai/skills/blob/main/README.md#installing-a-skill).
+On your next turn, ask Codex to use `$video-edit-fluid-editorial`, `$video-edit-editorial-studio` `$video-edit-warm-and-natural` or `$video-edit-editorial-tutorial`. If it cannot find the new skill, restart your session. The supported GitHub install syntax is shown in [OpenAI's skills repository](https://github.com/openai/skills/blob/main/README.md#installing-a-skill).
 
 ## Manual install: get the repository
 
@@ -25,7 +25,7 @@ Without Git, open the [repository](https://github.com/Jackd0127-dev/video-editin
 
 ## Codex: manual personal install
 
-Run these commands from the cloned repository to install all three styles for your local projects:
+Run these commands from the cloned repository to install all four styles for your local projects:
 
 ```sh
 mkdir -p "$HOME/.agents/skills"
@@ -37,6 +37,9 @@ if [ ! -e "$HOME/.agents/skills/video-edit-warm-and-natural" ]; then
 fi
 if [ ! -e "$HOME/.agents/skills/video-edit-editorial-studio" ]; then
   cp -R skills/video-edit-editorial-studio "$HOME/.agents/skills/"
+fi
+if [ ! -e "$HOME/.agents/skills/video-edit-editorial-tutorial" ]; then
+  cp -R skills/video-edit-editorial-tutorial "$HOME/.agents/skills/"
 fi
 ```
 
@@ -60,6 +63,9 @@ if [ ! -e "$HOME/.claude/skills/video-edit-warm-and-natural" ]; then
 fi
 if [ ! -e "$HOME/.claude/skills/video-edit-editorial-studio" ]; then
   cp -R skills/video-edit-editorial-studio "$HOME/.claude/skills/"
+fi
+if [ ! -e "$HOME/.claude/skills/video-edit-editorial-tutorial" ]; then
+  cp -R skills/video-edit-editorial-tutorial "$HOME/.claude/skills/"
 fi
 ```
 
@@ -85,6 +91,21 @@ Use the product's documented custom-skill import if available. A GitHub link by 
 
 Without a native skill loader, attach or paste the selected `SKILL.md` together with the references needed for your task, and explicitly ask the assistant to follow them. If the product requires an upload package, follow its packaging instructions and include the supporting files. This supplies guidance; the product still needs tools capable of editing your media.
 
+## Editorial Tutorial
+
+Install Editorial Tutorial through the [GitHub quick start](../README.md#quick-start-with-codex), or copy the complete `video-edit-editorial-tutorial` folder from this repository into your chosen personal/project skill location. Preserve any existing installation.
+
+For example, from the cloned repository, this guarded macOS/Linux copy installs it into the manual Codex personal location:
+
+```sh
+mkdir -p "$HOME/.agents/skills"
+if [ ! -e "$HOME/.agents/skills/video-edit-editorial-tutorial" ]; then
+  cp -R skills/video-edit-editorial-tutorial "$HOME/.agents/skills/"
+fi
+```
+
+If you already installed the same name through another location or method, use that copy rather than creating a duplicate. For Claude Code, copy the complete folder into the appropriate `.claude/skills/` location above. Invoke `$video-edit-editorial-tutorial` in Codex or `/video-edit-editorial-tutorial` in Claude Code. Restart the session if the installed folder is not discovered.
+
 ## Check the installation
 
 Ask your assistant:
@@ -95,7 +116,7 @@ its style character, and which linked reference covers motion construction.
 Do not edit or render anything yet.
 ```
 
-For Warm and Natural, substitute its skill name and ask which reference covers sound. For Editorial Studio, use `video-edit-editorial-studio` and ask which reference covers typography and motion. A successful check identifies the actual loaded folder and its linked reference. Before rendering, ask which local media tools it can use and supply a small test clip if you need to prove the toolchain.
+For Warm and Natural, substitute its skill name and ask which reference covers sound. For Editorial Studio, use `video-edit-editorial-studio` and ask which reference covers typography and motion. For Editorial Tutorial, use `video-edit-editorial-tutorial` and ask which reference covers motion recipes. A successful check identifies the actual loaded folder and its linked reference. Before rendering, ask which local media tools it can use and supply a small test clip if you need to prove the toolchain.
 
 ## Troubleshooting and updates
 

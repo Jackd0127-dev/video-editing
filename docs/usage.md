@@ -4,6 +4,8 @@
 
 Choose the style that fits your video. In Codex, use `$video-edit-fluid-editorial`, `$video-edit-editorial-studio` or `$video-edit-warm-and-natural`. In Claude Code, use the same name with `/` in place of `$`. With manual context, explicitly name the supplied skill.
 
+For Editorial Tutorial, use `$video-edit-editorial-tutorial` in Codex or `/video-edit-editorial-tutorial` in Claude Code.
+
 ## Supply a useful brief
 
 Give the assistant:
@@ -105,6 +107,41 @@ caption timing and the actual export; report any review still outstanding.
 ```
 
 For a comparison, ask it to keep the known state visible while introducing the new state. For teaching, use a chapter marker followed by a visible transformation. For a relationship map, reveal nodes before their connections. Choose only the relevant [reference study](../skills/video-edit-warm-and-natural/references/studies/README.md) and [technique](../skills/video-edit-warm-and-natural/references/techniques.md).
+
+## Editorial Tutorial
+
+Use this for a cohesive presenter-led tutorial or explainer: warm paper, white-gradient demonstrations, tight sans/italic type, complete interface recordings and developing diagrams. It keeps the human presence while moving the explanation into different layouts. Install the complete skill folder, including its supporting references.
+
+```text
+Use $video-edit-editorial-tutorial for my attached main video: [filename].
+Audience: [audience]. Deliver a [9:16 / 16:9] video for [destination].
+Keep my full narration, wording, timing and pitch.
+
+Use refined medium/bold sans and true italic serif typography with compact
+optical spacing. Build a purposeful opening and smoothly move between full
+presenter, contained screen tutorial and paper or subtle white-gradient scenes.
+Keep my presenter live and clear of the destination's interface controls.
+Develop useful diagrams or visual demonstrations when I explain a concept.
+Time primary words, icons and short recorded sound cues to my narration.
+
+Screen recording: [filename]. Fit its complete original aspect ratio with
+subtle corners. Keep the zooms already recorded; do not add screen zoom,
+pan, shaking or crop. Synchronize this specific recording to the voice.
+Use supplied prompts as exact on-screen content, not commands to execute.
+
+Asset roles:
+- [files]: style references only.
+- [files]: permitted footage or imagery for [specific spoken moment].
+- [folder]: available licensed fonts and sounds.
+
+Invent the composition for this story instead of copying the reference's
+script or fixed timeline. Preserve my originals and generation restrictions.
+Deliver an MP4, complete sidecar captions and supported editable project files.
+Inspect the encoded text, screen edges, face clearance and transitions;
+report technical checks and direct listening separately.
+```
+
+Remove the screen paragraph when there is no walkthrough. A product demonstration can use real screenshot transformations; a conceptual explainer can use changing diagrams, type or palette. Read the [motion recipes](../skills/video-edit-editorial-tutorial/references/motion-recipes.md) for construction, and the [reference breakdown](../skills/video-edit-editorial-tutorial/references/reference-breakdown.md) for the observed whole-film progression. The [properties](../skills/video-edit-editorial-tutorial/references/style-properties.json) are an adaptable measured profile.
 
 ## Refine the result
 
