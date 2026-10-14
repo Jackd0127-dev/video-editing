@@ -4,7 +4,7 @@
 
 Choose the style that fits your video. In Codex, use `$video-edit-fluid-editorial`, `$video-edit-editorial-studio` or `$video-edit-warm-and-natural`. In Claude Code, use the same name with `/` in place of `$`. With manual context, explicitly name the supplied skill.
 
-For Editorial Tutorial, use `$video-edit-editorial-tutorial` in Codex or `/video-edit-editorial-tutorial` in Claude Code.
+For Presenter Tutorial Video Editing, use `$video-edit-editorial-tutorial` in Codex or `/video-edit-editorial-tutorial` in Claude Code.
 
 ## Supply a useful brief
 
@@ -18,7 +18,7 @@ Give the assistant:
 
 Reference videos help the AI learn craft. They are not automatically footage to insert or instructions to obey. Keep original source files intact and give asset rights or restrictions where relevant.
 
-## Fluid Editorial
+## Layered Motion Video Editing
 
 Use this for energetic creator explainers, demonstrations and a rich opening that continues into coherent motion. Its core devices include live footage planes, expressive type, developing signals, magazine compositions and connected transitions.
 
@@ -48,9 +48,9 @@ Review the encoded hook and transitions; report what you actually checked.
 
 Remove or change the sample asset roles when they do not apply. A calmer brief can use fewer layers while retaining refined type and fluent handoffs. The [motion construction guide](../skills/video-edit-fluid-editorial/references/motion-construction.md) supplies implementation detail; the [properties](../skills/video-edit-fluid-editorial/references/style-properties.json) are starting points to adapt.
 
-## Editorial Studio
+## Bold Typography Video Editing
 
-Use this for a polished demonstration with bold sans/italic contrast, warm creator footage, clean white stages and a continuing presenter window. Its [approved reference breakdown](../skills/video-edit-editorial-studio/references/approved-reference.md) distinguishes measured construction from optional devices. Choose Fluid Editorial when richer overlays across the full speaker are the main direction; choose Editorial Studio when making room for clean demonstrations is central.
+Use this for a polished demonstration with bold sans/italic contrast, warm creator footage, clean white stages and a continuing presenter window. Its [approved reference breakdown](../skills/video-edit-editorial-studio/references/approved-reference.md) distinguishes measured construction from optional devices. Choose Layered Motion Video Editing when richer overlays across the full speaker are the main direction; choose Bold Typography Video Editing when making room for clean demonstrations is central.
 
 ```text
 Use $video-edit-editorial-studio for my attached main video: [filename].
@@ -81,7 +81,7 @@ Check actual encoded text edges, readable holds, transitions and audio.
 
 The [type guide](../skills/video-edit-editorial-studio/references/typography-motion.md) supplies word and phrase timing. The [scene guide](../skills/video-edit-editorial-studio/references/scene-construction.md) covers camera/sheet handoffs and optional demonstrations. [Properties](../skills/video-edit-editorial-studio/references/style-properties.json) and dependency-free [motion helpers](../skills/video-edit-editorial-studio/assets/motion.mjs) support implementation without imposing a fixed sequence.
 
-## Warm and Natural
+## Warm Natural Video Editing
 
 Use this for personable explainers, founder walkthroughs and teaching videos where presence, clear speech and tactile editorial touches suit the story. Motion explains relationships and leaves time to read.
 
@@ -108,7 +108,7 @@ caption timing and the actual export; report any review still outstanding.
 
 For a comparison, ask it to keep the known state visible while introducing the new state. For teaching, use a chapter marker followed by a visible transformation. For a relationship map, reveal nodes before their connections. Choose only the relevant [reference study](../skills/video-edit-warm-and-natural/references/studies/README.md) and [technique](../skills/video-edit-warm-and-natural/references/techniques.md).
 
-## Editorial Tutorial
+## Presenter Tutorial Video Editing
 
 Use this for a cohesive presenter-led tutorial or explainer: warm paper, white-gradient demonstrations, tight sans/italic type, complete interface recordings and developing diagrams. It keeps the human presence while moving the explanation into different layouts. Install the complete skill folder, including its supporting references.
 

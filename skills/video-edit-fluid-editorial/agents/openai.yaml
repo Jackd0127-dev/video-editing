@@ -1,4 +1,4 @@
 interface:
-  display_name: "Video Edit Fluid Editorial"
+  display_name: "Layered Motion Video Editing"
   short_description: "Layered hooks, refined type and continuous motion"
   default_prompt: "Use $video-edit-fluid-editorial to edit this video with a layered hook, refined typography and fluent motion while preserving the narration."

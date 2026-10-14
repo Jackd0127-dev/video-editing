@@ -4,7 +4,7 @@ description: Create energetic editorial video edits with layered hooks, refined 
 license: MIT
 ---
 
-# Video Edit Fluid Editorial
+# Layered Motion Video Editing
 
 Make the opening feel designed from the first frame. Combine the speaker, relevant footage, expressive type and a developing graphic mechanism; let the motion carry the explanation forward. This is one selected style, not the default for every video.
 

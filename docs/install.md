@@ -91,9 +91,9 @@ Use the product's documented custom-skill import if available. A GitHub link by 
 
 Without a native skill loader, attach or paste the selected `SKILL.md` together with the references needed for your task, and explicitly ask the assistant to follow them. If the product requires an upload package, follow its packaging instructions and include the supporting files. This supplies guidance; the product still needs tools capable of editing your media.
 
-## Editorial Tutorial
+## Presenter Tutorial Video Editing
 
-Install Editorial Tutorial through the [GitHub quick start](../README.md#quick-start-with-codex), or copy the complete `video-edit-editorial-tutorial` folder from this repository into your chosen personal/project skill location. Preserve any existing installation.
+Install Presenter Tutorial Video Editing through the [GitHub quick start](../README.md#quick-start-with-codex), or copy the complete `video-edit-editorial-tutorial` folder from this repository into your chosen personal/project skill location. Preserve any existing installation.
 
 For example, from the cloned repository, this guarded macOS/Linux copy installs it into the manual Codex personal location:
 
@@ -116,7 +116,7 @@ its style character, and which linked reference covers motion construction.
 Do not edit or render anything yet.
 ```
 
-For Warm and Natural, substitute its skill name and ask which reference covers sound. For Editorial Studio, use `video-edit-editorial-studio` and ask which reference covers typography and motion. For Editorial Tutorial, use `video-edit-editorial-tutorial` and ask which reference covers motion recipes. A successful check identifies the actual loaded folder and its linked reference. Before rendering, ask which local media tools it can use and supply a small test clip if you need to prove the toolchain.
+For Warm Natural Video Editing, substitute its skill name and ask which reference covers sound. For Bold Typography Video Editing, use `video-edit-editorial-studio` and ask which reference covers typography and motion. For Presenter Tutorial Video Editing, use `video-edit-editorial-tutorial` and ask which reference covers motion recipes. A successful check identifies the actual loaded folder and its linked reference. Before rendering, ask which local media tools it can use and supply a small test clip if you need to prove the toolchain.
 
 ## Troubleshooting and updates
 

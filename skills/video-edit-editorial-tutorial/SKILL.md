@@ -4,7 +4,7 @@ description: Create presenter-led explainers and tutorials with warm paper, whit
 license: MIT
 ---
 
-# Video Edit Editorial Tutorial
+# Presenter Tutorial Video Editing
 
 Keep the person present while the explanation changes shape. Alternate full-screen footage, a contained tutorial above the presenter, and spacious editorial scenes with a live inset. Pair crisp typography with developing diagrams, sheets and useful interface cues. This is a selectable creative toolkit, not a compulsory sequence or a default for every edit.
 
