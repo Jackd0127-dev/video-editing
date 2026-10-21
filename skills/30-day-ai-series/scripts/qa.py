@@ -26,10 +26,12 @@ out = sys.argv[sys.argv.index("--out") + 1] if "--out" in sys.argv else "qa"
 os.makedirs(out, exist_ok=True)
 FPS = 30
 CAPTION_BOTTOM = 590 / 1920  # captions are anchored with their bottom edge at y=590
+# --caption-top Y: captions sit BELOW the face with their top edge at pixel Y (chest captions)
+CAPTION_TOP = float(sys.argv[sys.argv.index("--caption-top") + 1]) / 1920 if "--caption-top" in sys.argv else None
 
 page = open("index.html").read()
 scenes = [(float(a), float(a) + float(d)) for a, d in re.findall(r'class="scene clip" id="p\d+" data-start="([\d.]+)" data-duration="([\d.]+)"', page)]
-caps = [(float(a), float(a) + float(d)) for a, d in re.findall(r'class="cap clip" id="cap\d+" data-start="([\d.]+)" data-duration="([\d.]+)"', page)]
+caps = [(float(a), float(a) + float(d)) for a, d in re.findall(r'class="cap clip" id="\w+" data-start="([\d.]+)" data-duration="([\d.]+)"', page)]
 segs = json.load(open("edit/words.json"))["segments"]
 
 
@@ -130,8 +132,10 @@ sframes = [frame(t, f"s{i:04d}.png") for i, t in enumerate(samples)]
 sf = faces(sframes)
 cover = []
 for t, f in zip(samples, sf):
-    if f and f[1] < CAPTION_BOTTOM + 0.01:
+    if f and CAPTION_TOP is None and f[1] < CAPTION_BOTTOM + 0.01:
         cover.append({"t": round(t, 2), "face_top": round(f[1], 3)})
+    if f and CAPTION_TOP is not None and f[1] + f[3] > CAPTION_TOP - 0.005:
+        cover.append({"t": round(t, 2), "face_bottom": round(f[1] + f[3], 3)})
 min_top = min((f[1] for f in sf if f), default=None)
 
 # ---- sheet
@@ -159,4 +163,4 @@ report = {
 }
 json.dump(report, open(os.path.join(out, "qa-report.json"), "w"), indent=1)
 print(f"cuts {len(cuts)} | jumps {len(report['jumps'])} {report['jumps']} | pops {len(report['pops'])} {report['pops']} | voice-cut pops {len(voice_pops)} | "
-      f"caption/face overlaps {len(cover)} | min face top {min_top:.3f} vs caption bottom {CAPTION_BOTTOM:.3f}")
+      f"caption/face overlaps {len(cover)}" + (f" | min face top {min_top:.3f} vs caption bottom {CAPTION_BOTTOM:.3f}" if min_top is not None and CAPTION_TOP is None else ""))

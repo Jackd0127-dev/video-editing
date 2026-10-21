@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Comment CTA</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "MontXB"; src: url("assets/fonts/Montserrat-ExtraBold.otf"); }
+      @font-face { font-family: "MontB"; src: url("assets/fonts/Montserrat-Bold.otf"); }
+      @font-face { font-family: "MontSB"; src: url("assets/fonts/Montserrat-SemiBold.otf"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+      #cam { position: absolute; inset: 0; transform-origin: {{OX}} {{OY}}; will-change: transform; }
+      #aroll { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+      /* One-word captions: white bold caps on the chest, hard switch */
+      .cap { position: absolute; left: 0; right: 0; top: 1395px; text-align: center; font-family: "MontXB"; font-size: 70px; letter-spacing: 0.01em; color: #fff; -webkit-text-stroke: 2px rgba(20, 14, 8, 0.35); paint-order: stroke fill; text-shadow: 0 0 22px rgba(0, 0, 0, 0.55), 0 3px 10px rgba(0, 0, 0, 0.6), 0 1px 2px rgba(0, 0, 0, 0.6); }
+
+      /* Liquid glass */
+      .glass { position: absolute; overflow: hidden; isolation: isolate; transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black); background: linear-gradient(160deg, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.10) 55%, rgba(255, 255, 255, 0.16) 100%); -webkit-backdrop-filter: blur(26px) saturate(170%); backdrop-filter: blur(26px) saturate(170%); border: 1.5px solid rgba(255, 255, 255, 0.55); box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.75), inset 0 -10px 30px rgba(255, 255, 255, 0.08), 0 24px 60px rgba(0, 0, 0, 0.28); }
+      .sheen { position: absolute; top: -40%; bottom: -40%; left: 0; width: 22%; background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0)); transform: skewX(-18deg); display: block; }
+
+      /* Hook banner + pixel Claude */
+      #banner { position: absolute; inset: 0; }
+      #bglass { left: 90px; right: 90px; top: 300px; height: 200px; border-radius: 44px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+      #bkick { font-family: "MontSB"; font-size: 28px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); }
+      #btitle { display: flex; gap: 18px; margin-top: 6px; }
+      .bw { display: inline-block; font-family: "MontXB"; font-size: 62px; line-height: 1.05; color: #fff; text-shadow: 0 3px 14px rgba(0, 0, 0, 0.25); }
+      #crabwrap { position: absolute; left: 730px; top: 172px; width: 220px; height: 160px; }
+      #crab { position: absolute; inset: 0; filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.3)); }
+      .px { position: absolute; width: 20px; height: 20px; display: block; background: #d97757; }
+      .eye { position: absolute; width: 20px; height: 20px; display: block; background: #1b1714; transform-origin: center; }
+
+      /* Ending composer */
+      #comp { left: 60px; right: 60px; top: 330px; height: 118px; border-radius: 59px; display: flex; align-items: center; padding: 0 18px 0 22px; gap: 20px; }
+      .cav { width: 74px; height: 74px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font-family: "MontXB"; font-size: 32px; color: #fff; background: linear-gradient(140deg, #3b3b3f, #1e1e21); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+      #cfield { position: relative; flex: 1; height: 60px; display: flex; align-items: center; }
+      #cph { position: absolute; left: 0; font-family: "MontSB"; font-size: 34px; color: rgba(255, 255, 255, 0.7); }
+      #ctx { font-family: "MontSB"; font-size: 36px; color: #fff; white-space: pre; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }
+      #caret { display: inline-block; width: 3px; height: 40px; margin-left: 3px; border-radius: 2px; background: #fff; }
+      #csend { position: relative; width: 82px; height: 82px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgba(255, 255, 255, 0.55); }
+      #csend svg { width: 38px; height: 38px; fill: #fff; }
+      #cring { position: absolute; inset: -2px; border-radius: 50%; border: 3px solid rgba(255, 255, 255, 0.9); opacity: 0; display: block; }
+      #post { left: 60px; right: 60px; top: 478px; height: 128px; border-radius: 36px; display: flex; align-items: center; gap: 22px; padding: 0 30px 0 22px; }
+      .pcol { display: flex; flex-direction: column; gap: 6px; }
+      .pun { font-family: "MontSB"; font-size: 25px; color: rgba(255, 255, 255, 0.78); }
+      .ptx { font-family: "MontB"; font-size: 36px; color: #fff; }
+      #pheart { margin-left: auto; width: 46px; height: 46px; fill: #fff; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25)); }
+      #cur { position: absolute; left: 0; top: 0; width: 64px; height: 64px; transform-origin: 14px 8px; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35)); }
+      #cur svg { width: 100%; height: 100%; display: block; }
+
+      /* Emphasis card */
+      #doc { position: absolute; left: 0; right: 0; top: 1340px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+      #doc-big { font-family: "MontXB"; font-size: 96px; line-height: 1; color: #fff; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.55); }
+      #doc-sub { font-family: "MontB"; font-size: 34px; letter-spacing: 0.08em; color: #fff; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6); }
+
+      /* Ending: comment input */
+      #box { position: absolute; left: 70px; right: 70px; top: 230px; height: 112px; border-radius: 56px; background: rgba(22, 22, 24, 0.86); display: flex; align-items: center; padding: 0 22px 0 38px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35); }
+      #boxph, #boxtx { font-family: "MontSB"; font-size: 34px; }
+      #boxph { position: absolute; left: 38px; color: rgba(255, 255, 255, 0.5); }
+      #boxtx { color: #fff; }
+      #boxtx::after { content: ""; display: inline-block; width: 3px; height: 38px; margin-left: 4px; vertical-align: -6px; background: #fe2c55; }
+      #send { margin-left: auto; width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+      #send svg { width: 34px; height: 34px; fill: #fff; }
+      #loopwrap { position: absolute; left: 70px; right: 70px; top: 372px; height: 110px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="{{DUR}}" data-width="1080" data-height="1920">
+      <div id="cam">
+        <video id="aroll" class="clip" src="assets/video/aroll.mp4" data-start="0" data-duration="{{DUR}}" data-track-index="0" playsinline data-has-audio="true"></video>
+      </div>
+      {{BANNER}}
+      {{CAPS}}
+      <div id="doc" class="clip" data-start="{{DOC_START}}" data-duration="{{DOC_DUR}}" data-track-index="4"><span id="doc-big">DOCUMENTING</span><span id="doc-sub">MY JOURNEY TOO</span></div>
+      <div id="boxclip" class="clip" data-start="{{BOX_START}}" data-duration="{{BOX_DUR}}" data-track-index="5" style="position:absolute;inset:0">
+        <div id="comp" class="glass"><i class="sheen" id="csheen"></i><span class="cav">J</span><div id="cfield"><span id="cph">Add a comment…</span><span id="ctx"></span><span id="caret"></span></div><span id="csend"><i id="cring"></i><svg viewBox="0 0 24 24"><path d="M12 4l7 7-1.6 1.6-4.3-4.3V20h-2.2V8.3L6.6 12.6 5 11z"/></svg></span></div>
+        <div id="post" class="glass"><i class="sheen" id="psheen"></i><span class="cav">J</span><div class="pcol"><span class="pun">jack · just now</span><span class="ptx">i'm building my first app</span></div><svg id="pheart" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.3 3 4.5 6.6 4.5c2.2 0 3.6 1.3 5.4 3.3 1.8-2 3.2-3.3 5.4-3.3 3.6 0 5.7 3.8 4.2 7.3C19.5 16.4 12 21 12 21z"/></svg></div>
+        <div id="cur"><svg viewBox="0 0 24 24"><path d="M5 3 L5 19 L9 15 L12 22 L15 20.5 L11.5 14 L18 14 Z" fill="#fff" stroke="#141414" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+      </div>
+      <audio id="bgm" src="assets/audio/bgm/bed.wav" data-start="0" data-duration="{{DUR}}" data-track-index="15" data-volume="0.2"></audio>
+      {{SFX}}
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+{{JS}}
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
