@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Day 1 — Claude motion graphics</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "ArchivoXB"; src: url("assets/fonts/Archivo-ExtraBold.ttf"); }
+      @font-face { font-family: "ArchivoSB"; src: url("assets/fonts/Archivo-SemiBold.ttf"); }
+      @font-face { font-family: "ArchivoM"; src: url("assets/fonts/Archivo-Medium.ttf"); }
+      @font-face { font-family: "PlayfairI"; src: url("assets/fonts/PlayfairDisplay-RegularItalic.ttf"); }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0d0b0a; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #0d0b0a; font-family: "ArchivoSB", sans-serif; }
+
+      /* A-roll */
+      #cam { position: absolute; inset: 0; will-change: transform, filter; filter: blur(0px) invert(0) {{GRADE}}; }
+      #aroll { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 48%, rgba(0, 0, 0, 0) 55%, rgba(8, 5, 3, 0.42) 100%); }
+
+      #scrim { position: absolute; left: 0; right: 0; top: 0; height: 820px; background: linear-gradient(180deg, rgba(8, 5, 3, 0.42) 0%, rgba(8, 5, 3, 0.26) 45%, rgba(8, 5, 3, 0) 100%); }
+
+      /* Captions over the A-roll: anchored above the head, lines grow upward */
+      .cap { position: absolute; left: 50px; right: 50px; bottom: 1330px; display: flex; justify-content: center; }
+      .capi { display: flex; flex-direction: column; align-items: center; text-align: center; }
+      .cl { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; column-gap: 14px; }
+      .w { display: inline-block; color: #fff; text-shadow: 0 6px 28px rgba(0, 0, 0, 0.55), 0 2px 6px rgba(0, 0, 0, 0.35); }
+      .cs { font-family: "ArchivoSB"; font-size: 46px; letter-spacing: -0.01em; line-height: 1.12; }
+      .cb { font-family: "ArchivoXB"; font-size: 104px; letter-spacing: -0.045em; line-height: 0.98; }
+      .ci { font-family: "PlayfairI"; font-size: 116px; letter-spacing: -0.01em; line-height: 1; }
+      .w.red { color: #fff; }
+
+      /* Paper world */
+      .scene { position: absolute; inset: 0; }
+      .sheet { position: absolute; inset: 0; border-radius: 44px; overflow: hidden; background: {{PAPER}}; will-change: transform, filter; }
+      .paper { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+      .leaf { position: absolute; left: -110px; top: -80px; width: 1300px; mix-blend-mode: multiply; opacity: 0.4; }
+      .blinds { position: absolute; left: -210px; top: -240px; width: 1500px; height: 2400px; mix-blend-mode: multiply; opacity: 0.9; }
+      #p2-cut { position: absolute; inset: 0; border-radius: 44px; overflow: hidden; }
+      .content { position: absolute; inset: 0; }
+      .stack { position: absolute; display: flex; flex-direction: column; align-items: center; z-index: 2; }
+      .center { left: 0; right: 0; }
+      .row { display: flex; }
+      .col { display: flex; flex-direction: column; }
+      .xb { font-family: "ArchivoXB"; letter-spacing: -0.045em; color: {{INK}}; display: inline-block; text-shadow: 0 14px 30px rgba(60, 40, 24, 0.22), 0 3px 6px rgba(60, 40, 24, 0.12); }
+      .ital { font-family: "PlayfairI"; color: {{INK}}; display: inline-block; letter-spacing: -0.01em; text-shadow: 0 14px 30px rgba(60, 40, 24, 0.2), 0 3px 6px rgba(60, 40, 24, 0.1); }
+      .sm { font-family: "ArchivoSB"; font-size: 48px; letter-spacing: -0.01em; color: {{INK}}; display: inline-block; }
+      .grad { background: linear-gradient(180deg, {{INK}} 38%, #8d8174 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; }
+      .tag { font-family: "ArchivoSB"; font-size: 34px; letter-spacing: 0.14em; text-transform: uppercase; color: {{RED}}; display: inline-block; }
+      .caps { font-family: "ArchivoSB"; font-size: 30px; letter-spacing: 0.16em; text-transform: uppercase; color: {{MUTED}}; display: inline-block; }
+      .disc { position: absolute; border-radius: 50%; background: {{RED}}; }
+      #p2-jack { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .rule { position: absolute; left: 0; overflow: visible; }
+      .rule line { stroke: {{INK}}; stroke-width: 3; stroke-dasharray: 900; }
+      .card { position: absolute; background: #fbf9f5; border-radius: 34px; padding: 56px 60px; display: flex; flex-direction: column; align-items: flex-start; box-shadow: 0 40px 80px rgba(60, 40, 24, 0.22), 0 6px 18px rgba(60, 40, 24, 0.12); }
+      .hair { width: 100%; height: 3px; background: repeating-linear-gradient(90deg, rgba(23, 18, 14, 0.25) 0 12px, transparent 12px 22px); }
+      .stamp { position: absolute; width: 190px; height: 190px; border-radius: 50%; border: 8px solid {{RED}}; color: {{RED}}; font-family: "ArchivoXB"; font-size: 110px; display: flex; align-items: center; justify-content: center; line-height: 1; background: rgba(251, 249, 245, 0.6); }
+      .ghost { position: absolute; left: -20px; font-family: "ArchivoXB"; font-size: 470px; letter-spacing: -0.06em; color: rgba(23, 18, 14, 0.07); white-space: nowrap; }
+      .ghost::before { content: attr(data-word); }
+      .draw { fill: none; stroke: {{INK}}; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 960; }
+      .draw.red, #p6-line { stroke: {{RED}}; }
+      .sub { position: absolute; inset: 0; opacity: 0; }
+      .center-abs { position: absolute; left: 0; right: 0; text-align: center; display: block; }
+      .echo { position: absolute; left: 0; right: 0; text-align: center; display: block; }
+      .grid-bg { background-image: linear-gradient(rgba(23, 18, 14, 0.08) 2px, transparent 2px), linear-gradient(90deg, rgba(23, 18, 14, 0.08) 2px, transparent 2px); background-size: 120px 120px; }
+      .cross { position: absolute; width: 60px; height: 60px; background: linear-gradient({{INK}}, {{INK}}) center / 3px 100% no-repeat, linear-gradient({{INK}}, {{INK}}) center / 100% 3px no-repeat; }
+      .burst { position: absolute; left: 0; top: 0; overflow: visible; }
+      #p7d-rays line { stroke: {{RED}}; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 520 1040; }
+      .win { position: absolute; left: 70px; right: 70px; background: #fbf9f5; border-radius: 30px; overflow: hidden; box-shadow: 0 50px 90px rgba(60, 40, 24, 0.25), 0 8px 20px rgba(60, 40, 24, 0.12); }
+      .bar-top { position: relative; height: 84px; display: flex; align-items: center; gap: 14px; padding: 0 34px; border-bottom: 2px solid rgba(23, 18, 14, 0.08); }
+      .bar-top i { display: block; width: 20px; height: 20px; border-radius: 50%; background: #d9d0c5; }
+      .wt { font-family: "ArchivoSB"; font-size: 28px; color: {{MUTED}}; margin-left: 14px; }
+      .copy { position: absolute; right: 30px; top: 18px; font-family: "ArchivoSB"; font-size: 26px; padding: 8px 22px; border-radius: 999px; border: 2px solid rgba(23, 18, 14, 0.18); color: {{INK}}; }
+      .copy.done { background: {{RED}}; color: #fff; border-color: {{RED}}; opacity: 0; }
+      .pbody { padding: 38px 46px 44px; display: flex; flex-direction: column; gap: 16px; }
+      .pl { font-family: "ArchivoM"; font-size: 38px; line-height: 1.3; color: {{INK}}; }
+      #p11-win .pl { font-size: 34px; }
+      .url { font-family: "ArchivoSB"; color: {{RED}}; word-break: break-all; }
+      .fill { font-family: "ArchivoSB"; font-weight: normal; color: {{RED}}; padding: 0 8px; border-radius: 10px; }
+      .style-card { position: absolute; border-radius: 36px; overflow: hidden; box-shadow: 0 50px 90px rgba(40, 26, 14, 0.32); }
+      .cine-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.25) saturate(0.7) brightness(0.62) sepia(0.25); }
+      .cine-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.78) 100%); }
+      .bold-card { background: {{RED}}; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 50px; }
+      .thumb { position: absolute; width: 220px; height: 391px; object-fit: cover; border-radius: 22px; box-shadow: 0 30px 60px rgba(40, 26, 14, 0.3); }
+      .drop { position: absolute; border: 4px dashed rgba(23, 18, 14, 0.22); border-radius: 40px; background: rgba(255, 255, 255, 0.45); display: flex; align-items: center; justify-content: center; }
+      .chip { position: absolute; font-family: "ArchivoSB"; font-size: 32px; padding: 14px 28px; border-radius: 999px; background: {{INK}}; color: {{PAPER}}; white-space: nowrap; }
+      #p10-chip { left: 0; right: 0; bottom: 22px; margin: 0 auto; width: fit-content; }
+      .chip.outline { background: transparent; color: {{RED}}; border: 3px solid {{RED}}; }
+      .model { position: absolute; display: flex; align-items: center; gap: 22px; padding: 22px 34px; border-radius: 999px; background: #fbf9f5; border: 3px solid rgba(23, 18, 14, 0.14); box-shadow: 0 20px 40px rgba(60, 40, 24, 0.15); }
+      .slot { position: relative; width: 240px; height: 50px; }
+      .mname { position: absolute; left: 0; top: 0; font-family: "ArchivoXB"; font-size: 40px; letter-spacing: -0.02em; color: {{INK}}; white-space: nowrap; }
+      #p11-sel { opacity: 0; }
+      .caret { font-size: 28px; color: {{MUTED}}; }
+      .menu { position: absolute; width: 420px; background: #fbf9f5; border-radius: 28px; padding: 14px; transform-origin: top center; box-shadow: 0 30px 60px rgba(60, 40, 24, 0.22); }
+      .mi { font-family: "ArchivoSB"; font-size: 36px; padding: 14px 22px; border-radius: 16px; color: {{INK}}; }
+      .item { position: absolute; left: 80px; right: 80px; display: flex; align-items: flex-start; gap: 30px; }
+      .num { font-family: "ArchivoSB"; font-size: 32px; color: {{RED}}; letter-spacing: 0.1em; margin-top: 34px; }
+      .strike { position: absolute; left: 80px; top: 52px; overflow: visible; }
+      .ring { fill: none; stroke: {{RED}}; stroke-width: 5; stroke-dasharray: 2640; opacity: 0.45; }
+      .bar { position: absolute; left: 90px; right: 90px; height: 22px; display: flex; gap: 6px; }
+      .seg { display: block; flex: 1; border-radius: 6px; background: rgba(23, 18, 14, 0.14); transform-origin: bottom; }
+
+
+      /* v2 components */
+      .ch { display: inline-block; }
+      .logo-in { display: inline-block; height: 0.78em; width: 0.78em; vertical-align: -0.06em; margin-right: 0.22em; filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.5)); }
+      .pro-card { position: absolute; left: 110px; width: 860px; height: 520px; border-radius: 42px; padding: 52px 56px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; background: linear-gradient(135deg, #e3906f 0%, #d97757 42%, #b5553a 100%); box-shadow: 0 60px 110px rgba(120, 50, 25, 0.35), 0 10px 26px rgba(120, 50, 25, 0.25); }
+      .pro-pill { font-family: "ArchivoXB"; font-size: 30px; letter-spacing: 0.22em; color: #fff; border: 3px solid rgba(255, 255, 255, 0.85); border-radius: 999px; padding: 8px 22px 8px 28px; }
+      .chip-gold { width: 112px; height: 86px; border-radius: 16px; background: linear-gradient(135deg, #f4e1a6, #c9a35a 60%, #ead089); box-shadow: inset 0 0 0 2px rgba(120, 80, 20, 0.25); }
+      .sheen-rot { position: absolute; left: -300px; top: -300px; width: 1460px; height: 1120px; transform: rotate(20deg); pointer-events: none; }
+      .sheen { position: absolute; top: 0; bottom: 0; left: 0; width: 220px; background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0)); }
+      .ipill { position: absolute; width: 440px; height: 80px; border-radius: 999px; background: #fbf9f5; display: flex; align-items: center; gap: 18px; padding: 0 30px; font-family: "ArchivoSB"; font-size: 36px; color: {{INK}}; box-shadow: 0 16px 34px rgba(60, 40, 24, 0.14); }
+      .ipill i { display: block; width: 16px; height: 16px; border-radius: 50%; background: {{RED}}; }
+      .draw.thin { stroke-width: 3; stroke: rgba(23, 18, 14, 0.45); stroke-dasharray: 600; }
+      .inode { position: absolute; width: 150px; height: 150px; border-radius: 50%; background: #fbf9f5; display: flex; align-items: center; justify-content: center; box-shadow: 0 24px 50px rgba(60, 40, 24, 0.22); }
+      .inode img { width: 84px; height: 84px; }
+      .inode.big { width: 250px; height: 250px; }
+      .inode.big img { width: 140px; height: 140px; }
+      .ring2 { position: absolute; width: 350px; height: 350px; border-radius: 50%; border: 4px solid #d97757; opacity: 0; }
+      .ocard { position: absolute; left: 80px; right: 80px; height: 190px; border-radius: 34px; background: #fbf9f5; padding: 38px 44px; display: flex; flex-direction: column; gap: 30px; box-shadow: 0 30px 60px rgba(60, 40, 24, 0.18); }
+      .meter { position: relative; height: 34px; border-radius: 999px; background: rgba(23, 18, 14, 0.1); overflow: hidden; }
+      .mfill { position: absolute; inset: 0; border-radius: 999px; background: {{RED}}; transform-origin: left center; }
+      .mag-card { position: absolute; left: 80px; right: 80px; border-radius: 34px; overflow: hidden; background: #111; box-shadow: 0 50px 90px rgba(40, 26, 14, 0.3); }
+      .mag-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 56%; }
+      .mag-img.cine { filter: contrast(1.25) saturate(0.7) brightness(0.68) sepia(0.28) hue-rotate(-8deg); }
+      .lbox { position: absolute; left: 0; right: 0; height: 56px; background: #050403; display: block; }
+      .mag-card.bold { background: {{RED}}; }
+      .mag-img.duo { filter: grayscale(1) contrast(1.35) brightness(1.05); mix-blend-mode: multiply; opacity: 0.85; }
+      .wheel { position: absolute; left: 80px; right: 80px; height: 240px; overflow: hidden; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 70%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 70%, transparent 100%); }
+      .band { position: absolute; left: 0; right: 0; top: 80px; height: 80px; border-radius: 24px; background: rgba(251, 249, 245, 0.92); box-shadow: 0 14px 30px rgba(60, 40, 24, 0.14); }
+      .wlist { position: absolute; left: 0; right: 0; top: 80px; }
+      .wi { height: 80px; display: flex; align-items: center; padding-left: 40px; font-family: "ArchivoXB"; font-size: 50px; letter-spacing: -0.03em; color: {{INK}}; }
+      #p11-w1, #p11-w2 { opacity: 0.28; }
+      .pro-badge { position: absolute; right: 26px; top: 99px; display: flex; align-items: center; gap: 12px; font-family: "ArchivoSB"; font-size: 30px; color: #a9502f; border: 3px solid #d97757; border-radius: 999px; padding: 4px 20px 4px 10px; background: #fff7f2; white-space: nowrap; }
+      .pro-badge img { width: 32px; height: 32px; }
+      .face { fill: #fbf9f5; stroke: {{INK}}; stroke-width: 6; filter: drop-shadow(0 30px 50px rgba(60, 40, 24, 0.2)); }
+      .tk { stroke: rgba(23, 18, 14, 0.35); stroke-width: 3; stroke-linecap: round; }
+      .tk.big { stroke: {{INK}}; stroke-width: 6; }
+      .hand { stroke: {{INK}}; stroke-width: 14; stroke-linecap: round; }
+      .hand.sec { stroke: {{RED}}; stroke-width: 4; }
+      .role { position: absolute; width: 290px; height: 400px; border-radius: 34px; background: #fbf9f5; padding: 44px 30px; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; box-shadow: 0 40px 70px rgba(60, 40, 24, 0.2); }
+      .ricon { position: absolute; left: 30px; top: 40px; width: 110px; height: 110px; fill: none; stroke: {{INK}}; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+
+      /* v3 components */
+      @font-face { font-family: "Typewriter"; src: url("assets/fonts/IBMPlexMono-Regular.ttf"); }
+      .cn { font-family: "ArchivoXB"; font-size: 150px; letter-spacing: -0.045em; line-height: 0.95; }
+      .mask { overflow: hidden; display: block; padding: 12px 50px 60px; margin: -12px -50px -60px; }
+      .mask > span { display: block; }
+      .note { font-family: "Typewriter"; font-size: 30px; line-height: 1.35; color: {{RED}}; letter-spacing: 0.01em; display: inline-block; }
+      .note.light { color: rgba(255, 255, 255, 0.85); }
+      .xmark { position: absolute; width: 34px; height: 34px; display: block; background: linear-gradient({{INK}}, {{INK}}) center / 2px 100% no-repeat, linear-gradient({{INK}}, {{INK}}) center / 100% 2px no-repeat; opacity: 0.55; }
+      .sel-wrap { position: relative; display: inline-block; margin-top: 8px; }
+      .sel { position: absolute; left: -10px; right: -10px; top: 6px; bottom: 0; background: rgba(179, 33, 26, 0.14); border-left: 3px solid {{RED}}; border-right: 3px solid {{RED}}; transform-origin: left center; display: block; }
+      .handle { position: absolute; width: 16px; height: 16px; border-radius: 50%; background: {{RED}}; display: block; }
+      .handle.l { left: -17px; top: -4px; }
+      .handle.r { right: -17px; bottom: -10px; }
+      .btrack { position: absolute; left: 110px; right: 110px; height: 80px; border-radius: 16px; background: rgba(23, 18, 14, 0.07); overflow: hidden; }
+      .bseg { position: absolute; top: 0; bottom: 0; transform-origin: left center; background: {{INK}}; box-shadow: inset -3px 0 0 #ede7df; }
+      #pi-s1 { background: #3b332c; } #pi-s2 { background: #5c524a; } #pi-s3 { background: {{RED}}; }
+      .bseg.out { background: linear-gradient(90deg, {{INK}} 0%, #3b332c 40%, {{RED}} 100%); box-shadow: none; }
+      .blabels { position: absolute; left: 110px; right: 110px; height: 40px; }
+      .blabel { position: absolute; padding-left: 6px; font-family: "Typewriter"; font-size: 30px; color: {{MUTED}}; }
+      .draw.thin.dash { stroke-dasharray: 8 10; stroke: rgba(23, 18, 14, 0.5); }
+      .tone-cine { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 80, 110, 0.55), rgba(190, 110, 40, 0.45)); mix-blend-mode: soft-light; }
+      .lbar { position: absolute; left: 0; right: 0; height: 230px; background: #050403; display: block; }
+      .tone-bold { position: absolute; inset: 0; background: #c3221a; mix-blend-mode: multiply; opacity: 0.88; }
+      .srail { position: absolute; left: 0; right: 0; top: 58px; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, 0.55); display: block; }
+      .sknob { position: absolute; left: 0; top: 46px; width: 28px; height: 28px; border-radius: 50%; background: #fff; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4); display: block; }
+      #p10-files { position: absolute; inset: 0; transform-origin: 650px 800px; }
+      .fcard { position: absolute; width: 460px; height: 136px; border-radius: 24px; background: #fbf9f5; display: flex; align-items: center; gap: 20px; padding: 0 28px; box-shadow: 0 24px 50px rgba(60, 40, 24, 0.18); }
+      .fplay { display: block; width: 56px; height: 56px; border-radius: 14px; background: {{INK}}; position: relative; flex: none; }
+      .fplay::after { content: ""; position: absolute; left: 22px; top: 17px; border-left: 16px solid #fbf9f5; border-top: 11px solid transparent; border-bottom: 11px solid transparent; }
+      .fname { font-family: "ArchivoSB"; font-size: 32px; color: {{INK}}; }
+      .fdur { margin-left: auto; font-family: "Typewriter"; font-size: 26px; color: {{MUTED}}; }
+      .composer { position: absolute; left: 80px; right: 80px; height: 230px; border-radius: 40px; background: #fbf9f5; box-shadow: 0 30px 70px rgba(60, 40, 24, 0.18); }
+      .ph { position: absolute; left: 44px; top: 40px; font-family: "ArchivoM"; font-size: 38px; color: {{MUTED}}; }
+      .chips { position: absolute; left: 40px; top: 36px; right: 160px; display: flex; flex-wrap: wrap; gap: 12px; }
+      .fchip { font-family: "ArchivoSB"; font-size: 26px; padding: 10px 18px; border-radius: 14px; background: rgba(23, 18, 14, 0.07); color: {{INK}}; }
+      .uring { position: absolute; right: 40px; bottom: 34px; opacity: 0; transform: rotate(-90deg); }
+      .utrack { fill: none; stroke: rgba(23, 18, 14, 0.1); stroke-width: 8; }
+      .uarc { fill: none; stroke: {{RED}}; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 252; }
+      .upct { position: absolute; right: 40px; bottom: 34px; width: 96px; height: 96px; display: flex; align-items: center; justify-content: center; font-family: "ArchivoSB"; font-size: 24px; color: {{INK}}; opacity: 0; }
+      .udone { position: absolute; right: 52px; bottom: 46px; width: 72px; height: 72px; border-radius: 50%; background: {{RED}}; color: #fff; display: flex; align-items: center; justify-content: center; font-family: "ArchivoXB"; font-size: 40px; opacity: 0; }
+      .cursor { position: absolute; left: 0; top: 0; width: 66px; height: 66px; transform-origin: 14px 8px; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3)); z-index: 30; }
+      .cursor svg { width: 100%; height: 100%; display: block; }
+
+
+      /* v4 components */
+      #aroll-g { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .gwrap { position: absolute; inset: 0; }
+      .gedge { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; display: block; background: rgba(255, 250, 240, 0.9); box-shadow: 0 0 30px 8px rgba(255, 240, 220, 0.45); }
+      .note.dim { color: {{MUTED}}; }
+      .logo-stage { position: absolute; }
+      .echo-m { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .ray { stroke: {{INK}}; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 180; opacity: 0.35; }
+      .orbit { fill: none; stroke: rgba(23, 18, 14, 0.35); stroke-width: 2; stroke-dasharray: 2075; }
+      .irow { position: absolute; left: 0; white-space: nowrap; font-family: "ArchivoXB"; font-size: 170px; line-height: 1; letter-spacing: -0.04em; }
+      .irow.solid { color: {{INK}}; }
+      .irow.line { color: transparent; -webkit-text-stroke: 3px {{INK}}; }
+      .mecho { position: absolute; left: 0; right: 0; text-align: center; font-size: 240px; line-height: 1; display: block; }
+      .speed i { position: absolute; left: 600px; height: 4px; border-radius: 4px; background: rgba(23, 18, 14, 0.25); display: block; }
+      .shape { fill: none; stroke: {{INK}}; stroke-width: 6; }
+      .shape.thin { stroke-width: 2; stroke: rgba(23, 18, 14, 0.3); }
+      .dotgrid { position: absolute; inset: 0; background-image: radial-gradient(rgba(23, 18, 14, 0.16) 2px, transparent 2.5px); background-size: 46px 46px; }
+      .ncount { position: absolute; display: flex; flex-direction: column; gap: 6px; }
+      .nchip { position: absolute; font-family: "Typewriter"; font-size: 28px; color: {{INK}}; background: #fbf9f5; padding: 10px 20px; border-radius: 999px; box-shadow: 0 10px 24px rgba(60, 40, 24, 0.14); white-space: nowrap; }
+      .nline { fill: none; stroke: rgba(23, 18, 14, 0.3); stroke-width: 2.5; }
+      .npkt { fill: none; stroke: {{INK}}; stroke-width: 7; stroke-linecap: round; }
+      .nring-t { fill: none; stroke: rgba(23, 18, 14, 0.1); stroke-width: 10; }
+      .nring { fill: none; stroke: {{INK}}; stroke-width: 10; stroke-linecap: round; stroke-dasharray: 943; transform: rotate(-90deg); transform-origin: 540px 1090px; }
+      .bblock { position: absolute; font-family: "ArchivoXB"; font-size: 64px; letter-spacing: -0.02em; padding: 14px 28px; line-height: 1; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35); }
+      .bblock.light { background: #fbf9f5; color: {{INK}}; }
+      .bblock.dark { background: {{INK}}; color: #fbf9f5; }
+      .bchart { position: absolute; display: flex; align-items: flex-end; gap: 16px; height: 340px; }
+      .bchart i { display: block; width: 46px; background: #fbf9f5; border-radius: 10px 10px 0 0; transform-origin: bottom center; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35); }
+      .barrow { fill: none; stroke: #fbf9f5; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 420; filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4)); }
+      .ficon { position: absolute; width: 190px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+      .fbody { position: relative; width: 170px; height: 210px; border-radius: 22px; background: {{INK}}; box-shadow: 0 30px 60px rgba(40, 26, 14, 0.3); overflow: hidden; }
+      .fstrip { position: absolute; left: 0; right: 0; top: 14px; height: 18px; display: block; background: repeating-linear-gradient(90deg, rgba(251, 249, 245, 0.85) 0 14px, transparent 14px 26px); }
+      .fstrip.b { top: auto; bottom: 14px; }
+      .fbody .fplay { position: absolute; left: 57px; top: 77px; background: #fbf9f5; }
+      .fbody .fplay::after { border-left-color: {{INK}}; }
+      .ficon .fname { font-family: "Typewriter"; font-size: 26px; color: {{INK}}; }
+      .achips { position: absolute; left: 36px; right: 140px; top: 34px; display: flex; flex-direction: column; gap: 10px; }
+      .achip { display: flex; align-items: center; gap: 14px; font-family: "ArchivoSB"; font-size: 28px; color: {{INK}}; }
+      .fmini { display: block; width: 34px; height: 40px; border-radius: 8px; background: {{INK}}; }
+      .aprog { position: relative; display: block; width: 220px; height: 8px; border-radius: 8px; background: rgba(23, 18, 14, 0.1); overflow: hidden; margin-left: auto; }
+      .aprog i { position: absolute; inset: 0; display: block; background: {{INK}}; transform-origin: left center; }
+      .send { position: absolute; right: 36px; bottom: 36px; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: "ArchivoXB"; font-size: 40px; font-style: normal; background: rgba(23, 18, 14, 0.12); color: {{MUTED}}; }
+      .composer { height: 270px; }
+      .rrow { position: absolute; left: 80px; right: 80px; height: 200px; border-radius: 32px; background: #fbf9f5; display: flex; align-items: center; gap: 36px; padding: 0 40px; box-shadow: 0 30px 60px rgba(60, 40, 24, 0.16); }
+      .rrow.dark { background: {{INK}}; box-shadow: 0 40px 80px rgba(40, 26, 14, 0.35); }
+      .ribox { width: 130px; height: 130px; border-radius: 28px; background: {{INK}}; display: flex; align-items: center; justify-content: center; flex: none; }
+      .ribox.light { background: #fbf9f5; }
+      .rico { width: 76px; height: 76px; fill: none; stroke: #fbf9f5; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+      .rico path { stroke-dasharray: 60; }
+      .rnum { margin-left: auto; font-family: "Typewriter"; font-size: 30px; color: {{MUTED}}; }
+
+      .bar.big { height: 40px; }
+      #grain { position: absolute; inset: -120px; background: url("assets/img/grain.png"); opacity: 0.07; mix-blend-mode: overlay; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="{{DURATION}}" data-width="1080" data-height="1920">
+      <div id="cam">
+        <video id="aroll" class="clip" src="assets/video/aroll.mp4" data-start="0" data-duration="{{AROLL_END}}" data-track-index="0" playsinline data-has-audio="true"></video>
+        {{GRADE_LAYER}}
+      </div>
+      <div id="vignette"></div>
+      <div id="scrim"></div>
+{{CAPTIONS}}
+{{SCENES}}
+      <div id="grain"></div>
+      <audio id="bgm" src="assets/audio/bgm/bed-cliff.wav" data-start="0" data-duration="{{DURATION}}" data-track-index="15" data-volume="0.22"></audio>
+{{SFX}}
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const GRADE = "{{GRADE}}";
+      const GRADE_HI = "contrast(1.3) saturate(0.93) brightness(1.01)";
+      function enter(sel, at) {
+        tl.fromTo(sel + " .sheet", { filter: "blur(22px)", scale: 1.07 }, { filter: "blur(0px)", scale: 1, duration: 0.32, ease: "power3.out" }, at);
+        tl.fromTo(sel + " .content", { scale: 1 }, { scale: 1.035, duration: 3, ease: "none" }, at);
+      }
+      function rev(sel, at, o) {
+        tl.fromTo(sel, { opacity: 0, y: o.y ?? 24, filter: "blur(12px)", scale: o.s ?? 1 }, { opacity: 1, y: 0, filter: "blur(0px)", scale: 1, duration: o.d ?? 0.34, ease: "power3.out" }, at);
+      }
+      function word(sel, at) {
+        tl.fromTo(sel, { opacity: 0.22, y: 12, filter: "blur(7px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.22, ease: "power2.out" }, at);
+      }
+      function flash(at) {
+        tl.set("#cam", { filter: "blur(0px) invert(1) " + GRADE_HI }, at);
+        tl.set("#cam", { filter: "blur(0px) invert(0) " + GRADE }, at + 0.067);
+      }
+      function focus(at) {
+        tl.fromTo("#cam", { filter: "blur(9px) invert(0) " + GRADE }, { filter: "blur(0px) invert(0) " + GRADE, duration: 0.2, ease: "power2.out", immediateRender: false }, at);
+      }
+      tl.fromTo("#grain", { x: 0, y: 0 }, { x: -110, y: -70, duration: {{DURATION}}, ease: "steps(1400)" }, 0);
+{{JS}}
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

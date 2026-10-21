@@ -28,3 +28,6 @@ _archive/
 __pycache__/
 .env
 .env.*
+
+# Edit projects hold licensed fonts/SFX and footage-derived files: keep them local
+projects/
