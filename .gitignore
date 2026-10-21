@@ -1,15 +1,26 @@
-# Local reference media and generated study/export material
-local-media/
-local-study/
-exports/
+# Media stays local; only skills, tools and project source are tracked
 *.mp4
 *.MP4
 *.mov
 *.MOV
+*.webm
 *.wav
 *.mp3
 *.m4a
+*.aac
 *.srt
+*.vtt
+exports/*
+footage/*
+references/*
+!*/.gitkeep
+
+# HyperFrames working files
+.hyperframes/
+node_modules/
+
+# Old work, kept on disk only
+_archive/
 
 # Local environments and private configuration
 .DS_Store
