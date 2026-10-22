@@ -13,7 +13,7 @@ AROLL_END = SEGS[-1]["end"]
 DURATION = round(AROLL_END + 3.6, 3)
 
 INK, PAPER, RED, MUTED = "#17120e", "#ede7df", "#17120e", "#7a6e63"
-GRADE = "contrast(1.06) saturate(0.93) brightness(1.01)"
+GRADE = ""  # never grade his footage (Day 2 note); Day 1 shipped with a light grade that read as "washed"
 
 
 def t(i):

@@ -240,7 +240,108 @@
       .rnum { margin-left: auto; font-family: "Typewriter"; font-size: 30px; color: {{MUTED}}; }
 
       .bar.big { height: 40px; }
+
+      /* Day 2 components */
+      .brl { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .lbl { position: absolute; left: 0; right: 0; text-align: center; top: 0; }
+      .pcard, .vcard { position: absolute; left: 90px; right: 90px; height: 560px; border-radius: 34px; overflow: hidden; background: #fbf9f5; box-shadow: 0 40px 80px rgba(40, 26, 14, 0.28), 0 8px 20px rgba(40, 26, 14, 0.14); }
+      .vcard { height: 500px; }
+      .pimg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .pwipe { position: absolute; inset: 0; }
+      .scan { position: absolute; top: 0; bottom: 0; left: 0; width: 6px; background: #fbf9f5; box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.7); display: block; }
+      .tagnote { position: absolute; left: 22px; top: 22px; font-family: "Typewriter"; font-size: 28px; color: {{INK}}; background: rgba(251, 249, 245, 0.92); padding: 8px 16px; border-radius: 12px; }
+      .arr { position: absolute; overflow: visible; }
+      .arr path { fill: none; stroke: {{INK}}; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 200; }
+      .xline { fill: none; stroke: {{INK}}; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 900; }
+      .strike { position: absolute; overflow: visible; pointer-events: none; }
+      .rico circle { stroke-dasharray: 70; }
+      .wire { position: absolute; overflow: visible; }
+      .wire rect { fill: none; stroke: {{INK}}; stroke-width: 4; stroke-dasharray: 1200; }
+      .att { position: absolute; left: 36px; top: 34px; display: flex; align-items: center; gap: 16px; padding: 10px 18px 10px 10px; border-radius: 18px; background: rgba(23, 18, 14, 0.06); font-family: "ArchivoSB"; font-size: 30px; color: {{INK}}; opacity: 0; }
+      .att img { width: 110px; height: 72px; object-fit: cover; border-radius: 10px; }
+      .flyimg { position: absolute; left: 290px; top: 760px; width: 500px; height: 310px; object-fit: cover; border-radius: 22px; box-shadow: 0 30px 60px rgba(40, 26, 14, 0.3); }
+      .bcard { position: absolute; left: 70px; right: 70px; border-radius: 34px; background: #fbf9f5; padding: 26px 46px; box-shadow: 0 40px 80px rgba(60, 40, 24, 0.2); }
+      .brow { display: flex; flex-direction: column; gap: 10px; padding: 26px 0; border-bottom: 2px solid rgba(23, 18, 14, 0.08); }
+      .brow:last-child { border-bottom: none; }
+      .bval { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+      .sw { display: block; width: 74px; height: 74px; border-radius: 50%; box-shadow: inset 0 0 0 3px rgba(23, 18, 14, 0.12); }
+      .cmp { font-family: "ArchivoSB"; font-size: 30px; padding: 10px 20px; border-radius: 999px; background: rgba(23, 18, 14, 0.07); color: {{INK}}; }
+      .wfoot { display: flex; align-items: center; gap: 16px; padding: 0 30px 30px 46px; }
+      .wsend { margin-left: auto; width: 76px; height: 76px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: "ArchivoXB"; font-size: 38px; background: rgba(23, 18, 14, 0.12); color: {{MUTED}}; }
+      .bwin { position: absolute; left: 70px; right: 70px; height: 640px; border-radius: 30px; overflow: hidden; background: #fbf9f5; box-shadow: 0 50px 90px rgba(40, 26, 14, 0.28); }
+      .bbar { height: 96px; display: flex; align-items: center; gap: 14px; padding: 0 28px; border-bottom: 2px solid rgba(23, 18, 14, 0.08); }
+      .bbar > i { display: block; width: 20px; height: 20px; border-radius: 50%; background: #d9d0c5; }
+      .urlpill { flex: 1; margin-left: 16px; height: 60px; border-radius: 30px; background: rgba(23, 18, 14, 0.06); display: flex; align-items: center; padding: 0 24px; gap: 14px; font-family: "Typewriter"; font-size: 32px; color: {{INK}}; }
+      .ldot { display: block; width: 16px; height: 16px; border-radius: 50%; background: #2fae5b; box-shadow: 0 0 0 6px rgba(47, 174, 91, 0.18); }
+      .ucaret { display: inline-block; width: 3px; height: 36px; background: {{INK}}; margin-left: -10px; }
+      .ucaret.big { height: 90px; width: 5px; margin-left: 6px; }
+      .bimg { position: absolute; left: 0; right: 0; top: 96px; bottom: 0; width: 100%; height: calc(100% - 96px); object-fit: cover; }
+      .cbox { position: absolute; left: 110px; right: 110px; height: 190px; border-radius: 95px; background: #fbf9f5; display: flex; align-items: center; padding: 0 30px 0 64px; box-shadow: 0 30px 70px rgba(60, 40, 24, 0.2); }
+      .cbox .wsend { width: 110px; height: 110px; font-size: 52px; }
+
+      .brshade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 5, 3, 0.62) 0%, rgba(8, 5, 3, 0.4) 38%, rgba(8, 5, 3, 0) 60%); }
       #grain { position: absolute; inset: -120px; background: url("assets/img/grain.png"); opacity: 0.07; mix-blend-mode: overlay; pointer-events: none; }
+      /* Day 2 v2: mini apps (p3) */
+      .mw { position: absolute; width: 640px; height: 400px; border-radius: 28px; background: #fbf9f5; box-shadow: 0 50px 90px rgba(40, 26, 14, 0.26), 0 10px 24px rgba(40, 26, 14, 0.12); }
+      .mwh { height: 64px; display: flex; align-items: center; gap: 10px; padding: 0 22px; border-bottom: 2px solid rgba(23, 18, 14, 0.07); }
+      .mwh > i { display: block; width: 14px; height: 14px; border-radius: 50%; background: #d9d0c5; }
+      .mwt { margin-left: 12px; font-family: "ArchivoM"; font-size: 22px; color: {{MUTED}}; }
+      .mwb { position: absolute; left: 0; right: 0; top: 64px; bottom: 0; border-radius: 0 0 28px 28px; overflow: hidden; }
+      .mtag { position: absolute; left: -16px; top: -64px; white-space: nowrap; font-family: "ArchivoXB"; font-size: 44px; letter-spacing: -0.02em; color: #fbf9f5; background: {{INK}}; padding: 10px 26px 12px; border-radius: 999px; box-shadow: 0 14px 30px rgba(40, 26, 14, 0.25); }
+      .mtag.rt { left: auto; right: -6px; }
+      .mw.dark { background: #17120e; }
+      .mw.dark .mwh { border-bottom-color: rgba(255, 255, 255, 0.08); }
+      .mw.dark .mwh > i { background: #3a322b; }
+      .mw.dark .mwt { color: #8a7f74; }
+      .mw.dark .mtag { color: {{INK}}; background: #fbf9f5; }
+      .dgrid { background-color: #f1ece4; background-image: radial-gradient(rgba(23, 18, 14, 0.13) 1.5px, transparent 1.6px); background-size: 22px 22px; }
+      .ab { position: absolute; left: 26px; top: 24px; width: 380px; height: 284px; border-radius: 10px; background: #fff; box-shadow: 0 10px 24px rgba(40, 26, 14, 0.1); }
+      .abk { position: absolute; display: block; border-radius: 6px; }
+      .sel { position: absolute; left: 222px; top: 48px; width: 148px; height: 104px; border: 2px solid #2f45f0; }
+      .sel i { position: absolute; width: 12px; height: 12px; background: #fff; border: 2px solid #2f45f0; }
+      .pen { position: absolute; left: 0; top: 0; width: 380px; height: 284px; overflow: visible; }
+      .pen path { fill: none; stroke: {{INK}}; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 520; }
+      .pen path.hd { stroke: #2f45f0; stroke-width: 2; stroke-dasharray: none; }
+      .dpan { position: absolute; left: 428px; top: 26px; right: 18px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; color: {{INK}}; }
+      .sws { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+      .sws i { display: block; width: 34px; height: 34px; border-radius: 50%; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.5); }
+      .code { padding: 20px 26px; }
+      .cln { display: flex; gap: 18px; font-family: "Typewriter"; font-size: 25px; line-height: 40px; color: #ede7df; white-space: nowrap; }
+      .cln u { text-decoration: none; color: #5d544c; width: 24px; text-align: right; flex: none; }
+      .cln em { font-style: normal; }
+      .cty { display: inline-block; }
+      .sx-t { color: #ffd83d; } .sx-a { color: #ff9ed6; } .sx-s { color: #a3de4e; }
+      .ccar { display: inline-block; width: 13px; height: 30px; margin-top: 5px; background: #ede7df; }
+      .tmr { margin-left: auto; display: flex; align-items: center; gap: 10px; padding: 6px 16px 6px 10px; border-radius: 999px; background: rgba(23, 18, 14, 0.07); font-family: "ArchivoSB"; font-size: 26px; color: {{INK}}; }
+      .tmr svg { width: 28px; height: 28px; fill: none; stroke: {{INK}}; stroke-width: 2.4; stroke-linecap: round; overflow: visible; }
+      .bld { background: #f6f2ec; }
+      .bside { position: absolute; left: 0; top: 0; bottom: 0; width: 150px; padding: 16px; display: flex; flex-direction: column; gap: 12px; background: #ece6dd; }
+      .bsi, .bdrag { height: 54px; border-radius: 12px; background: #fbf9f5; display: flex; align-items: center; gap: 10px; padding: 0 10px; flex: none; }
+      .bsi i, .bdrag i { display: block; width: 30px; height: 30px; border-radius: 8px; flex: none; }
+      .bsi b, .bdrag b { display: block; flex: 1; height: 10px; border-radius: 5px; background: rgba(23, 18, 14, 0.15); }
+      .bcan { position: absolute; left: 170px; top: 16px; right: 16px; bottom: 16px; border-radius: 14px; background: #fff; }
+      .bcan > b { position: absolute; display: block; border-radius: 6px; }
+      .bdz { position: absolute; left: 20px; top: 124px; right: 20px; height: 150px; border-radius: 14px; border: 3px dashed rgba(23, 18, 14, 0.25); }
+      .bdrag { position: absolute; left: 16px; top: 82px; width: 118px; box-shadow: 0 18px 30px rgba(40, 26, 14, 0.25); }
+      .bdrag i { background: #ffd83d; }
+      .cursor.small { width: 44px; height: 44px; left: 92px; top: 104px; }
+      /* Day 2 v2: keyboard + live site (p11) */
+      .urlpill { position: relative; overflow: hidden; }
+      .uload { position: absolute; left: 0; bottom: 0; height: 5px; width: 100%; background: {{INK}}; transform-origin: 0% 50%; transform: scaleX(0); }
+      .newtab { position: absolute; left: 0; right: 0; top: 96px; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 30px; }
+      .newtab b { display: block; width: 116px; height: 116px; border-radius: 28px; background: rgba(23, 18, 14, 0.06); }
+      .bview { position: absolute; left: 0; right: 0; top: 96px; bottom: 0; overflow: hidden; opacity: 0; }
+      .bview img { display: block; width: 100%; }
+      .kb { position: absolute; left: 70px; right: 70px; padding: 22px; border-radius: 38px; background: #e2dcd2; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.55), 0 40px 80px rgba(40, 26, 14, 0.22); }
+      .kr { display: flex; gap: 10px; justify-content: center; }
+      .k { width: 74px; height: 74px; border-radius: 14px; flex: none; display: flex; align-items: center; justify-content: center; background: #fbf9f5; box-shadow: 0 4px 0 rgba(40, 26, 14, 0.2); font-family: "ArchivoM"; font-size: 30px; font-weight: normal; color: {{INK}}; }
+      .k.w { flex: 1; }
+      .k.ret { width: 140px; font-size: 22px; }
+      .k.cmd { width: 120px; font-size: 30px; }
+      /* grain lives on the paper pages only; the footage stays clean */
+      .sheet::after { content: ""; position: absolute; inset: 0; background: url("assets/img/grain.png"); opacity: 0.07; mix-blend-mode: overlay; pointer-events: none; }
+      #grain { display: none; }
+      .cap.scrim .capi { padding: 26px 46px; border-radius: 60px; background: radial-gradient(closest-side, rgba(10, 6, 3, 0.62), rgba(10, 6, 3, 0.36) 60%, rgba(10, 6, 3, 0)); }
     </style>
   </head>
   <body>

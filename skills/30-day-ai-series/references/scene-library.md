@@ -1,4 +1,4 @@
-# Scene library (approved in Day 1)
+# Scene library (approved in Day 1 and Day 2)
 
 Each pattern exists in `assets/build-day01.py` under the matching `# P…` block. Times are relative to word tokens (`t(i)`).
 
@@ -20,3 +20,17 @@ Each pattern exists in `assets/build-day01.py` under the matching `# P…` block
 | **End card** | "stay tuned for day N+1" | "Day N+1", 30 blocks with only today's lit + label, hold ~2 s, then one eased zoom into the lit block until it fills the frame (riser + soft hit) | ~5 s |
 
 For Day N, update: the tracker's lit block, the end card number, and the hook's day label.
+
+## Added in Day 2 (`assets/build-day02.py`)
+
+| Pattern | When | Build notes | Length |
+| --- | --- | --- | --- |
+| **Hook over b-roll** | He records a separate hook voiceover | VO over his b-roll (drawing, then the result on screen), quick zoom slam, kinetic caption; then his face | ~3.3 s |
+| **Before → after wipe** | "turning X into Y" | Card with the "before" photo; real screenshot wipes across with a scan line; italic label swaps to a bold one | ~3.5 s |
+| **Mini-app pile** | Listing jobs/tools you supposedly need | Three live mini apps drop in tilted, each with a dark name pill: design canvas (blocks pop, pen curve draws, selection, swatches), code editor (lines type in, caret), drag-and-drop builder (block dragged over the drop zone, clock racing). On the "you don't" they fly off sideways and the line slams in | ~5 s |
+| **Drop into Claude** | "drop them into Claude" | Photo flies into a composer; placeholder steps down; attachment chip pops; send button lights; "drop them into ✳ Claude" header | ~1.2 s |
+| **Brief card** | Listing what to tell Claude | "tell ✳ Claude" + card filling row by row (vibe, who, colour swatches, feel, component chips) | ~7 s |
+| **Prompt window + send** | "here's the exact prompt" | Window with the template, highlighted swap parts, cursor lands on send (measured) and clicks | ~6 s (reading) |
+| **Sketch vs site** | "look at that compared to that" | Sketch card, arrow draws, real-site card below | ~3 s |
+| **Keyboard URL** | "it's live at …" | Browser window + keyboard; keys press as the address types; return goes down; load line; real full-page screenshot scrolls; keyboard drops away | ~5 s |
+| **Comment CTA** | "comment X and I'll send you…" | Pill types the keyword in heavy caps, send lights, lead-in words below | ~2 s |
