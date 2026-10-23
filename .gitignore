@@ -31,3 +31,6 @@ __pycache__/
 
 # Edit projects hold licensed fonts/SFX and footage-derived files: keep them local
 projects/
+
+# B-roll clips and their contact sheets stay local; broll/INDEX.md is tracked
+broll/_sheets/

@@ -19,6 +19,7 @@ Do not use Remotion. Do not use anything in `_archive/` as a source of style, co
 - `skills/` — custom style skills, one folder per style. Source of truth; install a finished skill by symlinking it into `~/.claude/skills/`.
 - `references/<style>/` — reference videos and frame breakdowns for a style.
 - `footage/<job>/` — raw clips for an edit. Never modify originals.
+- `broll/` — Jack's shared b-roll library, catalogued in `broll/INDEX.md`. Check it before choosing cutaways; new clips get a sheet via `tools/broll-sheet.sh` and a row in the index.
 - `projects/<yyyy-mm-dd>-<job>/` — one HyperFrames project per edit.
 - `exports/` — finished renders, named `<yyyy-mm-dd>-<job>-v<n>.mp4`.
 - `tools/` — helper scripts shared across edits.

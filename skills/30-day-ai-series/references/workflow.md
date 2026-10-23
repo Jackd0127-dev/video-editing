@@ -19,9 +19,16 @@ ffmpeg -i assets/video/raw.mp4 -vf "fps=2,scale=540:960" edit/faces/f%04d.png &&
 ```
 Parakeet word *ends* stretch over pauses — trust starts plus silences. Breath/sniff test: frames where level > −55 dB and >3 kHz energy ≈ all of it (noise-like) at a segment edge.
 
+## B-roll library (every job)
+Jack's shared cutaways live in `broll/` at the workspace root, catalogued in `broll/INDEX.md` (shot, best windows, what to avoid, tags, which video used it).
+```bash
+sh tools/broll-sheet.sh          # contact sheet + facts for any new clip; then look at it and add its row to broll/INDEX.md
+```
+When planning scenes, pick b-roll from the index first (prefer windows not used in the last video), convert the chosen clips with `sdr.sh`, cut them muted from the listed windows, and add the video to the clip's "Used in" column when the edit is approved.
+
 ## Colour first (every iPhone job)
 ```bash
-sh $S/sdr.sh edit/sdr footage/<job>/IMG_*.MOV      # Apple HDR->SDR, original audio kept -> edit/sdr/<name>-mix.mov
+sh $S/sdr.sh edit/sdr footage/<job>/IMG_*.MOV broll/<chosen>.MOV   # Apple HDR->SDR, original audio kept -> edit/sdr/<name>-mix.mov
 ```
 Cut, b-roll and faces all read the `-mix.mov` files. Never pass HLG clips to the browser and never add a grade.
 
