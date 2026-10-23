@@ -19,14 +19,14 @@ HyperFrames (composition, render) · ffmpeg (cuts, voice, master) · `npx hyperf
 ## Workflow
 
 0. **Colour.** iPhone footage is HDR: run `scripts/sdr.sh` on every clip first. Never grade or filter his footage.
-1. **Understand the take.** Probe it, transcribe it, contact-sheet it. Know the story, every product named, and every "this / here / like this" that needs a visual.
+1. **Understand the take.** Probe it, transcribe it, contact-sheet it. Know the story, every product named, and every "this / here / like this" that needs a visual. **Save every piece of b-roll** in the footage to the shared library (`tools/broll-save.sh`, then a row in `broll/INDEX.md`) — every edit adds to it.
 2. **Cut** (`references/workflow.md` § Cut): silences from `silencedetect`, words from Parakeet; keep the best take of each line; remove fillers, false starts, repeated takes, dead pauses, **and sniffs/breaths at segment edges** (noise-like, high-frequency, low level). One take: `edit/edl.json` + `scripts/make-aroll.sh`. Several takes: `scripts/snap.py` + `scripts/cut_multi.py`. Re-transcribe the cut and check every join: word count and energy envelope, no doubled or clipped syllable.
 3. **Plan the scenes.** Check `broll/INDEX.md` (workspace root) for cutaways before anything else; it lists each clip's usable windows and where it was used.
     Hook = first ~1.3 s on his face with a kinetic caption, then a page. Pick pages only where a visual earns it; pick from `references/scene-library.md` first.
 4. **Build** from `assets/template.html` with a generator like `assets/build-day01.py`: tokens → caption groups, face samples → zoom windows, scenes → pages, SFX list (music bed only if he asks). Websites use real captures (`npx hyperframes capture`).
 5. **Check, then look properly.** `npx hyperframes check` must pass. Then step through every page at 0.1–0.25 s intervals (`npx hyperframes snapshot --at …`) — single snapshots miss peeking text and dead holds. Run a design-critique pass on the frames.
 6. **Render, QA, master.** `npx hyperframes render -q delivery --sdr`, then `python3 -I scripts/qa.py <render> --out edit/qa-vN` (jump cuts, audio pops, captions over the face) and `scripts/master.sh <render>`. Copy the QA report to `edit/qa-latest.json`, rebuild (flagged jumps get focus pulls) and re-render until clean.
-7. **Deliver** as `exports/<yyyy-mm-dd>-<job>-vN.mp4` and list what changed against his notes.
+7. **Deliver** as `exports/<yyyy-mm-dd>-<job>-vN.mp4` and list what changed against his notes. Once approved, fill in "Used in" in `broll/INDEX.md` for the library clips this edit used.
 
 ## References
 

@@ -22,8 +22,11 @@ Parakeet word *ends* stretch over pauses — trust starts plus silences. Breath/
 ## B-roll library (every job)
 Jack's shared cutaways live in `broll/` at the workspace root, catalogued in `broll/INDEX.md` (shot, best windows, what to avoid, tags, which video used it).
 ```bash
-sh tools/broll-sheet.sh          # contact sheet + facts for any new clip; then look at it and add its row to broll/INDEX.md
+sh tools/broll-save.sh footage/<job>/<clip>                 # a whole cutaway clip -> broll/
+sh tools/broll-save.sh footage/<job>/<clip> <start> <end>   # a cutaway moment inside a longer clip
+sh tools/broll-sheet.sh                                     # sheet for clips dropped in by hand
 ```
+**Always harvest:** in step 1 of every edit, sort the job's clips into talking-to-camera and b-roll. Save every usable b-roll clip or moment to the library (never move or change the originals), look at its sheet, and add its row to `broll/INDEX.md` with the job it came from.
 When planning scenes, pick b-roll from the index first (prefer windows not used in the last video), convert the chosen clips with `sdr.sh`, cut them muted from the listed windows, and add the video to the clip's "Used in" column when the edit is approved.
 
 ## Colour first (every iPhone job)

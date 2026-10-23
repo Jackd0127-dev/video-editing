@@ -11,7 +11,7 @@ Approved reference: the comment-CTA ("tell me what you're building"), built by `
 
 ## Workflow
 
-1. **Understand the take**: probe, transcribe (`npx hyperframes transcribe --engine parakeet`, whisper as fallback), contact-sheet, `silencedetect`.
+1. **Understand the take**: probe, transcribe (`npx hyperframes transcribe --engine parakeet`, whisper as fallback), contact-sheet, `silencedetect`. Save every piece of b-roll in the footage to the shared library (`sh tools/broll-save.sh <clip> [start end]`, then a row in `broll/INDEX.md`).
 2. **Cut tight**: remove the intro filler ("alright everyone"), repeated phrases, every pause between *and inside* sentences (>0.3 s), sniffs/breaths. Split a segment to remove a mid-sentence gap. Write `edit/edl.json`, run `sh <skill>/scripts/make-aroll.sh`, re-transcribe the cut, confirm joins read cleanly. When the EDL changes later, `scripts/retime.py` moves caption tokens across.
 3. **Plan**: hook = quick zoom (1.38→1 in 0.55 s) + one designed overlay (glass banner title with the pixel Claude character). For cutaways, pick from the shared b-roll library first (`broll/INDEX.md` at the workspace root; iPhone HDR clips go through `skills/30-day-ai-series/scripts/sdr.sh`, muted, never graded). One or two emphasis cards. A glass UI payoff at the end that matches the CTA (composer → typing → cursor click → posted card).
 4. **Build** from `assets/template.html` with a generator like `assets/build-comment-cta.py`: tokens → one-word captions (hard switch, no overlap), hook, emphasis card, ending, punch-ins alternating 1.0/1.15 at every cut and phrase break, SFX, music bed carved under the voice.

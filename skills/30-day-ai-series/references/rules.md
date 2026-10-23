@@ -10,6 +10,7 @@ Each one came from a review note. Breaking any of them got a version rejected.
 
 ## Footage
 - **Never cut him out or fake a green screen.** Keep his real background.
+- **Every edit adds its b-roll to the shared library** (`broll/`, `broll/INDEX.md`) so it can be reused; originals are never moved or changed.
 - **Never show stills of his own footage** inside graphics.
 - **Never crop or letterbox his footage and never regrade it.** To show a style, layer that style's type and infographics over the untouched footage.
 - Cut fillers, false starts, repeated takes, dead pauses and **sniffs/breaths** at edges.

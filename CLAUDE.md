@@ -30,3 +30,4 @@ Do not use Remotion. Do not use anything in `_archive/` as a source of style, co
 - Run `npx hyperframes check` and look at snapshots before every render.
 - Show a draft (preview or snapshots) before the final render of a new style.
 - Media files are git-ignored; only skills, tools and project source are committed.
+- **Every edit feeds the b-roll library.** While reviewing a job's footage, save every piece of b-roll (whole cutaway clips, and cutaway moments inside longer clips: screen recordings, hands, desk, establishing shots) with `sh tools/broll-save.sh <clip> [start end]`, look at its sheet and add a row to `broll/INDEX.md`. Skip only talking-to-camera footage and unusable shots (blurry, accidental). After the edit is approved, fill in "Used in" for every library clip it used.
