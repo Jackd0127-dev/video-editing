@@ -47,3 +47,20 @@ Each one came from a review note. Breaking any of them got a version rejected.
 - **Never flash a different take before a page.** A page that covers a new clip starts on that clip's first frame — snapped *down* to the frame (`scene()` does this), because a `data-start` rounded up by 0.3 ms leaves one frame of face showing.
 - A page's last word must be fully on screen ≥0.4 s before the crossfade starts (the fade eats the last 0.42 s). Extend the page and let the next caption group clamp.
 - Strike-through lines go through the middle of the words, never along the baseline (reads as an underline).
+
+## Motion, interaction and content (Day 3 notes)
+- **Causality.** Things appear because something reached them: a line draws node to node as each node lands; a dot travels a line and the icon pops when it arrives, then ticks. Never draw a line ahead of its nodes, never leave lines pointing at nothing.
+- **Connections happen once.** One slow line (with its dot) and then a payoff moment (pulse, rings, a "connected" tick + sound). No looping or rebounding packets.
+- **Send moments get a real click.** When a prompt or comment is finished, the send button lights up and pulses, then a cursor glides in and clicks it. Measure the button's position from a snapshot.
+- **Drag means drag.** A cursor grabs the file, carries it over the drop target (dashed drop zone lights), drops it, and it lands as a chosen chip (dark ring + tick).
+- **Real over stills.** Any post, account or "video" on screen is one of his real playing videos when one exists (hook cards, grids, "5 videos" rows).
+- **People stay centred.** Any clip shown in a phone or card is framed on its subject (`scripts/trackcrop.py`); never show a corner of a clip.
+- **Flows read top to bottom.** Input at the top, the prompt in the middle, the output revealed *below* it — never wipe the output over the input.
+- **Highlight rings** include the item's label/name strip.
+- **Abstract words get a visual metaphor** ("hallucinate" → a face card glitching through different faces). Phrases with a number or plural ("multiple videos a day") get the many things popping up.
+- **Before/after is a signature move:** original | AI side by side with a moving divider; at the payoff, the source clip's own music under his voice and a strobe between AI and original.
+- **Step headers are one fixed layout:** small "step", big number, the title row underneath, centred and complete when it lands.
+- **Pages hand to pages by dissolving;** never show his face for under ~1 s between two pages. Pages snap to cuts so a new take never flashes.
+- **Hook captions must be exactly what he says** — re-check any odd hook word against the audio (Parakeet heard "can't do it" for "can too").
+- **No clipped last words.** Every line ends after its last syllable has fully decayed (`scripts/endcheck.py` must report 0).
+- **Two deliverables when music is wanted:** no-music master and a music version (bed ~15 dB under speech, ducked, voice band carved out, muted while a clip plays its own song).

@@ -4,7 +4,9 @@ Usage: python3 -I snap.py PLAN.json OUT.json
 PLAN.json: {"sources": {"A": "path.mov", ...}, "transcripts": {"A": "words.json", ...}, "segments": [["A", first_word_start, last_word_start, "label"], ...]}
 Writes OUT.json: {"sources": {...}, "segments": [["A", in, out, "label"], ...]} with in/out in source seconds.
 In-point: last quiet 10 ms frame (< -45 dB) within 0.35 s before the first word, minus 0.03 s.
-Out-point: first run of 5 quiet frames after the last word's start + 0.12 s, plus 0.04 s.
+Out-point: first run of 15 quiet 10 ms frames (150 ms) after the last word's start + 0.12 s, plus 0.04 s.
+Day 3 lesson: a 50 ms run stopped inside words and clipped "anything", "MCP", "platforms", "simple".
+Always run endcheck.py on the result.
 """
 import json
 import math
@@ -40,8 +42,8 @@ for key, w0, w1, label in plan["segments"]:
     a = (a if a is not None else w0 - 0.08) - 0.03
     k = int((w1 + 0.12) * 100)
     b = None
-    while k < len(e) - 5 and k < int((w1 + 1.6) * 100):
-        if all(v < QUIET for v in e[k:k + 5]):
+    while k < len(e) - 15 and k < int((w1 + 1.6) * 100):
+        if all(v < QUIET for v in e[k:k + 15]):  # 150 ms: shorter dips are inside a word ("plat|forms", "M|C|P")
             b = k / 100 + 0.04
             break
         k += 1

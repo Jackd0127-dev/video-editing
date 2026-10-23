@@ -52,6 +52,9 @@ ffmpeg -i assets/video/aroll.mov -c:v copy -af "<voice chain from make-aroll.sh>
 npx hyperframes transcribe assets/video/aroll.mp4 --engine parakeet -d edit/txc   # read every join
 ```
 At every join check the energy envelope of both sides (no half syllable, no repeated word) — see rules.md.
+```bash
+python3 -I $S/endcheck.py edit/segments.json      # must print "0 suspect ending(s)"; it suggests a new out-point for each one
+```
 Re-cutting later: keep `tokens.json`, re-transcribe the cut, then `python3 -I $S/realign.py old-tokens.json edit/txc/transcript.json edit/tokens.json`; append any new words at the end of the token list. Re-map b-roll windows segment by segment and re-run faces.
 
 ## Real website shots
@@ -59,6 +62,16 @@ Re-cutting later: keep `tokens.json`, re-transcribe the cut, then `python3 -I $S
 npx hyperframes capture https://<site> -o edit/site-capture --skip-vision    # scroll-*.png + full-page.png
 ```
 Hero card: `scroll-000.png` scaled to 1800 wide. Browser scroll: `full-page.png` scaled to 2x the window width.
+
+## Screen recordings, generated images, third-party clips
+- Find the originals first: `mdfind -name "<file name seen in the recording>"` (Claude's scratch workspaces keep the 4K images it generated; his `~/Documents/AI Content/<creator>/` folders hold character sheets, carousels and posts). Use those, not frames of a recording.
+- Screen recordings: a few seconds at the key moment only, cropped to the main panel (no sidebars with private session names), shown inside a window card.
+- A person in a clip shown in a phone/card is tracked:
+```bash
+ffmpeg -i clip.mp4 -vf fps=10 edit/track/f%04d.png && swift $S/people.swift edit/track > edit/track/boxes.txt
+python3 -I $S/trackcrop.py edit/track/boxes.txt clip.mp4 assets/video/br/clip-track.mp4 1.7
+```
+- Page videos can't sit inside a timed page: put them in the build's video layer (`overlay()` in `build-day03.py`), mirroring the page's motion and fades. Captions sit above that layer.
 
 ## Build and check
 ```bash
@@ -68,6 +81,7 @@ npx hyperframes snapshot --at <t1,t2,…>   # step every page at 0.1–0.25 s
 ```
 
 ## Render, QA, master
+Check free disk first (`df -h .`). Under ~4 GB, add `--workers 1` (streams frames instead of storing them) and delete regenerable frames (`edit/faces`, `edit/track/*/`, `.hyperframes/artifacts/snapshots`).
 ```bash
 npx hyperframes render -q delivery --sdr --skill general-video -o exports/<date>-<job>-vN.mp4   # --sdr: footage is SDR already
 python3 -I $S/qa.py exports/<date>-<job>-vN.mp4 --out edit/qa-vN
@@ -76,3 +90,16 @@ sh $S/master.sh exports/<date>-<job>-vN.mp4         # −14 LUFS / −1 dBTP
 ```
 QA passes when: no pops, no caption/face overlaps, and every reported jump has a focus pull. A pop on a word onset after silence (a hard "T" or "S") is speech, not a click — compare with his other T/S peaks before acting.
 Also compare one face frame with Apple's own (`AVAssetImageGenerator`) — skin and contrast must match.
+
+Anything with video inside a page (phones, cards, slider) is checked in the render itself — snapshots don't always seek page videos correctly.
+
+## Music version (when he wants one)
+```bash
+~/.venvs/hf-audio/bin/python -I $S/musicgen.py seed23.wav 29 "upbeat modern lo-fi electronic beat for a tech creator video, warm plucky synths, soft punchy drums, steady groove, optimistic, no vocals, minimal and clean" 23
+sh $S/bed.sh seed23.wav <video seconds> bed.wav           # crossfaded loop, fades, 1–4 kHz carved for the voice
+sh $S/mixbed.sh exports/<job>-vN.mp4 bed.wav exports/<job>-vN-music.mp4 [mute_from mute_to]
+```
+Generate two seeds and pick the steadier one (spectrogram: no bright full-band bursts). Deliver both versions.
+
+## Hook experiments
+Hooks are A/B-tested: keep his words, change the visuals. `edit/hooks.py` (see `assets/hooks-day03.py`) defines variants; `HOOK=n python3 -I edit/build.py` writes a 0 s → "Hello" clip, `HOOK=n FULL=1` the whole video with that hook. Render them from a sibling project that symlinks `assets/` and `node_modules/` (HyperFrames allows one root composition per project).

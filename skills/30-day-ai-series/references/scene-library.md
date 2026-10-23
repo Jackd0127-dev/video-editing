@@ -1,4 +1,4 @@
-# Scene library (approved in Day 1 and Day 2)
+# Scene library (approved in Days 1–3)
 
 Each pattern exists in `assets/build-day01.py` under the matching `# P…` block. Times are relative to word tokens (`t(i)`).
 
@@ -34,3 +34,29 @@ For Day N, update: the tracker's lit block, the end card number, and the hook's 
 | **Sketch vs site** | "look at that compared to that" | Sketch card, arrow draws, real-site card below | ~3 s |
 | **Keyboard URL** | "it's live at …" | Browser window + keyboard; keys press as the address types; return goes down; load line; real full-page screenshot scrolls; keyboard drops away | ~5 s |
 | **Comment CTA** | "comment X and I'll send you…" | Pill types the keyword in heavy caps, send lights, lead-in words below | ~2 s |
+
+## Added in Day 3 (`assets/build-day03.py`)
+
+| Pattern | When | Build notes | Length |
+| --- | --- | --- | --- |
+| **Playing fan** | "I run five … accounts" | Five of his real posts fan out as playing cards (video layer), big number slams in, words arrive one by one | ~2.5 s |
+| **Before/after slider** | Showing an AI swap (hook "exactly how you can too", payoff) | Original \| AI full screen, white divider glides left then right, tags low; on exit the divider splits into two lines that glide outwards and reveal his face | ~2 s |
+| **Road map** | "from start to finish" | Five icon nodes land in turn; each line segment draws from the last node to the next as it lands; "start" / "finish" labels | ~2.5 s |
+| **Animated logo** | "Claude does all the heavy lifting" | Logo spins in from blur, rings, ray burst, slow rotation; the key phrase drops in | ~2 s |
+| **Many videos** | "multiple videos a day" | Six real posts pop into a tilted grid one after another | ~1.5 s |
+| **Prompt types out** | "tell Claude who your character is…" | His real prompt types word by word in a Claude window; spoken items get highlighted and tick chips appear | ~4 s |
+| **Connected** | "I've connected Claude to Higgsfield" | Two logos, one slow line with a dot, then a pulse, two rings and a green "connected" tick; real screen recording of the result below | ~4 s |
+| **Input → prompt → output** | "follow this prompt and you've got your image sheet" | Source grid on top with the chosen item ringed (label included), prompt window in the middle, the result wipes in below | ~5 s |
+| **Same everywhere** | Consistency claims | One sheet at the top, curved lines to three real posts, "✓ same" chips | ~3 s |
+| **Cut the face off** | Explaining a crop | Sheet with a dashed crop line drawn at the shoulders, body panels ringed, two tags | ~4 s |
+| **Hallucination** | "it won't hallucinate between faces" | Face card glitches through other characters' faces with jitter and ghosting; the word gets ghost copies; "which face?" | ~2.5 s |
+| **Step header** | Every step | `step_head()`: small "step", big number, complete title row, centred | — |
+| **Drag onto Claude** | "drop the clip and the character sheet into Claude" | Cursor drags each file over the prompt box (drop zone lights), drops, chip ringed + ticked; prompt types; send lights and the cursor clicks it | ~6 s |
+| **Genjutsu swap phone** | "keeps the moves, timing, camera angle… swaps in your character" | Tracked original in a phone, chips tick, scan line wipes it into the AI version, tag swaps | ~6 s |
+| **Payoff strobe** | "Claude comes back with this" | Result full screen with the source clip's music, strobe AI/original with a punch per switch, then side by side | ~2.8 s |
+| **5 × 5 × 5** | "hours … five videos on five accounts on five platforms" | Playing videos → avatars → platform logos, a web of lines between each row, a clock spinning | ~5 s |
+| **API dispatch** | "it posts through the APIs" | Planner card, one line + dot per platform in turn; each icon pops on arrival then ticks; centred "✓ posted" holds under the line | ~4 s |
+| **Course card** | Announcing a product | Card rises, three heavy words land, a tilted "very very soon" pill | ~2 s |
+| **Comment + click** | "comment X" | Keyword types in the pill, send lights, cursor clicks it; the promised items (prompt cards) rise below | ~3 s |
+
+Hook variants tried for Day 3 (`assets/hooks-day03.py`): the feed (phone swipes one account per word), cold open on the slider, zoom-out mosaic, playing cards around his face, swipe deck with a 3D flip.
