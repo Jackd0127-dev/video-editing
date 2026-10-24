@@ -18,6 +18,9 @@ Approved reference: the comment-CTA ("tell me what you're building"), built by `
 5. **Check and look**: `npx hyperframes check`, then snapshot every overlay at 0.25–0.3 s steps and zoom into glass edges at 2× (corners must be smooth).
 6. **Render, QA, master**: `npx hyperframes render -q delivery`; `python3 -I scripts/qa.py <render> --out edit/qa-vN --caption-top 1395` (chest captions); `sh scripts/master.sh <render>` (−14 LUFS / −1 dBTP).
 
+## Trial reels
+Every video ships as **5 distinct trial reels** in this style (different hook and first frame, structure/length and a third of the beats; same caption system and look). Follow `tools/TRIAL-REELS.md` at the workspace root and render them with `sh tools/render-trials.sh`.
+
 ## References
 | File | Use |
 | --- | --- |

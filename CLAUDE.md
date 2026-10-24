@@ -22,7 +22,7 @@ Do not use Remotion. Do not use anything in `_archive/` as a source of style, co
 - `broll/` — Jack's shared b-roll library, catalogued in `broll/INDEX.md`. Check it before choosing cutaways; new clips get a sheet via `tools/broll-sheet.sh` and a row in the index.
 - `projects/<yyyy-mm-dd>-<job>/` — one HyperFrames project per edit.
 - `exports/` — finished renders, named `<yyyy-mm-dd>-<job>-v<n>.mp4`.
-- `tools/` — helper scripts shared across edits.
+- `tools/` — helper scripts shared across edits, including the trial-reel playbook (`tools/TRIAL-REELS.md`).
 
 ## Working rules
 
@@ -31,3 +31,5 @@ Do not use Remotion. Do not use anything in `_archive/` as a source of style, co
 - Show a draft (preview or snapshots) before the final render of a new style.
 - Media files are git-ignored; only skills, tools and project source are committed.
 - **Every edit feeds the b-roll library.** While reviewing a job's footage, save every piece of b-roll (whole cutaway clips, and cutaway moments inside longer clips: screen recordings, hands, desk, establishing shots) with `sh tools/broll-save.sh <clip> [start end]`, look at its sheet and add a row to `broll/INDEX.md`. Skip only talking-to-camera footage and unusable shots (blurry, accidental). After the edit is approved, fill in "Used in" for every library clip it used.
+- **Every video ships as 5 trial reels** (from Day 4 on, every series). Jack posts all five as Instagram trial reels and promotes the best. Same series style; hooks, script and editing mixed up so each is distinct. Follow `tools/TRIAL-REELS.md` (recipes, distinct-enough check, build with `TRIAL=n`, render with `sh tools/render-trials.sh`). His notes apply to all five. Deliver `exports/<date>-<job>-trial<1-5>.mp4` with a table of what differs.
+- **Ask for what trials need when he films:** several different hook takes (3–5 opening lines), and the screen recordings, results and b-roll each beat needs.

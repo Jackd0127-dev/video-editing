@@ -1,6 +1,6 @@
 """QA a rendered edit at every cut: picture jumps, audio pops, captions over the face.
 
-Usage (from a project root): python3 -I ../../tools/qa.py RENDER.mp4 [--out DIR]
+Usage (from a project root): python3 -I qa.py RENDER.mp4 [--out DIR] [--html index.html] [--words edit/words.json]
 
 Reads index.html for paper-scene and caption windows, and edit/words.json for A-roll cut
 points. Needs ffmpeg and swift (tools/faces.swift).
@@ -29,10 +29,11 @@ CAPTION_BOTTOM = 590 / 1920  # captions are anchored with their bottom edge at y
 # --caption-top Y: captions sit BELOW the face with their top edge at pixel Y (chest captions)
 CAPTION_TOP = float(sys.argv[sys.argv.index("--caption-top") + 1]) / 1920 if "--caption-top" in sys.argv else None
 
-page = open("index.html").read()
+arg = lambda flag, default: sys.argv[sys.argv.index(flag) + 1] if flag in sys.argv else default
+page = open(arg("--html", "index.html")).read()  # trial reels: --html out/trial-N.html
 scenes = [(float(a), float(a) + float(d)) for a, d in re.findall(r'class="scene clip" id="p\d+" data-start="([\d.]+)" data-duration="([\d.]+)"', page)]
 caps = [(float(a), float(a) + float(d)) for a, d in re.findall(r'class="cap clip" id="\w+" data-start="([\d.]+)" data-duration="([\d.]+)"', page)]
-segs = json.load(open("edit/words.json"))["segments"]
+segs = json.load(open(arg("--words", "edit/words.json")))["segments"]  # trial reels: --words edit/trials/N/words.json
 
 
 def covered(t):

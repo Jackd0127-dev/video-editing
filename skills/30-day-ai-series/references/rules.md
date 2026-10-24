@@ -64,3 +64,6 @@ Each one came from a review note. Breaking any of them got a version rejected.
 - **Hook captions must be exactly what he says** — re-check any odd hook word against the audio (Parakeet heard "can't do it" for "can too").
 - **No clipped last words.** Every line ends after its last syllable has fully decayed (`scripts/endcheck.py` must report 0).
 - **Two deliverables when music is wanted:** no-music master and a music version (bed ~15 dB under speech, ducked, voice band carved out, muted while a clip plays its own song).
+
+## Trial reels (from Day 4)
+- **Every episode = 5 trial reels**, all in this style, each with a different hook line and first frame, a different structure or length (≥10 % apart), and at least a third of the graphics/b-roll beats changed. Never invent words he didn't say: re-order, trim and choose between his takes. Keep the CTA keyword. Playbook: `tools/TRIAL-REELS.md`.
