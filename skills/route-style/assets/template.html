@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Learn AI from zero — Route</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "RHBlack"; src: url("assets/fonts/RedHatDisplay-Black.ttf"); }
+      @font-face { font-family: "RHBold"; src: url("assets/fonts/RedHatDisplay-Bold.ttf"); }
+      @font-face { font-family: "RHMed"; src: url("assets/fonts/RedHatDisplay-Medium.ttf"); }
+      @font-face { font-family: "DIN"; src: url("assets/fonts/DINAlternate-Bold.otf"); }
+
+      :root { --cob: #1838f0; --cobd: #0f27c4; --navy: #0a176e; --lime: #d4ff3c; --white: #ffffff; --mute: rgba(255, 255, 255, 0.62); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: "RHBold", sans-serif; }
+
+      /* his footage: untouched, only moved */
+      #cam { position: absolute; inset: 0; will-change: transform, filter; }
+      #aroll { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+      /* route HUD over the footage (top band, above the LED shelf) */
+      #hud { position: absolute; left: 90px; right: 90px; top: 118px; transform-origin: 50% 50%; height: 96px; opacity: 0; z-index: 3; }
+      #hud .pill { position: absolute; inset: 0; border-radius: 999px; background: rgba(10, 23, 110, 0.72); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); }
+      #hud .trk { position: absolute; left: 70px; right: 70px; top: 33px; height: 6px; border-radius: 6px; background: rgba(255, 255, 255, 0.28); }
+      #hud .fil { position: absolute; left: 70px; top: 33px; height: 6px; width: 760px; border-radius: 6px; background: var(--lime); transform-origin: 0 50%; transform: scaleX(0); }
+      #hud .st { position: absolute; top: 24px; width: 24px; height: 24px; margin-left: -12px; border-radius: 50%; background: var(--navy); border: 5px solid rgba(255, 255, 255, 0.55); }
+      #hud .lb { position: absolute; top: 58px; width: 200px; margin-left: -100px; text-align: center; font-family: "DIN"; font-size: 21px; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.7); }
+      #hud .me { position: absolute; top: 18px; width: 36px; height: 36px; margin-left: -18px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 8px rgba(212, 255, 60, 0.28); }
+
+      /* captions: above his head, words land as he says them, the spoken word sits in a lime block */
+      .cap { position: absolute; left: 50px; right: 50px; bottom: 1330px; display: flex; justify-content: center; z-index: 8; }
+      .capi { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 6px; row-gap: 2px; max-width: 900px; }
+      .w { position: relative; isolation: isolate; display: inline-block; font-family: "RHBlack"; font-size: 82px; line-height: 1.04; letter-spacing: -0.015em; text-transform: uppercase; color: #fff; padding: 2px 12px 6px; text-shadow: 0 5px 0 rgba(10, 23, 110, 0.85), 0 14px 30px rgba(0, 0, 0, 0.35); }
+      .w b { position: absolute; inset: 4px 0 2px; border-radius: 14px; background: var(--lime); z-index: -1; transform-origin: 50% 60%; opacity: 0; box-shadow: 0 6px 0 rgba(10, 23, 110, 0.85); }
+      .w .tx { position: relative; }
+      .w.sm { font-size: 60px; }
+
+      /* pages */
+      .scene { position: absolute; inset: 0; z-index: 4; }
+      .sheet { position: absolute; inset: 0; overflow: hidden; background: var(--cob); will-change: transform, filter, clip-path; }
+      .map { position: absolute; inset: 0; width: 1080px; height: 1920px; opacity: 0.09; }
+      .edge { position: absolute; left: 0; right: 0; height: 16px; background: var(--lime); top: 1920px; box-shadow: 0 0 30px rgba(212, 255, 60, 0.6); z-index: 20; }
+      .content { position: absolute; inset: 0; }
+      .abs { position: absolute; }
+      .stack { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+      .row { display: flex; align-items: center; }
+      .h1 { font-family: "RHBlack"; font-size: 120px; line-height: 0.96; letter-spacing: -0.035em; color: #fff; display: inline-block; }
+      .h2 { font-family: "RHBlack"; font-size: 84px; line-height: 1; letter-spacing: -0.03em; color: #fff; display: inline-block; }
+      .h3 { font-family: "RHBold"; font-size: 54px; line-height: 1.1; letter-spacing: -0.01em; color: #fff; display: inline-block; }
+      .lab { font-family: "DIN"; font-size: 30px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); display: inline-block; }
+      .lime { color: var(--lime); }
+      .hl { position: relative; isolation: isolate; display: inline-block; color: var(--navy); padding: 0 18px; }
+      .hl::before { content: ""; position: absolute; inset: 6px -2px 2px; border-radius: 18px; background: var(--lime); z-index: -1; }
+      .ch { display: inline-block; }
+
+      /* route map */
+      .rline { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .rtrack { stroke: rgba(255, 255, 255, 0.2); stroke-width: 22; }
+      .rfill { stroke: var(--lime); stroke-width: 22; }
+      .stn { position: absolute; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: var(--cob); border: 12px solid rgba(255, 255, 255, 0.35); }
+      .stn i { position: absolute; inset: -12px; border-radius: 50%; border: 12px solid var(--lime); transform: scale(0.4); opacity: 0; display: block; }
+      .stn .ring { position: absolute; inset: -40px; border-radius: 50%; border: 6px solid var(--lime); opacity: 0; display: block; }
+      .sname { position: absolute; font-family: "RHBlack"; font-size: 58px; letter-spacing: -0.02em; color: #fff; white-space: nowrap; line-height: 1; }
+      .ssub { position: absolute; font-family: "DIN"; font-size: 26px; letter-spacing: 0.14em; color: var(--mute); white-space: nowrap; }
+      .train { position: absolute; width: 92px; height: 92px; margin: -46px 0 0 -46px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 14px rgba(212, 255, 60, 0.25), 0 18px 40px rgba(0, 0, 0, 0.3); display: flex; align-items: center; justify-content: center; z-index: 5; }
+      .train span { font-family: "RHBlack"; font-size: 34px; color: var(--navy); }
+
+      /* cards and UI */
+      .card { position: absolute; background: #fff; border-radius: 36px; box-shadow: 0 34px 70px rgba(4, 12, 80, 0.4), 0 6px 16px rgba(4, 12, 80, 0.2); color: var(--navy); }
+      .tile { position: absolute; width: 112px; height: 112px; border-radius: 28px; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 14px 28px rgba(4, 12, 80, 0.35); }
+      .tile img { width: 64px; height: 64px; }
+      .pill { position: absolute; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-family: "RHBlack"; }
+      .btn { position: absolute; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-family: "RHBlack"; font-size: 44px; background: var(--lime); color: var(--navy); box-shadow: 0 10px 0 #9fc21a, 0 20px 40px rgba(4, 12, 80, 0.35); }
+      .ink { color: var(--navy); }
+      .cl { font-family: "RHBold"; color: var(--navy); }
+      .muted { color: rgba(10, 23, 110, 0.5); }
+      .strike { position: absolute; height: 12px; border-radius: 8px; background: var(--lime); transform-origin: 0 50%; box-shadow: 0 4px 0 rgba(10, 23, 110, 0.35); }
+      .cursor { position: absolute; left: 0; top: 0; width: 70px; height: 70px; transform-origin: 14px 8px; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35)); z-index: 30; opacity: 0; }
+      .cursor svg { width: 100%; height: 100%; display: block; }
+      .chip { position: absolute; display: flex; align-items: center; gap: 14px; padding: 18px 28px; border-radius: 999px; background: #fff; font-family: "RHBlack"; font-size: 38px; color: var(--navy); white-space: nowrap; box-shadow: 0 14px 30px rgba(4, 12, 80, 0.35); }
+      .chip.dark { background: var(--navy); color: #fff; }
+      .chip.limec { background: var(--lime); }
+      .nline { fill: none; stroke: rgba(255, 255, 255, 0.85); stroke-width: 6; stroke-linecap: round; }
+      .ico { fill: none; stroke: var(--navy); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .ico.w { stroke: #fff; }
+      .tick { position: absolute; width: 58px; height: 58px; border-radius: 50%; background: var(--lime); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px rgba(4, 12, 80, 0.3); }
+      .tick svg { width: 34px; height: 34px; fill: none; stroke: var(--navy); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+      .bar { position: absolute; border-radius: 12px; background: rgba(10, 23, 110, 0.1); overflow: hidden; }
+      .bar i { position: absolute; inset: 0; background: var(--cob); transform-origin: 0 50%; display: block; border-radius: 12px; }
+      .phone { position: absolute; width: 560px; height: 1140px; border-radius: 84px; background: #0b0f2a; padding: 22px; box-shadow: 0 50px 100px rgba(2, 8, 60, 0.55); }
+      .screen { position: absolute; inset: 22px; border-radius: 64px; overflow: hidden; background: #f3f5ff; }
+      .notch { position: absolute; left: 50%; top: 40px; width: 150px; height: 44px; margin-left: -75px; border-radius: 30px; background: #0b0f2a; z-index: 3; }
+      .cell { position: absolute; border-radius: 18px; background: rgba(255, 255, 255, 0.12); }
+      .cell i { position: absolute; inset: 0; border-radius: 18px; background: var(--lime); display: block; transform: scale(0); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="{{DURATION}}" data-width="1080" data-height="1920">
+      <div id="cam">
+        <video id="aroll" class="clip" src="{{AROLL}}" data-start="0" data-duration="{{AROLL_END}}" data-track-index="0" playsinline data-has-audio="true"></video>
+      </div>
+{{HUD}}
+{{CAPTIONS}}
+{{SCENES}}
+{{SFX}}
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // a page comes in on a lime line sweeping up the screen (the route filling), content settles
+      function enter(sel, at) {
+        tl.fromTo(sel + " .sheet", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.42, ease: "expo.out" }, at);
+        tl.fromTo(sel + " .edge", { y: 0, opacity: 1 }, { y: -1940, duration: 0.42, ease: "expo.out" }, at);
+        tl.to(sel + " .edge", { opacity: 0, duration: 0.1, immediateRender: false }, at + 0.32);
+        tl.fromTo(sel + " .content", { scale: 1.06, y: 40 }, { scale: 1, y: 0, duration: 0.6, ease: "expo.out" }, at);
+      }
+      function rev(sel, at, o) {
+        tl.fromTo(sel, { opacity: 0, y: o.y ?? 26, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: o.d ?? 0.32, ease: "power3.out" }, at);
+      }
+      function focus(at) {
+        tl.fromTo("#cam", { filter: "blur(8px)" }, { filter: "blur(0px)", duration: 0.2, ease: "power2.out", immediateRender: false }, at);
+      }
+{{JS}}
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
