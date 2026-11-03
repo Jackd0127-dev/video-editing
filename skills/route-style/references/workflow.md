@@ -4,9 +4,7 @@
 
 ## Setup (media on the SSD)
 ```bash
-SSD="/Volumes/Extreme Pro/Jack - Organized/04 Media/Video Editing/Claude Edits"
-npx hyperframes init "$SSD/projects/<date>-<job>" --non-interactive --example=blank --skill=general-video --resolution portrait
-ln -s "$SSD/projects/<date>-<job>" projects/<date>-<job>
+sh tools/new-video.sh "Other Videos/<Title>" <date>-<job> <short-name>   # or Series/<series>/… if it's a series
 cd projects/<date>-<job> && mkdir -p assets/{video,audio/sfx,fonts,img/logos} edit/trials/1 edit/trials/2
 cp $R/assets/template.html edit/template.html && cp $R/assets/build-socials-1026.py edit/build.py && cp $R/scripts/tighten.py edit/
 ```
@@ -43,12 +41,11 @@ cp ../<project>-trials/out/trial-1.html ../<project>-trials/index.html   # the t
 cd ../<project>-trials && npx hyperframes check && npx hyperframes snapshot --at <t1,t2,…> --no-end -o snap
 npx hyperframes snapshot --at <t> --no-end --zoom x,y,w,h -o snapz   # anything odd
 ```
-Link the trials folder into `projects/` too (`ln -s "$SSD/projects/<project>-trials" projects/`). Look strip for Jack: `ffmpeg -pattern_type glob -i 'snap/frame-*.png' -vf "scale=360:640,tile=9x1:padding=8:color=white" look.jpg`.
+Look strip for Jack: `ffmpeg -pattern_type glob -i 'snap/frame-*.png' -vf "scale=360:640,tile=9x1:padding=8:color=white" look.jpg`.
 
 ## Render, QA, master, deliver
 ```bash
-sh tools/render-trials.sh projects/<project> <date>-<job> 1 2
-mv exports/<date>-<job>-trial{1,2}.mp4 "$SSD/exports/"
+sh tools/render-trials.sh projects/<project> <date>-<job>   # writes to the video's Exports/; add 1 2 only if he asked for two versions
 rm -rf "$TMPDIR"/hyperframes-extract-cache-*      # only when no other render is running
 ```
-Report per version: hook line, length, what differs (table), QA (caption/face overlaps, voice-cut pops, jumps with focus pulls, LUFS), and a suggested post caption.
+Report: hook line, length, QA (caption/face overlaps, voice-cut pops, jumps with focus pulls, LUFS), and a suggested post caption.

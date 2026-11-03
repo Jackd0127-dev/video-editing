@@ -16,6 +16,7 @@ import sys
 QUIET, MIN_GAP = -42, 0.18
 KEEP_AFTER, KEEP_BEFORE = 0.07, 0.05  # silence left after a word ends / before the next one starts
 HEAD, TAIL = 0.05, 0.09
+MIN_PIECE = 0.45
 CACHE = {}
 
 
@@ -56,6 +57,16 @@ def tighten(path):
             else:
                 k += 1
         pieces.append([key, round(start, 3), round(b2, 3), f"{lab} [{g}]"])
+        k = 0
+        while k < len(pieces) and len(pieces) > 1:  # no sliver shots: a piece under MIN_PIECE reads as another clip flashing in (Day 14, 2:05)
+            if pieces[k][2] - pieces[k][1] < MIN_PIECE:
+                if k + 1 < len(pieces):
+                    pieces[k + 1][1] = pieces[k][1]
+                else:
+                    pieces[k - 1][2] = pieces[k][2]
+                del pieces[k]
+            else:
+                k += 1
         out += pieces
     d["segments"] = out
     json.dump(d, open(path, "w"), indent=1)

@@ -1,6 +1,6 @@
 #!/bin/sh
 # Master a rendered MP4's audio to -14 LUFS / -1 dBTP (two-pass, linear) without re-encoding video.
-# Usage: tools/master.sh exports/<file>.mp4
+# Usage: tools/master.sh <file>.mp4
 set -e
 F="$1"
 STATS=$(ffmpeg -nostats -i "$F" -af loudnorm=I=-14:TP=-1:LRA=9:print_format=json -f null - 2>&1 | sed -n '/^{/,/^}/p')

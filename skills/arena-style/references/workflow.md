@@ -4,10 +4,7 @@
 
 ## Setup (media on the SSD)
 ```bash
-SSD="/Volumes/Extreme Pro/Jack - Organized/04 Media/Video Editing/Claude Edits"
-PD="$SSD/projects/Other Videos/<Title>/<date>-<job>"
-npx hyperframes init "$PD" --non-interactive --example=blank --skill=general-video --resolution portrait
-ln -s "$PD" projects/<date>-<job>
+sh tools/new-video.sh "Other Videos/<Title>" <date>-<job> <short-name>   # or Series/<series>/…
 A="$PWD/skills/arena-style"; cd projects/<date>-<job> && mkdir -p assets/{video,audio/sfx,fonts,img/px} edit/trials/1 edit/trials/2
 cp "$A/assets/template.html" edit/template.html
 cp "$A/assets/build-claude-agents-arena.py" edit/build.py
@@ -56,12 +53,9 @@ Look strip: `ffmpeg -pattern_type glob -i 'snap/frame-*.png' -vf "scale=360:640,
 ## Render, QA, master, deliver
 Other edits may share the machine: check `pgrep -f "hyperframes render"` and wait before each render.
 ```bash
-sh tools/render-trials.sh projects/<project> <date>-<job> 1 2
-D="$SSD/exports/Other Videos/<Title>"; mkdir -p "$D"
-mv exports/<date>-<job>/<date>-<job>-trial1.mp4 "$D/<Title> - V1.mp4"
-mv exports/<date>-<job>/<date>-<job>-trial2.mp4 "$D/<Title> - V2.mp4"; rmdir exports/<date>-<job>
+sh tools/render-trials.sh projects/<project> <date>-<job>   # writes to the video's Exports/; add 1 2 only if he asked for two versions
 ```
-Later rounds move the old renders to `Drafts/` first. Report per version: hook line, length, what differs (table), QA (caption/face overlaps, voice-cut pops, jumps, LUFS), and a suggested post caption.
+Later rounds move the old renders to `Drafts/` first. Report: hook line, length, QA (caption/face overlaps, voice-cut pops, jumps, LUFS), and a suggested post caption.
 
 ## Music, only if he asks
 No re-render: `sh $S/mixbed.sh in.mp4 bed.wav out.mp4` with a real, licensed track trimmed to the video length. Check the bed's loudness first: he wants it very low, about 20 dB under his voice. If the licence needs a credit, put it in the caption text.

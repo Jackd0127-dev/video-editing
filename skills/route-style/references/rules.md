@@ -18,4 +18,4 @@
 - Real logos for named products; real assets over mock-ups.
 - Crossfade (0.42 s) back to his face; pages hand to pages by dissolving; never flash a new take before a page.
 - No clipped words; no doubled sounds at joins; no music unless he asks; no red.
-- Every video ships as 2 versions (`tools/TRIAL-REELS.md`).
+- One edit by default; a second version only when he asks (`tools/TRIAL-REELS.md`).

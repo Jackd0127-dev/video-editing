@@ -28,7 +28,8 @@ Add a skewed white sheen bar swept across once after entrance (0.8–0.9 s).
 
 ## Sound
 - Voice chain from `make-aroll.sh` (−15 LUFS pre-master). Quiet acoustic guitar bed (`scripts/musicgen.py` prompt "warm acoustic guitar fingerpicking, soft and optimistic…") carved under the voice at volume 0.2.
-- SFX sparing: whoosh on hook, soft ticks on character hops, quiet key clicks, click + pop-whoosh + pluck on send.
+- SFX sparing: whoosh on hook, quiet key clicks, click + pop-whoosh + pluck on send. No sounds on character hops or other character action.
+- **Never** put sound effects on sword slashes, fights, hits or clashes, and never use repeated whoosh/click bursts (the same effect firing again and again in a row). Fights and character action are silent unless Jack asks otherwise (Terra vs Sol, round 4: he hated the repeating whoosh + click on every slash and hit).
 - Master −14 LUFS / −1 dBTP.
 
 ## Framing

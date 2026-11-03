@@ -37,4 +37,4 @@ The reference V1 is the richest version of this look, at about 58 % pages. Since
 - Any Claude UI is a real capture. The Claude logo keeps its real colour and shape. The pixel agents are characters, not a redrawn logo.
 - Page → face crossfades; page → page dissolves; no face flash under 1 s between pages.
 - Made-up agent numbers and records are illustrative: don't present them as real results.
-- 2 versions, −14 LUFS, delivered to the SSD with a what-differs table and caption.
+- One edit by default (a second only when he asks), −14 LUFS, delivered to the video's `Exports/` with a caption.

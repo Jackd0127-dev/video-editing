@@ -1,10 +1,10 @@
 # Workflow commands
 
-Project layout (Jack's workspace): `footage/<job>/` raw · `projects/<yyyy-mm-dd>-<job>/` HyperFrames project · `exports/` renders. `$S` = this skill's `scripts/` folder.
+Layout: everything for a video is in one SSD folder (CLAUDE.md → Folders): `Footage/`, `Project/<id>/`, `Exports/`, linked here as `footage/<job>` and `projects/<id>`. `$EXPORTS` = the video's `Exports/` folder. `$S` = this skill's `scripts/` folder.
 
 ## Setup
 ```bash
-npx hyperframes init projects/<date>-<job> --non-interactive --example=blank --skill=general-video --resolution portrait
+sh tools/new-video.sh "Series/30 Day AI Series/Day N - <Title>" <date>-<job> <short-name>
 mkdir -p assets/{video,audio/sfx,audio/bgm,fonts,img} edit
 ln footage/<job>/<file>.mp4 assets/video/raw.mp4
 ```
@@ -22,8 +22,8 @@ Parakeet word *ends* stretch over pauses — trust starts plus silences. Breath/
 ## B-roll library (every job)
 Jack's shared cutaways live in `broll/` at the workspace root, catalogued in `broll/INDEX.md` (shot, best windows, what to avoid, tags, which video used it).
 ```bash
-NAME="<what it shows>" sh tools/broll-save.sh footage/<job>/<clip>                 # a whole cutaway clip -> broll/
-NAME="<what it shows>" sh tools/broll-save.sh footage/<job>/<clip> <start> <end>   # a cutaway moment inside a longer clip
+FOLDER="<type folder>" NAME="<what it shows>" sh tools/broll-save.sh footage/<job>/<clip>                 # a whole cutaway clip -> broll/
+FOLDER="<type folder>" NAME="<what it shows>" sh tools/broll-save.sh footage/<job>/<clip> <start> <end>   # a cutaway moment inside a longer clip
 sh tools/broll-sheet.sh                                     # sheet for clips dropped in by hand
 ```
 **Always harvest:** in step 1 of every edit, sort the job's clips into talking-to-camera and b-roll. Save every usable b-roll clip or moment to the library (never move or change the originals), look at its sheet, and add its row to `broll/INDEX.md` with the job it came from.
@@ -87,10 +87,10 @@ npx hyperframes snapshot --at <t1,t2,…>   # step every page at 0.1–0.25 s
 ## Render, QA, master
 Check free disk first (`df -h .`). Under ~4 GB, add `--workers 1` (streams frames instead of storing them) and delete regenerable frames (`edit/faces`, `edit/track/*/`, `.hyperframes/artifacts/snapshots`).
 ```bash
-npx hyperframes render -q delivery --sdr --skill general-video -o exports/<date>-<job>/<date>-<job>-vN.mp4   # --sdr: footage is SDR already
-python3 -I $S/qa.py exports/<date>-<job>/<date>-<job>-vN.mp4 --out edit/qa-vN
+npx hyperframes render -q delivery --sdr --skill general-video -o "$EXPORTS/<Video title>.mp4"   # --sdr: footage is SDR already
+python3 -I $S/qa.py "$EXPORTS/<Video title>.mp4" --out edit/qa-vN
 cp edit/qa-vN/qa-report.json edit/qa-latest.json    # flagged jumps get focus pulls on the next build
-sh $S/master.sh exports/<date>-<job>/<date>-<job>-vN.mp4         # −14 LUFS / −1 dBTP
+sh $S/master.sh "$EXPORTS/<Video title>.mp4"         # −14 LUFS / −1 dBTP
 ```
 QA passes when: no pops, no caption/face overlaps, and every reported jump has a focus pull. A pop on a word onset after silence (a hard "T" or "S") is speech, not a click — compare with his other T/S peaks before acting.
 Also compare one face frame with Apple's own (`AVAssetImageGenerator`) — skin and contrast must match.
@@ -109,7 +109,7 @@ Parakeet can drop a whole sentence: find word gaps over ~2 s with speech energy 
 ```bash
 ~/.venvs/hf-audio/bin/python -I $S/musicgen.py seed23.wav 29 "upbeat modern lo-fi electronic beat for a tech creator video, warm plucky synths, soft punchy drums, steady groove, optimistic, no vocals, minimal and clean" 23
 sh $S/bed.sh seed23.wav <video seconds> bed.wav           # crossfaded loop, fades, 1–4 kHz carved for the voice
-sh $S/mixbed.sh exports/<date>-<job>/<date>-<job>-vN.mp4 bed.wav exports/<date>-<job>/<date>-<job>-vN-music.mp4 [mute_from mute_to]
+sh $S/mixbed.sh "$EXPORTS/<Video title>.mp4" bed.wav "$EXPORTS/<Video title> (music).mp4" [mute_from mute_to]
 ```
 Generate two seeds and pick the steadier one (spectrogram: no bright full-band bursts). Deliver both versions. Keep the prompt happy and bright (major key, acoustic/ukulele, "feel-good") — Jack called a darker lo-fi bed "kind of eerie" (Day 13), and wanted it quieter: for a "low volume" bed run `BED_DB=-14 sh $S/mixbed.sh …` (default −9 dB). Trim any breakdown gap out of the loop before `bed.sh`.
 

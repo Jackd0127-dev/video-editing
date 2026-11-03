@@ -10,7 +10,7 @@
 *.aac
 *.srt
 *.vtt
-exports/*
+exports/
 footage/*
 references/*
 !*/.gitkeep
@@ -19,8 +19,6 @@ references/*
 .hyperframes/
 node_modules/
 
-# Old work, kept on disk only
-_archive/
 
 # Local environments and private configuration
 .DS_Store
@@ -33,4 +31,8 @@ __pycache__/
 projects/
 
 # B-roll clips and their contact sheets stay local; broll/INDEX.md is tracked
-broll/_sheets/
+broll/_sheets
+
+# Local tool state
+.playwright-mcp/
+.impeccable/

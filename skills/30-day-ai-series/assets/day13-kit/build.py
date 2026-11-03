@@ -672,8 +672,6 @@ for gi, grp in enumerate(CAPS):
         _bd = face_band(g_start, end)
         if _bd is not None and _bd[0] - 16 - cap_height(grp) < 330:
             grp = [(i, "s") for i, _ in grp]
-    if any(fa - 0.05 <= g_start < fb for fa, fb in CAPBELOW):  # Day 14: under his chin while a big card sits above his head: one small line
-        grp = [(i, "s") for i, _ in grp]
     small = [f'<span class="w cs" id="w{i}">{esc(disp(i))}</span>' for i, sx in grp if sx == "s"]
     big = [f'<span class="w {"cb" if sx == "b" else "ci"}" id="w{i}">{esc(disp(i))}</span>' for i, sx in grp if sx != "s"]
     rows = (f'<div class="cl">{" ".join(small)}</div>' if small else "") + (f'<div class="cl">{" ".join(big)}</div>' if big else "")
@@ -689,7 +687,7 @@ for gi, grp in enumerate(CAPS):
         top = at_band
         scrim = " scrim"
     elif below and band is not None:  # Day 14: a card sits above his head -> captions under his chin
-        top = min(band[1] + 14, 1830 - h_cap)
+        top = min(band[1] + 95, 1760 - h_cap)
         scrim = " scrim"
     elif forced is not None:
         top = forced
