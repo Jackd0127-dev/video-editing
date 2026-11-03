@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Arena</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "CondK"; src: url("assets/fonts/Archivo_Condensed-Black.ttf"); }
+      @font-face { font-family: "CondX"; src: url("assets/fonts/Archivo_Condensed-ExtraBold.ttf"); }
+      @font-face { font-family: "ArcX"; src: url("assets/fonts/Archivo-ExtraBold.ttf"); }
+      @font-face { font-family: "ArcS"; src: url("assets/fonts/Archivo-SemiBold.ttf"); }
+      @font-face { font-family: "Mono"; src: url("assets/fonts/IBMPlexMono-SemiBold.ttf"); }
+      @font-face { font-family: "MonoM"; src: url("assets/fonts/IBMPlexMono-Medium.ttf"); }
+      :root { --ink: #161513; --bone: #efebe3; --card: #f8f6f1; --coral: #d97757; --grey: #bdb6aa; --line: rgba(22, 21, 19, 0.16); --coral-ink: #bf5a37; --mute: rgba(22, 21, 19, 0.66); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: "ArcX", sans-serif; color: var(--ink); }
+      /* his footage: untouched, only moved */
+      #cam { position: absolute; inset: 0; will-change: transform, filter; }
+      #aroll { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      /* captions: above his head, each word pops as he says it, key words get a coral block */
+      .cap { position: absolute; left: 50px; right: 50px; bottom: 1410px; display: flex; justify-content: center; z-index: 8; }
+      .capi { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; column-gap: 16px; row-gap: 6px; max-width: 980px; }
+      .w { display: inline-block; font-family: "ArcX"; font-size: 76px; line-height: 1.1; letter-spacing: -0.02em; color: #fff; padding: 0 10px; border-radius: 12px; text-shadow: 0 4px 0 rgba(0, 0, 0, 0.3), 0 10px 28px rgba(0, 0, 0, 0.45); }
+      .w.em { text-shadow: none; }
+      /* overlays on his footage (chest band) */
+      .ov { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+      .vw { position: absolute; overflow: hidden; background: #fff; opacity: 0; }
+      .vw video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      /* pages: bone paper that unfolds from one coral bracket line */
+      .scene { position: absolute; inset: 0; z-index: 6; }
+      .sheet { position: absolute; inset: 0; overflow: hidden; background: var(--bone); will-change: clip-path; }
+      .sheet::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px); background-size: 100% 136px; background-position: 0 72px; opacity: 0.35; }
+      .bline { position: absolute; left: 0; top: 959px; width: 1080px; height: 4px; background: var(--coral); transform-origin: 50% 50%; transform: scaleX(0); z-index: 20; }
+      .content { position: absolute; inset: 0; }
+      .abs { position: absolute; }
+      .stack { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+      .h1 { font-family: "CondK"; font-size: 150px; line-height: 0.95; letter-spacing: -0.01em; text-transform: uppercase; color: var(--ink); display: inline-block; }
+      .h2 { font-family: "CondK"; font-size: 84px; line-height: 1; text-transform: uppercase; color: var(--ink); display: inline-block; white-space: nowrap; }
+      .h3 { font-family: "ArcS"; font-size: 44px; line-height: 1.25; color: var(--ink); display: inline-block; }
+      .mega { font-family: "CondK"; font-size: 300px; line-height: 0.9; letter-spacing: -0.02em; color: var(--ink); display: inline-block; }
+      .num { color: var(--coral-ink); }
+      .acc { font-family: "CondX"; color: var(--ink); opacity: 0.58; }
+      .lab { font-family: "Mono"; font-size: 30px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); display: inline-block; }
+      .lab.ink { color: var(--ink); font-size: 26px; }
+      .coral { color: var(--coral-ink) !important; }
+      .ink { color: var(--ink); }
+      .ch { display: inline-block; }
+      .mk { display: block; }
+      /* cards and props */
+      .card { background: var(--card); border-radius: 28px; border: 2px solid rgba(22, 21, 19, 0.08); box-shadow: 0 24px 50px rgba(22, 21, 19, 0.16); }
+      .ov .lab:not(.ink):not(.coral) { color: #fff; text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6); }
+      .ov .card { box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45); }
+      .ucard { position: absolute; background: #fff; border-radius: 30px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3); overflow: hidden; }
+      .bar { position: absolute; display: block; border-radius: 9px; background: rgba(22, 21, 19, 0.16); transform-origin: 0 50%; }
+      .xx { position: absolute; right: -34px; top: -34px; width: 104px; height: 104px; border-radius: 50%; background: var(--coral); color: #fff; font-family: "ArcX"; font-size: 56px; display: flex; align-items: center; justify-content: center; }
+      .chip { position: absolute; display: flex; align-items: center; gap: 16px; padding: 20px 34px; border-radius: 999px; background: var(--card); font-family: "CondK"; font-size: 54px; text-transform: uppercase; color: var(--ink); white-space: nowrap; box-shadow: 0 16px 38px rgba(0, 0, 0, 0.35); }
+      .chip.y { background: var(--coral); color: #fff; }
+      .chip.lost { background: rgba(22, 21, 19, 0.82); color: #f2efe8; }
+      .chip.lost b { color: var(--coral); font-family: "ArcX"; }
+      .chip.wide { justify-content: space-between; }
+      .chip .wl { font-family: "Mono"; font-size: 34px; letter-spacing: 0.12em; }
+      .tag { position: absolute; padding: 12px 26px; border-radius: 14px; background: var(--ink); color: #fff; font-family: "Mono"; font-size: 40px; letter-spacing: 0.06em; box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35); }
+      .tag.big { font-family: "CondK"; font-size: 110px; letter-spacing: 0; padding: 10px 44px; background: var(--coral); }
+      .strike { position: absolute; height: 10px; border-radius: 6px; background: var(--coral); transform-origin: 0 50%; transform: scaleX(0); }
+      .plate { position: absolute; background: var(--bone); border-radius: 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45); overflow: hidden; }
+      .plate .rule { position: absolute; left: 40px; right: 40px; top: 34px; height: 4px; background: var(--coral); }
+      .ptitle { font-family: "CondK"; font-size: 170px; line-height: 0.95; letter-spacing: 0.02em; color: var(--ink); }
+      /* agents */
+      .ag { position: absolute; }
+      .dotag::before { content: ""; position: absolute; inset: 14px; border-radius: 50%; background: rgba(22, 21, 19, 0.2); }
+      .pulse { position: absolute; width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%; background: var(--coral); opacity: 0; }
+      .bsvg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+      .trunk { fill: none; stroke: var(--coral); stroke-width: 6; stroke-linecap: round; }
+      .bl { fill: none; stroke: rgba(22, 21, 19, 0.28); stroke-width: 4; }
+      .blw { fill: none; stroke: var(--coral); stroke-width: 7; stroke-linecap: round; }
+      .seed, .nd { position: absolute; width: 74px; height: 74px; margin: -37px 0 0 -37px; border-radius: 50%; background: var(--card); border: 3px solid var(--ink); display: flex; align-items: center; justify-content: center; font-family: "Mono"; font-size: 28px; color: var(--ink); opacity: 0; }
+      .nd { width: 58px; height: 58px; margin: -29px 0 0 -29px; border: 3px solid rgba(22, 21, 19, 0.35); font-size: 22px; color: var(--bone); }
+      .champ { position: absolute; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; background: var(--card); border: 4px solid var(--coral); display: flex; align-items: center; justify-content: center; }
+      .ring { position: absolute; width: 200px; height: 200px; margin: -100px 0 0 -100px; border-radius: 50%; border: 6px solid var(--coral); opacity: 0; }
+      .gavel { position: absolute; transform: translateX(-50%); padding: 14px 30px; border-radius: 14px; background: var(--ink); color: var(--bone); font-family: "Mono"; font-size: 34px; letter-spacing: 0.2em; transform-origin: 50% 100%; }
+      .vs { position: absolute; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; background: var(--ink); color: #fff; font-family: "CondK"; font-size: 54px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); }
+      .key { position: absolute; width: 132px; height: 132px; border-radius: 22px; background: var(--card); border: 2px solid rgba(22, 21, 19, 0.12); box-shadow: 0 12px 0 #b9b2a6, 0 20px 30px rgba(22, 21, 19, 0.18); display: flex; align-items: center; justify-content: center; font-family: "Mono"; font-size: 64px; color: var(--ink); }
+      .cmd { position: absolute; height: 130px; border-radius: 24px; background: var(--ink); color: var(--coral); font-family: "Mono"; font-size: 72px; display: flex; align-items: center; justify-content: center; gap: 4px; transform-origin: 50% 50%; }
+      .caret { display: inline-block; width: 6px; height: 72px; background: var(--coral); }
+      .plus { position: absolute; width: 90px; height: 90px; margin: -45px 0 0 -45px; border-radius: 50%; background: var(--coral); color: #fff; font-family: "ArcX"; font-size: 70px; line-height: 90px; text-align: center; }
+      .tp { position: absolute; width: 220px; height: 80px; overflow: visible; }
+      .tp path { fill: none; stroke: var(--coral); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+      .pc { perspective: 800px; }
+      .hb { display: flex; gap: 10px; }
+      .hs { display: block; width: 44px; height: 40px; border-radius: 8px; background: rgba(22, 21, 19, 0.14); transform-origin: 50% 100%; }
+      .field { position: absolute; inset: 0; background-image: radial-gradient(circle, var(--coral) 32%, transparent 36%); background-size: 90px 90px; background-position: center; opacity: 0; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 46%, #000 62%, #000 100%); mask-image: linear-gradient(to bottom, transparent 0%, transparent 46%, #000 62%, #000 100%); }
+      .row.lb { position: absolute; left: 70px; width: 940px; height: 112px; display: flex; align-items: center; gap: 26px; padding: 0 34px; border-radius: 22px; background: var(--card); border: 2px solid rgba(22, 21, 19, 0.08); }
+      .row.lb.first { border: 4px solid var(--coral); }
+      .row.lb .rk { font-family: "CondK"; font-size: 64px; width: 50px; }
+      .row.lb .lg { width: 56px; display: flex; justify-content: center; }
+      .row.lb .nm { font-family: "Mono"; font-size: 32px; letter-spacing: 0.08em; text-transform: uppercase; width: 230px; }
+      .row.lb .sb { flex: 1; height: 18px; border-radius: 9px; background: rgba(22, 21, 19, 0.08); position: relative; overflow: hidden; }
+      .row.lb .sb i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--ink); border-radius: 9px; transform-origin: 0 50%; display: block; }
+      .row.lb.first .sb i { background: var(--coral); }
+      .row.lb .rc { font-family: "CondK"; font-size: 54px; width: 110px; text-align: right; }
+      .dt { display: block; width: 26px; height: 26px; border-radius: 50%; background: var(--grey); }
+      .tick { position: absolute; right: 40px; top: 60px; width: 90px; height: 90px; border-radius: 50%; background: var(--coral); color: #fff; font-family: "ArcX"; font-size: 54px; display: flex; align-items: center; justify-content: center; }
+      .tick.sm { right: auto; width: 54px; height: 54px; font-size: 32px; }
+      .follow { position: absolute; width: 500px; height: 110px; border-radius: 999px; background: var(--coral); color: #fff; display: flex; align-items: center; justify-content: center; gap: 20px; font-family: "ArcX"; font-size: 52px; box-shadow: 0 16px 38px rgba(0, 0, 0, 0.35); }
+      .follow span { width: 70px; height: 70px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; }
+      .cursor { position: absolute; left: 0; top: 0; width: 72px; height: 72px; transform-origin: 14px 8px; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.45)); z-index: 30; opacity: 0; }
+      .cursor svg { width: 100%; height: 100%; display: block; }
+
+      /* pixel agents */
+      .px { position: absolute; will-change: transform; }
+      .px .fp { position: absolute; inset: 0; }
+      .px .fp.flip { transform: scaleX(-1); }
+      .px .in { position: absolute; inset: 0; transform-origin: 50% 85%; }
+      .px img, .pxi { image-rendering: pixelated; image-rendering: crisp-edges; }
+      .px .in > img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+      .px .in > img.cr, .px .in > img.wp, .px .in > img.fl { width: auto; height: auto; }
+      .px .ey { transform-origin: 50% 64%; }
+      .px .pr-coffee { transform-origin: 25% 72%; }
+      .px .pf { position: absolute; }
+      .pxi { display: block; }
+      .cam2 { position: absolute; inset: 0; transform-origin: 540px 1060px; }
+      .slot { position: absolute; width: 112px; height: 112px; margin: -56px 0 0 -56px; border-radius: 22px; background: var(--card); border: 2px solid rgba(22, 21, 19, 0.1); box-shadow: 0 10px 22px rgba(22, 21, 19, 0.1); opacity: 0; }
+      .snum { position: absolute; width: 80px; text-align: center; font-family: "Mono"; font-size: 22px; color: var(--mute); opacity: 0; }
+      .nd { position: absolute; display: block; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; background: var(--bone); border: 3px solid rgba(22, 21, 19, 0.35); opacity: 0; }
+      .champ { position: absolute; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; background: var(--card); border: 4px solid var(--coral); display: flex; align-items: center; justify-content: center; opacity: 0; }
+      .h1.big { font-size: 220px; letter-spacing: 0.02em; }
+      .cnt { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 18px; padding: 14px 30px; border-radius: 999px; background: var(--card); border: 2px solid rgba(22, 21, 19, 0.1); box-shadow: 0 12px 26px rgba(22, 21, 19, 0.12); opacity: 0; white-space: nowrap; }
+      .cnt b { font-family: "CondK"; font-size: 54px; line-height: 1; color: var(--coral-ink); }
+      .cnt.big b { font-size: 96px; }
+      .cnt.big .lab { font-size: 32px; }
+      .pcard { position: absolute; left: 120px; top: 760px; width: 840px; height: 260px; border-radius: 30px; background: var(--card); border: 2px solid rgba(22, 21, 19, 0.08); box-shadow: 0 24px 50px rgba(22, 21, 19, 0.16); padding: 40px 48px; z-index: 4; }
+      .pcard.sm { top: 330px; height: 230px; }
+      .pcard .pline { position: relative; margin-top: 26px; height: 100px; }
+      .pcard .pline .h2 { position: absolute; left: 0; top: 0; font-size: 104px; }
+      .pcard .pline .h2.coral { opacity: 0; }
+      .pcard.sm .pline { height: auto; }
+      .ubox { position: absolute; left: 36px; top: 560px; width: 1008px; height: 194px; border-radius: 22px; overflow: hidden; background: #fff; box-shadow: 0 30px 70px rgba(22, 21, 19, 0.22); }
+      .ubox img { position: absolute; left: 0; top: 0; width: 1008px; height: 194px; }
+      .ucover { position: absolute; left: 100px; top: 30px; width: 908px; height: 70px; background: #fff; display: block; }
+      .utext { position: absolute; left: 111px; top: 38px; height: 54px; display: flex; align-items: center; font-family: -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif; font-size: 33px; color: #1f1e1d; white-space: nowrap; }
+      .utext .tc { display: none; }
+      .tokin { display: none; padding: 2px 10px; margin-left: 2px; border-radius: 10px; color: var(--coral-ink); font-weight: 600; background: rgba(217, 119, 87, 0.12); }
+      .tokin .tc { display: none; }
+      .ucaret { display: inline-block; width: 3px; height: 38px; margin-left: 2px; background: #1f1e1d; }
+      .halo { position: absolute; left: 660px; top: 605px; width: 420px; height: 420px; margin: -210px 0 0 -210px; border-radius: 50%; border: 6px solid var(--coral); opacity: 0; pointer-events: none; }
+      .note { opacity: 0; }
+      .pedestal { position: absolute; display: block; width: 180px; height: 120px; margin-left: -20px; border-radius: 14px 14px 0 0; background: var(--card); border: 2px solid rgba(22, 21, 19, 0.1); box-shadow: 0 18px 30px rgba(22, 21, 19, 0.12); }
+      .spark { position: absolute; display: block; width: 18px; height: 18px; background: #f7c945; opacity: 0; }
+      .zc { position: absolute; display: block; width: 256px; height: 256px; background: var(--bone); }
+      .zwrap { position: absolute; inset: 0; transform-origin: 540px 960px; }
+      .field2 { position: absolute; inset: 0; background-image: url("assets/img/px/crowd-tile.png"); background-size: 2304px 2304px; background-position: center center; image-rendering: pixelated; }
+      .sign { position: absolute; left: 270px; top: 520px; width: 540px; height: 200px; border-radius: 22px; background: var(--card); border: 4px solid var(--ink); display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 40px rgba(22, 21, 19, 0.18); z-index: 4; }
+      .sign .h2 { position: absolute; font-size: 100px; }
+      .sign .h2.coral { opacity: 0; }
+      .bolt { position: absolute; display: block; width: 200px; height: 14px; background: #f7c945; box-shadow: 0 0 0 4px #161513; transform-origin: 0 50%; opacity: 0; }
+      .tl { position: absolute; width: 240px; text-align: center; font-family: "Mono"; font-size: 24px; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7); opacity: 0; }
+      .card.pcd { overflow: hidden; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="{{DURATION}}" data-width="1080" data-height="1920">
+      <div id="cam">
+        <video id="aroll" class="clip" src="{{AROLL}}" data-start="0" data-duration="{{AROLL_END}}" data-track-index="0" playsinline data-has-audio="true"></video>
+      </div>
+{{OVERLAYS}}
+{{CAPTIONS}}
+{{SCENES}}
+{{VIDEOS}}
+{{SFX}}
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // a page unfolds from one coral bracket line across the middle
+      function enter(sel, at) {
+        tl.fromTo(sel + " .sheet", { opacity: 0 }, { opacity: 1, duration: 0.38, ease: "sine.inOut" }, at);
+        tl.fromTo(sel + " .content", { opacity: 0, y: 36, scale: 1.02 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, at + 0.04);
+      }
+      // pixel agents: idle bob + blink + each personality's own move, inside [t0, t1]
+      function idle(sel, kind, s, t0, t1) {
+        const d = t1 - t0, h = (sel.length * 7 + sel.charCodeAt(sel.length - 1)) % 10 / 10;
+        const per = { coder: 0.18, music: 0.5, sky: 1.2, reader: 0.7 }[kind] || 0.44;
+        const n = Math.max(0, Math.floor(d / per) - 1);
+        tl.to(sel + " .in", { keyframes: [{ y: -s, duration: per / 2, ease: "steps(1)" }, { y: 0, duration: per / 2, ease: "steps(1)" }], repeat: n, immediateRender: false }, t0 + h * per);
+        const bp = 1.8 + h * 1.4;
+        tl.to(sel + " .ey", { keyframes: [{ scaleY: 1, duration: bp }, { scaleY: 0.12, duration: 0.05 }, { scaleY: 1, duration: 0.07 }], repeat: Math.max(0, Math.floor(d / (bp + 0.12)) - 1), immediateRender: false }, t0);
+        const r = (p) => Math.max(0, Math.floor(d / p) - 1);
+        if (kind === "coder") tl.to(sel + " .fx", { keyframes: [{ opacity: 0.15, duration: 0.12, ease: "steps(1)" }, { opacity: 1, duration: 0.16, ease: "steps(1)" }], repeat: r(0.28), immediateRender: false }, t0);
+        if (kind === "coffee") { tl.to(sel + " .pr", { keyframes: [{ rotation: 0, duration: 0.9 }, { rotation: -24, duration: 0.2 }, { rotation: -24, duration: 0.45 }, { rotation: 0, duration: 0.2 }], repeat: r(1.75), immediateRender: false }, t0 + h);
+          tl.fromTo(sel + " .fx", { y: 0, opacity: 1 }, { y: -3 * s, opacity: 0, duration: 0.9, ease: "steps(3)", repeat: r(0.9), immediateRender: false }, t0); }
+        if (kind === "music") { tl.to(sel + " .in", { keyframes: [{ rotation: -5, duration: 0.25, ease: "steps(1)" }, { rotation: 5, duration: 0.25, ease: "steps(1)" }], repeat: r(0.5), immediateRender: false }, t0);
+          tl.fromTo(sel + " .fx", { y: 0, opacity: 1 }, { y: -4 * s, opacity: 0, duration: 1.0, ease: "steps(4)", repeat: r(1.0), immediateRender: false }, t0); }
+        if (kind === "sky") tl.to(sel + " .in", { keyframes: [{ rotation: -6, duration: 0.6 }, { rotation: 6, duration: 0.6 }], repeat: r(1.2), immediateRender: false }, t0);
+        if (kind === "chef") tl.to(sel + " .fx", { keyframes: [{ y: -5 * s, duration: 0.22, ease: "power2.out" }, { y: 0, duration: 0.22, ease: "power2.in" }, { y: 0, duration: 0.3 }], repeat: r(0.74), immediateRender: false }, t0 + h);
+        if (kind === "wizard") tl.to(sel + " .fx", { keyframes: [{ opacity: 0.2, scale: 0.7, duration: 0.2, ease: "steps(1)" }, { opacity: 1, scale: 1.15, duration: 0.2, ease: "steps(1)" }, { scale: 1, duration: 0.2, ease: "steps(1)" }], repeat: r(0.6), immediateRender: false }, t0);
+        if (kind === "sleuth") tl.to(sel + " .in", { keyframes: [{ rotation: -4, duration: 0.5 }, { rotation: 4, duration: 0.5 }], repeat: r(1.0), immediateRender: false }, t0 + h);
+        if (kind === "rocket") tl.to(sel + " .fx", { keyframes: [{ y: 0, opacity: 1, duration: 1.1 }, { y: -12 * s, opacity: 0, duration: 0.55, ease: "power2.in" }, { y: 0, duration: 0.01 }, { opacity: 1, duration: 0.25 }], repeat: r(1.91), immediateRender: false }, t0 + h);
+      }
+      // zoom-out: the tiled crowd and the near agents scale together about the centre
+      function zoomTo(sel, z0, z1, at, d, ease) {
+        const o = { z: z0 };
+        tl.fromTo(o, { z: z0 }, { z: z1, duration: d, ease: ease || "power2.inOut", immediateRender: false, onUpdate() {
+          const f = document.querySelector(sel + " .field2"), w = document.querySelector(sel + " .zwrap");
+          if (f) { f.style.backgroundSize = (2304 * o.z) + "px " + (2304 * o.z) + "px"; f.style.imageRendering = o.z < 0.25 ? "auto" : "pixelated"; }
+          if (w) w.style.transform = "scale(" + o.z + ")";
+        } }, at);
+      }
+      function focus(at) {
+        tl.fromTo("#cam", { filter: "blur(8px)" }, { filter: "blur(0px)", duration: 0.2, ease: "power2.out", immediateRender: false }, at);
+      }
+{{JS}}
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
