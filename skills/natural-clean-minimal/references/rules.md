@@ -14,3 +14,4 @@
 - Real brand marks only; never redraw logos.
 - Masked or hidden text never peeks early; check by stepping frames, not single snapshots.
 - Captions never cover his face.
+- **No fight or action sound effects:** no sounds on sword slashes, fights, hits or clashes, and no repeated whoosh/click bursts (the same effect again and again in a row). Character action is silent unless Jack asks.

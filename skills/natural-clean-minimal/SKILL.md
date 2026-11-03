@@ -11,7 +11,7 @@ Approved reference: the comment-CTA ("tell me what you're building"), built by `
 
 ## Workflow
 
-1. **Understand the take**: probe, transcribe (`npx hyperframes transcribe --engine parakeet`, whisper as fallback), contact-sheet, `silencedetect`. Save every piece of b-roll in the footage to the shared library (`sh tools/broll-save.sh <clip> [start end]`, then a row in `broll/INDEX.md`).
+1. **Understand the take**: probe, transcribe (`npx hyperframes transcribe --engine parakeet`, whisper as fallback), contact-sheet, `silencedetect`. Save every piece of b-roll in the footage to the shared library (`FOLDER="<type folder>" NAME="<what it shows>" sh tools/broll-save.sh <clip> [start end]`, then a row in `broll/INDEX.md`).
 2. **Cut tight**: remove the intro filler ("alright everyone"), repeated phrases, every pause between *and inside* sentences (>0.3 s), sniffs/breaths. Split a segment to remove a mid-sentence gap. Write `edit/edl.json`, run `sh <skill>/scripts/make-aroll.sh`, re-transcribe the cut, confirm joins read cleanly. When the EDL changes later, `scripts/retime.py` moves caption tokens across.
 3. **Plan**: hook = quick zoom (1.38→1 in 0.55 s) + one designed overlay (glass banner title with the pixel Claude character). For cutaways, pick from the shared b-roll library first (`broll/INDEX.md` at the workspace root; iPhone HDR clips go through `skills/30-day-ai-series/scripts/sdr.sh`, muted, never graded). One or two emphasis cards. A glass UI payoff at the end that matches the CTA (composer → typing → cursor click → posted card).
 4. **Build** from `assets/template.html` with a generator like `assets/build-comment-cta.py`: tokens → one-word captions (hard switch, no overlap), hook, emphasis card, ending, punch-ins alternating 1.0/1.15 at every cut and phrase break, SFX, music bed carved under the voice.
@@ -19,7 +19,7 @@ Approved reference: the comment-CTA ("tell me what you're building"), built by `
 6. **Render, QA, master**: `npx hyperframes render -q delivery`; `python3 -I scripts/qa.py <render> --out edit/qa-vN --caption-top 1395` (chest captions); `sh scripts/master.sh <render>` (−14 LUFS / −1 dBTP).
 
 ## Trial reels
-Every video ships as **5 distinct trial reels** in this style (different hook and first frame, structure/length and a third of the beats; same caption system and look). Follow `tools/TRIAL-REELS.md` at the workspace root and render them with `sh tools/render-trials.sh`.
+One edit by default. A second version only when Jack asks: follow `tools/TRIAL-REELS.md` at the workspace root (different hook and first frame, structure/length and a third of the beats; same caption system and look) and render with `sh tools/render-trials.sh <project> <job> 1 2`. In a series it's evergreen: no "day N" lines, day cards or "see you on day N+1"; it ends on the CTA.
 
 ## References
 | File | Use |

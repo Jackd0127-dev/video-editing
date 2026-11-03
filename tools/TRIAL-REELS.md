@@ -1,4 +1,8 @@
-# Trial reels — 5 per video
+# Extra versions (only when Jack asks)
+
+> **One edit is the default.** Use this playbook only when Jack asks for a second version of a video. V1 is the main edit (T1 recipe); V2 takes whichever other recipe below suits the footage best.
+>
+> **In a series, a second version is evergreen.** It's posted at a different time, so it never says which day it is: no "this is day N", no "see you on day N+1", no day page, tracker or Day N end card. It ends on the CTA. V1 keeps the series framing.
 
 From Day 4 on, **every video Jack makes becomes 5 trial reels**. He posts all five as Instagram trial reels
 (shown to non-followers first), then promotes the one that performs best. Same series style in all five;
@@ -21,6 +25,8 @@ hooks, script and editing are mixed up so each reel is clearly its own video, no
 
 Keep the series identity: palette, type, caption system, end card and the series' signature moves stay the same in all five.
 
+**Sound in every version:** no sound effects on sword slashes, fights, hits or clashes, and no repeated whoosh/click bursts (the same effect firing again and again in a row). Fights and character action are silent unless Jack asks otherwise.
+
 ## The five default recipes (adapt per video)
 
 | Trial | Hook | Structure | Treatment |
@@ -38,4 +44,4 @@ Keep the series identity: palette, type, caption system, end card and the series
 3. Structure changes get their own cut: `edit/trials/<n>/segments.json` → `cut_multi.py` → `assets/video/aroll-t<n>.mp4` + `edit/trials/<n>/words.json`, re-transcribe, `endcheck.py`, faces. Hook-only changes reuse the main cut.
 4. The project's `edit/build.py` reads `TRIAL=<n>` (like Day 3's `HOOK`/`FULL`) and writes `../<project>-trials/out/trial-<n>.html`.
 5. Render, QA and master all five: `sh tools/render-trials.sh projects/<project> <date>-<job> [1 2 3 4 5]` (add `MUSIC=path/to/bed.wav` for music versions).
-6. Deliver `exports/<date>-<job>-trial<n>.mp4` (and `-music`), with a table: trial, hook line, length, what's different, suggested on-screen title.
+6. Deliver to the video's `Exports/` folder (`tools/render-trials.sh` does this: `Day N - V<n>.mp4` or `<Title> - V<n>.mp4`; music as `… (music).mp4`), with a table: trial, hook line, length, what's different, suggested on-screen title.

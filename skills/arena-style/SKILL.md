@@ -1,6 +1,6 @@
 ---
 name: arena-style
-description: Edit a raw talking-head video in Jack's "Arena" style — a crowd of little animated pixel-art agents (coder, coffee, headphones, chef, wizard, reader, detective, rocket) acts out what he says on clean bone-paper pages and over his untouched footage: they battle with swords and guns, fill a tournament bracket, get knocked out, and the winner puts on a crown. Ink type, one coral accent, word-synced captions above his head. Best for AI-agent, competition, ranking, "X vs Y" and scale videos. Use when Jack asks for the Arena style, the pixel agents, or "like the 100 Claude agents video". Built on HyperFrames + ffmpeg; ships 2 versions. Also use for every new Arena idea, script, hook or caption (loads viral-shorts-course + viral-hook-creator).
+description: Edit a raw talking-head video in Jack's "Arena" style — a crowd of little animated pixel-art agents (coder, coffee, headphones, chef, wizard, reader, detective, rocket) acts out what he says on clean bone-paper pages and over his untouched footage: they battle with swords and guns, fill a tournament bracket, get knocked out, and the winner puts on a crown. Ink type, one coral accent, word-synced captions above his head. Best for AI-agent, competition, ranking, "X vs Y" and scale videos. Use when Jack asks for the Arena style, the pixel agents, or "like the 100 Claude agents video". Built on HyperFrames + ffmpeg. Also use for every new Arena idea, script, hook or caption (loads hook-lab, short-script, viral-shorts-course + viral-hook-creator).
 ---
 
 # Arena
@@ -11,22 +11,22 @@ Approved reference: "100 Claude Agents Arena" (29 Oct 2026), project `projects/2
 
 ## Script and hooks (new ideas, before he films)
 
-Whenever Jack has a new idea or asks for a script, load `viral-shorts-course` (structure, retention) and `viral-hook-creator` (hook patterns) first, and write the script with them before anything is filmed:
-- **Hooks:** 3–5 options from different patterns; each works muted on the first frame and opens a loop in ≤5 words where possible. V1 and V2 get different hooks, and he films a take of each.
+Whenever Jack has a new idea or asks for a script, load `hook-lab` (hooks), `short-script` (scripts), `viral-shorts-course` (structure, retention) and `viral-hook-creator` (extra hook patterns) first, and write the script with them before anything is filmed. Put the plan in his Notion Social content database with `notion-socials`:
+- **Hooks:** 3–5 options from different patterns; each works muted on the first frame and opens a loop in ≤5 words where possible.
 - **Structure:** hook → foreshadow the payoff (line 2, hook + foreshadow < 4 s) → first action (never "let's get started") → middle written as "but / therefore", never "and then" → payoff held to the end, with a twist → end right after it. Sign-off/CTA ≤2.5 s.
 - **Words:** 5th-grade reading level; swap "business", "strategy", "profit", "workflow" for plain words.
 - **Shot list:** with the script, list the screen recordings and results each beat needs, so they're filmed the same day.
 
 ## Workflow
 
-1. **Understand the take.** Media lives on the SSD (`footage/<job>`; naming rules in CLAUDE.md). iPhone HDR goes through `skills/30-day-ai-series/scripts/sdr.sh` first. Transcribe with Parakeet, contact-sheet it, and save any b-roll to `broll/`.
+1. **Understand the take.** Set up with `tools/new-video.sh`; all of a video's files live in one SSD folder (CLAUDE.md → Folders). iPhone HDR goes through `skills/30-day-ai-series/scripts/sdr.sh` first. Transcribe with Parakeet, contact-sheet it, and save any b-roll to `broll/`.
 2. **Cast it.** List what he says as things characters can do: gets the prompt, thinks differently, fights, gets knocked out, wins. Each beat gets one causal action tied to one spoken word. Anything that can't be acted out stays his face and captions.
 3. **Cut tight.** Last clean take of each line; retakes, half-words, untranscribed "uh"s, fillers and dead air out, every pause down to ~0.1 s. Keep off-script setup lines so each sentence makes sense. Check joins on the energy envelope and re-transcribe the cut: a doubled word at a join (his "Then… then a judge") is a fail. `endcheck.py` must be clean.
-4. **Plan two versions** (`tools/TRIAL-REELS.md`). V1 = face-first hook, full. V2 = a different hook line and first frame (cold open on one agent becoming 100), 25–30 % shorter, different treatment for at least a third of the beats. Write one `edit/trials/<n>/plan.json` each. In a series, V2 is evergreen.
+4. **One edit by default.** A second version only if Jack asks (`tools/TRIAL-REELS.md`): a different hook line and first frame (cold open on one agent becoming 100), 25–30 % shorter, different treatment for at least a third of the beats, one `edit/trials/<n>/plan.json` each. In a series it's evergreen.
 5. **Rhythm before pixels.** Lay the beats out as face | page windows and decide what can be a chest-band overlay instead of a page (see the page budget in `references/rules.md`).
 6. **Build.** Run `sprites.py` (add new personalities there), then write the beat functions from the library in the generator: `pg_crowd`, `pg_battle`, `pg_arena`, `pg_type`, `pg_judge`, `pg_crown`, `pg_zoom`, `pg_board`, `ov_vs`, `ov_cta`… Beats are timed from his words with `w("phrase")` / `T("phrase")`, never by hand. `TRIAL=n python3 -I edit/build.py`.
 7. **Check and look.** `npx hyperframes check`, snapshots of every page at its key words, zoom anything suspicious. Show Jack a look strip before the final render of a new video type.
-8. **Render, QA, master both:** `sh tools/render-trials.sh projects/<project> <date>-<job> 1 2`, one render at a time. QA passes with 0 caption/face overlaps and 0 voice-cut pops. Move renders to the SSD `exports/`, send both with a what-differs table and a suggested caption.
+8. **Render, QA, master:** `sh tools/render-trials.sh projects/<project> <date>-<job>`, one render at a time; it writes to the video's `Exports/`. QA passes with 0 caption/face overlaps and 0 voice-cut pops. Send it with a suggested caption.
 
 ## References
 | File | Use |

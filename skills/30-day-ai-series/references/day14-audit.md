@@ -26,8 +26,17 @@ Four phone takes (hook, intro, a long walk-through at the desk, the payoff + sig
 ## Round 3 notes
 | # | Note | Fix (now a rule) |
 | --- | --- | --- |
-| 11 | The top card is too small | Above-head screen cards are 880 px wide; the footage pushes in 1.45× from the top edge so his head sits below them (Jack picked this from a 600 / 780 / 880 preview) |
+| 11 | The top card is too small | Above-head screen cards are 880 px wide (see round 4: the card moves up, never a big push-in) |
 | 12 | "the circles aren't going around the things properly … add a nice draw-in" | `ring()` is a rounded rectangle a fixed number of screen px outside the target (an ellipse cuts the corners of anything wide), constant on-screen stroke, drawn on in ~0.6 s with a small pen overshoot. Snapshot every ring at the moment it finishes (`RINGLOG`) |
 | 13 | Show the real CRM dashboard, not lots of circles on the landing page | Landing hero first, then his real dashboard pages (Overview, Leads/Campaigns, Calls) captured from his signed-in Chrome, switching on his words; one ring for sign-up, one for revenue |
 | 14 | The site windows covered his face | `low_window()`: 940 px wide, ~510–530 tall, sitting ~150 px above the bottom; the footage pushes in from the bottom edge (max 1.25×, more crops his head) so his face shows above; captions above his head |
 | 15 | Show a preview before a size change | For layout changes he can't picture, send a side-by-side still of 2–3 options on real frames first |
+
+## Round 4 notes
+| # | Note | Fix (now a rule) |
+| --- | --- | --- |
+| 16 | "u zoomed in wayyy too much … u changed the captions" | Make room by moving the card, not by zooming him: keep the 1.1× push, card bottom stays clear of his head (top ≈ 140). Never change captions or zoom when he only asked for a size change. Say the plan back and send a still before re-rendering |
+| 17 | A different clip flashes in for a split second (2:05) | `tighten.py` merges any piece under 0.45 s: a sliver shot plus two re-framings reads as a glitch |
+| 18 | V2 glitches at the start | Never start a camera move during the opening zoom-out (first 0.55 s) |
+| 19 | V3: constant zooming in and out | `cam_chain()`: cards under 1.5 s apart hold the zoom or glide to the next framing; camera moves ease back, never snap |
+| 20 | Sound effects when needed, a riser on a cliffhanger open | A soft riser into the reveal of a cold open (with a low hit), quiet builds into hooks, a small chime on a payoff reveal |

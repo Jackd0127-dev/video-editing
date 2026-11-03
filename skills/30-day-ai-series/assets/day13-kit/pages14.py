@@ -45,16 +45,14 @@ def screen(sid, a, b, parts, sw=RW, sh=RH, imgs=False):
         cw, left, top = CW, 40, int(min(max(bot + 50, 960), 1700 - ch))
         hold_cam(a - 0.1, b + 0.2)
     else:
-        z = float(os.environ.get("CARD_UP_Z", 1.45))  # Jack, round 3: the 880 px card (preview option C)
-        top = 300
+        z = float(os.environ.get("CARD_UP_Z", 1.1))  # Jack, round 4: the gentle round-2 zoom, not a big push
         cw = int(os.environ.get("CARD_UP_W", 880))
         ch = round(cw * sh / sw)
+        top = max(110, 642 - ch)  # the big card moves up instead: its bottom stays where the 600 px card's was, clear of his head
         left = (1080 - cw) // 2
-        CAMFIX.append((a - 0.6, b + 0.2))  # the push finishes before the card lands, so nothing is placed mid-push
-        CAMMAP.append((a - 0.6, b + 0.2, z, z * 1.02, 540, 0))
-        CAMJS.append(f"tl.fromTo('#cam', {{scale:1, transformOrigin:'540px 0px'}}, {{scale:{z}, duration:.5, ease:'power2.inOut', immediateRender:false}}, {a - 0.6:.3f});")
-        CAMJS.append(f"tl.fromTo('#cam', {{scale:{z}, transformOrigin:'540px 0px'}}, {{scale:{z * 1.02:.4f}, duration:{b - a + 0.3:.3f}, ease:'none', immediateRender:false}}, {a - 0.1:.3f});")
-        CAPBELOW.append((a - 0.6, b + 0.2))
+        r0 = max(a - 0.6, 0.55)  # the push finishes before the card lands; never during the opening zoom-out (it fought it: V2's glitch)
+        CAM_WINS.append((r0, b, z, 0))
+        CAPBELOW.append((r0, b + 0.2))
     inner = ""
     if imgs:
         inner = "".join(f'<img class="sci" id="{sid}-i{k}" src="{p}"/>' for k, p in enumerate(parts))
@@ -95,8 +93,33 @@ RGN = [0]
 RINGS = {}
 
 
+CAM_WINS = []  # (start, end, zoom, origin y) for every card / site window
+
+
+def cam_chain():
+    """One camera path for all the cards (Jack: 'constant zooming out and in'): cards under 1.5 s apart hold the zoom or glide
+    straight to the next one, instead of easing out and back in. Written as scale + y from the top edge so any two framings blend."""
+    wins = sorted(CAM_WINS)
+    for k, (r0, b, z, oy) in enumerate(wins):
+        y = round(oy * (1 - z), 1)
+        prev = wins[k - 1] if k else None
+        nxt = wins[k + 1] if k + 1 < len(wins) else None
+        chained_in = prev is not None and r0 - prev[1] < 1.5
+        chained_out = nxt is not None and nxt[0] - b < 1.5
+        pz, py = (prev[2], round(prev[3] * (1 - prev[2]), 1)) if chained_in else (1, 0)
+        at = max(r0, prev[1] - 0.25) if chained_in else r0
+        if (pz, py) != (z, y):
+            CAMJS.append(f"tl.fromTo('#cam', {{scale:{pz}, y:{py}, transformOrigin:'540px 0px'}}, {{scale:{z}, y:{y}, duration:.5, ease:'power2.inOut', immediateRender:false}}, {at:.3f});")
+        if not chained_out:
+            CAMJS.append(f"tl.fromTo('#cam', {{scale:{z}, y:{y}, transformOrigin:'540px 0px'}}, {{scale:1, y:0, duration:.45, ease:'power2.inOut', immediateRender:false}}, {b - 0.25:.3f});")
+        end = nxt[0] if chained_out else b + 0.2
+        CAMFIX.append((r0, end))
+        CAMMAP.append((r0, end, z, z, 540, oy))
+
+
 def finalize14():
     """Ring paths go into their card's svg (built before the rings were known)."""
+    cam_chain()
     for k, v in enumerate(VL):
         for sid, paths in RINGS.items():
             v = v.replace(f"<!--RG:{sid}-->", "".join(paths))
@@ -144,6 +167,8 @@ def hook14():
     draw("hk14-t", t(i_s + 2) + 0.1)
     ft("#hk14-r", t(i_c) - 0.1, {"opacity": 0, "x": -16}, {"opacity": 1, "x": 0}, 0.25)
     sfx.append(("pluck_001", t(i_c + 1), 0.18))
+    if N == 1:  # a short build into the day card
+        sfx.append(("riser", t(w("day fourteen")) - 0.95, 0.14))
 
 
 def pg_day14():
@@ -170,6 +195,8 @@ def pg_day14():
 
 def today14():
     """'scrape Google reviews, automate a website builder, and then automate the outreach' — today's three steps, ticked."""
+    if N == 3:  # V3 opens on this line: a soft build into its last step
+        sfx.append(("riser-long", max(0.05, t(w("the outreach")) - 2.7), 0.14))
     at = [t(w("scrape google")), t(w("website builder")), t(w("the outreach"))]
     plist("td14", "today", ["find leads on Google", "build the website", "automate the outreach"], [at[0], at[1] - 0.3, at[2] - 0.2],
           cut_out("the outreach"), [a + 0.35 for a in at], w_=400)
@@ -299,6 +326,7 @@ def open14():
     zoom_to("so", T[2] + 0.05, (1000, 1000, 1800, 1520), 0.5, 2.2)
     ring("so", (1030, 1030, 1780, 1500), T[2] + 0.5, b - 0.35, pad=20)
     nosite_tag("so", t(i_n) - 0.1, b - 0.3)
+    sfx.extend([("riser-long", max(0.05, t(i_n) - 3.0), 0.2), ("boom", t(i_n + 1), 0.2)])  # the cliffhanger builds to "custom website"
 
 
 def nosite_tag(sid, at, out):
@@ -468,11 +496,7 @@ def low_window(sid, a, b, w=LOW_W, h=540, fit=None):
             w = int(h2 * fit)
         h = h2
     left = (1080 - w) // 2
-    CAMFIX.append((a - 0.15, b + 0.35))
-    CAMMAP.append((a - 0.15, b + 0.35, z, z * 1.015, 540, 1920))
-    CAMJS.append(f"tl.fromTo('#cam', {{scale:1, transformOrigin:'540px 1920px'}}, {{scale:{z:.3f}, duration:.5, ease:'power2.inOut', immediateRender:false}}, {a - 0.15:.3f});")
-    CAMJS.append(f"tl.fromTo('#cam', {{scale:{z:.3f}, transformOrigin:'540px 1920px'}}, {{scale:{z * 1.015:.4f}, duration:{b - a - 0.25:.3f}, ease:'none', immediateRender:false}}, {a + 0.35:.3f});")
-    CAMJS.append(f"tl.to('#cam', {{scale:1, duration:.45, ease:'power2.inOut', immediateRender:false}}, {b - 0.1:.3f});")
+    CAM_WINS.append((a - 0.15, b, z, 1920))
     print(f"  low window {sid} {a:.1f}-{b:.1f}s: chin {chin:.0f} -> push {z:.2f}x, window {w}x{h} at y {top}")
     return left, top, w, h
 
@@ -503,6 +527,7 @@ def site14():
     what they do, and how to book.' — Claude's real site: hero, services, then the map, the menu and the Book button, ringed."""
     i_g = w("and there we go")
     i_wh, i_wt, i_bk = w("where they are"), w("what they do"), w("how to book")
+    sfx.append(("confirmation_002", t(i_g + 3), 0.16))  # the reveal
     b1 = te(w("fully made", t(i_g)) + 1) + 0.35
     a2 = (t(w("as you can see")) - 0.1) if has("as you can see") else b1
     b2 = cut_out("simple as that") + 0.1 if has("simple as that") else te(i_bk + 2) + 0.55

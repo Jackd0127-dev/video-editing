@@ -44,3 +44,4 @@ Hook slam 1.35 → 1 (0.5 s expo.out) on the face centre; every cut alternates 1
 
 ## Sound
 Kenney/Mixkit SFX only, no music: fast-whoosh before each page (0.32), pluck on stations, hard-pop-click on tiles, click_002 on cursor clicks, tick_002 on ticks, drop_002 on cards landing, confirmation_002 on payoffs, arrow-whoosh on train runs, a soft boom under the hook slam. Master −14 LUFS / −1 dBTP.
+- **Never** put sound effects on sword slashes, fights, hits or clashes, and never use repeated whoosh/click bursts (the same effect firing again and again in a row). Fights and character action are silent unless Jack asks otherwise (Terra vs Sol, round 4: he hated the repeating whoosh + click on every slash and hit).
