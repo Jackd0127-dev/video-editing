@@ -1,0 +1,22 @@
+
+      /* ---- Day 13: Jess's (the AI receptionist's) caption lines get a small tag; call notes; part 2 card ---- */
+      .cap.jess .capi::before { content: "JESS · AI RECEPTIONIST"; display: block; margin-bottom: 8px; font-family: "Typewriter"; font-size: 30px; letter-spacing: .14em; color: #17120e; opacity: .75; }
+      .pn .dots { display: flex; gap: 10px; margin-top: 12px; }
+      .pn .dots i { width: 14px; height: 14px; border-radius: 50%; background: #17120e; opacity: .15; }
+      .pn .br { display: grid; grid-template-columns: 120px 1fr 64px; align-items: center; gap: 12px; margin-top: 12px; font-family: "ArchivoXB"; font-size: 28px; letter-spacing: -0.02em; }
+      .pn .br i { display: block; height: 20px; border-radius: 5px; background: rgba(23,18,14,.1); overflow: hidden; }
+      .pn .br b { display: block; height: 100%; background: #17120e; transform-origin: 0 50%; }
+      .pn .br em { font-style: normal; font-family: "Typewriter"; font-size: 28px; text-align: right; }
+      .pn .cpx { position: absolute; right: 120px; bottom: 6px; width: 64px; height: 64px; }
+      .cm13 { position: absolute; left: 170px; right: 170px; display: flex; align-items: center; gap: 22px; padding: 26px 34px; border-radius: 28px; background: #fbf9f5; box-shadow: 0 22px 44px rgba(40,26,14,.22), 0 3px 8px rgba(40,26,14,.12); opacity: 0; }
+      .cm13 .av { width: 84px; height: 84px; flex: none; border-radius: 50%; background: #17120e; display: flex; align-items: center; justify-content: center; }
+      .cm13 .tx { display: flex; flex-direction: column; gap: 4px; }
+      .cm13 .ck { font-family: "Typewriter"; font-size: 24px; letter-spacing: .14em; text-transform: uppercase; color: #7a6e63; }
+      .cm13 .cbb { font-family: "ArchivoXB"; font-size: 64px; letter-spacing: -0.03em; color: #17120e; line-height: 1; display: flex; align-items: center; gap: 14px; }
+      .cm13 .cbb .wd { opacity: 0; }
+      .cm13 .caret { width: 5px; height: 58px; background: #17120e; display: inline-block; }
+      /* bright sky above his head: no template top scrim or vignette (they read as a grade here); ink captions with a soft light halo */
+      #scrim, #vignette { display: none; }
+      .cap .w { color: #17120e; text-shadow: 0 0 22px rgba(255,255,255,.6), 0 0 6px rgba(255,255,255,.45); }
+      .cap.scrim .capi { background: none; }
+      .cm13 > div { position: relative; }

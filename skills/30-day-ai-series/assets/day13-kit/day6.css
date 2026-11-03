@@ -1,0 +1,153 @@
+      .okc { margin-left: auto; width: 54px; height: 54px; border-radius: 50%; background: #17120e; color: #fbf9f5; display: flex; align-items: center; justify-content: center; font-family: "ArchivoXB"; font-size: 28px; flex: none; }
+      .mrow { position: absolute; left: 120px; right: 120px; height: 190px; border-radius: 36px; background: #fbf9f5; display: flex; align-items: center; gap: 34px; padding: 0 30px; box-shadow: 0 30px 60px rgba(60, 40, 24, 0.16); }
+      .mrow .nd { box-shadow: none; background: rgba(23, 18, 14, 0.06); }
+      .stk { position: relative; display: inline-block; }
+      .stk i { position: absolute; left: -8px; right: -8px; top: 50%; height: 7px; margin-top: -3px; border-radius: 4px; background: #17120e; transform-origin: left center; transform: scaleX(0); }
+      /* Day 6 components */
+      .ico { position: absolute; width: 300px; height: 300px; border-radius: 40px; background: transparent; }
+      .ico .blk { position: absolute; width: 92px; height: 92px; border-radius: 24px; background: #17120e; display: block; }
+      .ph3 { position: absolute; width: 480px; height: 980px; border-radius: 74px; background: #17120e; padding: 16px; box-shadow: 0 50px 90px rgba(40, 26, 14, 0.3); transform-origin: top left; }
+      .ph3.sm3 { width: 360px; height: 560px; border-radius: 60px; }
+      .scr { position: relative; width: 100%; height: 100%; border-radius: 60px; background: #f6f2ec; overflow: hidden; display: flex; flex-direction: column; }
+      .apb { display: flex; align-items: center; gap: 12px; padding: 58px 28px 12px; }
+      .abt { font-family: "ArchivoXB"; font-size: 40px; letter-spacing: -0.03em; color: #17120e; }
+      .pro { padding: 4px 12px; border-radius: 999px; background: #17120e; color: #fbf9f5; font-family: "ArchivoSB"; font-size: 18px; }
+      .dots { margin-left: auto; width: 34px; height: 8px; border-radius: 4px; background: rgba(23, 18, 14, 0.3); display: block; }
+      .tabs { display: flex; gap: 8px; padding: 6px 20px 12px; }
+      .tabs span { padding: 6px 12px; border-radius: 999px; background: rgba(23, 18, 14, 0.08); font-family: "ArchivoSB"; font-size: 18px; color: #17120e; }
+      .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 0 16px; }
+      .grid3 .pt { display: block; height: 104px; border-radius: 10px; }
+      .up { margin: 14px 18px 0; padding: 12px; border-radius: 16px; background: rgba(23, 18, 14, 0.85); color: #fbf9f5; font-family: "ArchivoSB"; font-size: 20px; text-align: center; }
+      .tbar { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 16px 0; justify-content: center; }
+      .tb { width: 46px; height: 46px; border-radius: 14px; background: rgba(23, 18, 14, 0.07); display: flex; align-items: center; justify-content: center; }
+      .tb svg { width: 26px !important; height: 26px !important; }
+      .hbar { margin-top: auto; display: flex; justify-content: center; gap: 26px; padding: 0 0 46px; }
+      .hb { width: 76px; height: 76px; border-radius: 50%; background: #fbf9f5; border: 3px solid rgba(23, 18, 14, 0.25); display: flex; align-items: center; justify-content: center; font-family: "ArchivoXB"; font-size: 30px; color: #17120e; }
+      .ssh { position: absolute; width: 180px; display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 5; }
+      .ssh .ph3 { position: absolute; left: 0; top: 0; transform-origin: top left; }
+      .ssh span { position: absolute; top: 410px; left: 0; right: 0; text-align: center; font-family: "ArchivoSB"; font-size: 26px; color: #17120e; }
+      .mini { width: 46px; height: 92px; border-radius: 10px; background: #17120e; display: block; }
+      .cl3 { height: 16px; border-radius: 8px; background: rgba(23, 18, 14, 0.14); }
+      .prog { height: 10px; margin: 0 40px 34px; border-radius: 5px; background: rgba(23, 18, 14, 0.1); overflow: hidden; }
+      .prog i { display: block; height: 100%; background: #17120e; transform-origin: left center; }
+      .scr.hs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; padding: 70px 22px; align-content: start; background: linear-gradient(180deg, #d8c7b0, #a9b3a0); }
+      .ai2 { position: relative; width: 62px; height: 62px; border-radius: 16px; background: rgba(251, 249, 245, 0.7); display: block; }
+      .ai2.me { background: #17120e; display: flex; align-items: center; justify-content: center; }
+      .ai2.me img { width: 38px; height: 38px; }
+      .ai2.me svg { position: absolute; inset: -6px; width: 74px; height: 74px; transform: rotate(-90deg); }
+      .dlr { fill: none; stroke: #fbf9f5; stroke-width: 7; stroke-linecap: round; stroke-dasharray: 239; }
+      .scr.clean { background: #fbf9f5; }
+      .big1 { margin: 20px 26px; height: 560px; border-radius: 34px; }
+      .b3 { display: flex; justify-content: center; gap: 30px; }
+      .b3 b { width: 104px; height: 104px; border-radius: 50%; background: #17120e; color: #fbf9f5; display: flex; align-items: center; justify-content: center; font-family: "ArchivoXB"; font-size: 44px; box-shadow: 0 14px 28px rgba(23, 18, 14, 0.25); }
+      .subx { position: absolute; left: 340px; top: 1420px; width: 400px; padding: 24px 28px; border-radius: 28px; background: #fbf9f5; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 24px 50px rgba(60, 40, 24, 0.18); }
+      .subx i { position: absolute; left: 16px; right: 16px; top: 50%; height: 8px; margin-top: -4px; border-radius: 4px; background: #17120e; transform-origin: left center; transform: scaleX(0); display: block; }
+      .cmt { position: absolute; left: 90px; right: 90px; height: 140px; border-radius: 34px; background: #fbf9f5; display: flex; align-items: center; gap: 22px; padding: 0 28px; box-shadow: 0 20px 40px rgba(60, 40, 24, 0.14); }
+      .av2 { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #c9b9a3, #9fa9b6); display: block; flex: none; }
+      .hrt { margin-left: auto; font-size: 36px; color: #7a6e63; }
+      .att2 .mini { flex: none; }
+      .cmp { position: absolute; left: 70px; right: 70px; height: 120px; border-radius: 60px; background: #fbf9f5; display: flex; align-items: center; padding: 0 22px 0 34px; box-shadow: 0 24px 50px rgba(60, 40, 24, 0.18); }
+      .cmp .wsend { margin-left: auto; }
+      .sb { position: absolute; left: 140px; right: 140px; height: 140px; border-radius: 34px; background: #fbf9f5; display: flex; align-items: center; gap: 26px; padding: 0 30px; box-shadow: 0 20px 40px rgba(60, 40, 24, 0.14); }
+      .sb .nd { box-shadow: none; background: rgba(23, 18, 14, 0.06); }
+      .sx, .ptag i { position: absolute; left: 20px; right: 20px; top: 50%; height: 8px; margin-top: -4px; border-radius: 4px; background: #17120e; transform-origin: left center; transform: scaleX(0); display: block; }
+      .ptag { position: absolute; left: 190px; right: 190px; top: 460px; height: 520px; border-radius: 60px; background: #fbf9f5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 40px 80px rgba(60, 40, 24, 0.22); }
+      .ptag i { height: 14px; margin-top: -7px; left: 40px; right: 40px; }
+      .stamp2 { position: absolute; padding: 18px 44px; border: 8px solid #17120e; border-radius: 26px; font-family: "ArchivoXB"; font-size: 110px; letter-spacing: -0.03em; color: #17120e; background: rgba(251, 249, 245, 0.85); }
+      /* Day 6 redo: stickers and overlays on his footage */
+      .stk2 { position: absolute; display: flex; align-items: center; gap: 16px; padding: 14px 28px 14px 14px; background: #fbf9f5; border: 8px solid #fff; border-radius: 34px; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); font-family: "ArchivoXB"; font-size: 40px; letter-spacing: -0.03em; color: #17120e; white-space: nowrap; opacity: 0; }
+      .stk2.ico1 { padding: 18px; }
+      .stk2.nope span { text-decoration: line-through; text-decoration-thickness: 6px; }
+      .ski { width: 64px; height: 64px; border-radius: 20px; background: rgba(23, 18, 14, 0.07); display: flex; align-items: center; justify-content: center; flex: none; }
+      .stk2.mo em { font-style: normal; display: inline-block; min-width: 92px; }
+      .stp3 { position: absolute; padding: 14px 40px; border: 10px solid #17120e; border-radius: 26px; font-family: "ArchivoXB"; font-size: 104px; letter-spacing: -0.03em; color: #17120e; background: rgba(251, 249, 245, 0.92); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3); opacity: 0; white-space: nowrap; }
+      .tag2 { position: absolute; left: 40px; top: 1290px; width: 400px; padding: 26px 36px 30px 70px; background: #fbf9f5; border: 10px solid #fff; border-radius: 40px 90px 90px 40px; box-shadow: 0 24px 50px rgba(0, 0, 0, 0.38); display: flex; flex-direction: column; opacity: 0; }
+      .tgc { font-family: "ArchivoXB"; font-size: 130px; line-height: 1; letter-spacing: -0.05em; color: #17120e; }
+      .tgc b { font-weight: normal; }
+      .tgm { font-family: "ArchivoSB"; font-size: 40px; color: #7a6e63; }
+      .tgh { position: absolute; left: 22px; top: 50%; width: 30px; height: 30px; margin-top: -15px; border-radius: 50%; background: #ede7df; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25); display: block; }
+      .dev { position: absolute; left: 290px; top: 330px; width: 500px; height: 1050px; border-radius: 82px; background: linear-gradient(145deg, #3a3631, #121010 40%, #2a2724); padding: 16px; box-shadow: 0 0 0 3px #57514a, 0 50px 90px rgba(40, 26, 14, 0.35); }
+      .dscr { position: relative; width: 468px; height: 1018px; border-radius: 66px; overflow: hidden; background: #f6f2ea; }
+      .dz { position: absolute; left: 0; top: 0; width: 920px; height: 2000px; transform-origin: 0 0; }
+      .dz img { position: absolute; inset: 0; width: 920px; height: 2000px; display: block; }
+      .rg { position: absolute; width: 128px; height: 128px; border-radius: 50%; border: 10px solid #17120e; box-shadow: 0 0 0 9999px rgba(23, 18, 14, 0); opacity: 0; display: block; }
+      .vl { position: absolute; left: 0; width: 920px; background: rgba(237, 231, 223, 0.78); opacity: 0; display: block; }
+      .qm { position: absolute; width: 120px; height: 120px; border-radius: 50%; background: #17120e; color: #fbf9f5; font-family: "ArchivoXB"; font-size: 84px; display: flex; align-items: center; justify-content: center; border: 8px solid #fff; box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3); opacity: 0; }
+      .ssh2 { position: absolute; width: 190px; height: 413px; border-radius: 30px; overflow: hidden; border: 7px solid #17120e; box-shadow: 0 24px 44px rgba(40, 26, 14, 0.28); z-index: 5; background: #f6f2ea; }
+      .ssh2 img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .dl .dlv { width: 84px; height: 84px; flex: none; transform: rotate(-90deg); }
+      .dlb { fill: none; stroke: rgba(23, 18, 14, 0.12); stroke-width: 10; }
+      .dlf { fill: none; stroke: #17120e; stroke-width: 10; stroke-linecap: round; stroke-dasharray: 252; }
+      .dla, .dlk { fill: none; stroke: #17120e; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; transform: rotate(90deg); transform-origin: 50px 50px; }
+      .dlk { opacity: 0; }
+      .cmb { position: absolute; left: 110px; right: 110px; top: 1440px; height: 130px; border-radius: 65px; background: #fbf9f5; border: 8px solid #fff; box-shadow: 0 20px 44px rgba(0, 0, 0, 0.38); display: flex; align-items: center; gap: 18px; padding: 0 18px 0 22px; font-family: "ArchivoSB"; font-size: 42px; color: #17120e; opacity: 0; white-space: nowrap; }
+      .cms { margin-left: auto; width: 84px; height: 84px; border-radius: 50%; background: rgba(23, 18, 14, 0.1); display: flex; align-items: center; justify-content: center; font-family: "ArchivoXB"; font-size: 40px; font-style: normal; color: #7a6e63; flex: none; }
+      /* Day 6 round 3: drawn props on paper pages */
+      .rcpt { position: relative; background: linear-gradient(90deg, #efe9de 0%, #fbf8f1 18%, #fdfbf6 50%, #f4efe5 82%, #e6dfd2 100%); padding: 30px 20px 26px; font-family: "Typewriter"; color: #1b1814; box-shadow: 0 22px 34px rgba(40, 26, 14, 0.28); }
+      .rcpt .h { font-family: "ArchivoXB"; font-size: 32px; letter-spacing: 0.08em; text-align: center; }
+      .rcpt .d { border-top: 4px dashed #3a332c; margin: 12px 0; }
+      .rcpt .r { display: flex; justify-content: space-between; font-size: 22px; line-height: 1.5; }
+      .rcpt .tot { font-family: "ArchivoXB"; font-size: 64px; letter-spacing: -0.03em; text-align: center; line-height: 1; margin-top: 2px; }
+      .rcpt .per { font-size: 22px; text-align: center; }
+      .rcpt .bars { height: 40px; margin: 14px 8px 0; background: repeating-linear-gradient(90deg, #1b1814 0 3px, transparent 3px 6px, #1b1814 6px 7px, transparent 7px 11px, #1b1814 11px 15px, transparent 15px 17px); }
+      .fan3 { position: absolute; top: 560px; }
+      .bigx2 { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; z-index: 4; }
+      .bigx2 path { fill: none; stroke: #17120e; stroke-width: 34; stroke-linecap: round; stroke-dasharray: 1300; stroke-dashoffset: 1300; filter: drop-shadow(0 12px 18px rgba(0,0,0,.3)); }
+      .prn { position: absolute; width: 440px; height: 420px; }
+      .prn .shadow { position: absolute; left: 30px; right: 30px; bottom: -6px; height: 40px; border-radius: 50%; background: radial-gradient(closest-side, rgba(40,26,14,.45), rgba(0,0,0,0)); }
+      .prn .body { position: absolute; left: 20px; right: 20px; top: 170px; height: 220px; border-radius: 34px; background: linear-gradient(180deg, #4a443e 0%, #2a2521 45%, #17130f 100%); border: 5px solid #0d0b09; box-shadow: inset 0 6px 0 rgba(255,255,255,.12), inset 0 -10px 18px rgba(0,0,0,.45); }
+      .prn .lid { position: absolute; left: 6px; right: 6px; top: 140px; height: 66px; border-radius: 26px; background: linear-gradient(180deg, #5d5650, #3a3430); border: 5px solid #0d0b09; box-shadow: inset 0 5px 0 rgba(255,255,255,.18); }
+      .prn .slot { position: absolute; left: 70px; right: 70px; top: 162px; height: 16px; border-radius: 8px; background: #050404; box-shadow: inset 0 3px 4px rgba(0,0,0,.9); z-index: 3; }
+      .prn .led { position: absolute; right: 56px; top: 250px; width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #c8f5a0, #4caf50 60%, #1f5a22); box-shadow: 0 0 14px #6fdc63; }
+      .prn .btn { position: absolute; top: 300px; width: 64px; height: 26px; border-radius: 13px; background: linear-gradient(180deg, #3d3732, #1a1613); border: 3px solid #0d0b09; }
+      .prn .label { position: absolute; left: 56px; top: 246px; font-family: "Typewriter"; font-size: 22px; letter-spacing: .12em; color: #b9b0a5; }
+      .prn .paper { position: absolute; left: 82px; width: 276px; bottom: 250px; height: 0; overflow: hidden; z-index: 2; transform-origin: 50% 100%; }
+      .prn .paper .rcpt { position: absolute; left: 0; right: 0; top: 0; box-shadow: none; }
+      .cal { position: absolute; width: 330px; height: 380px; perspective: 900px; }
+      .cal .back { position: absolute; inset: 40px 0 0 0; border-radius: 26px; background: #e9e2d6; border: 5px solid #0d0b09; box-shadow: 0 26px 40px rgba(40,26,14,.3); }
+      .cal .head { position: absolute; left: 0; right: 0; top: 40px; height: 78px; border-radius: 22px 22px 0 0; background: linear-gradient(180deg, #2e2925, #17130f); border: 5px solid #0d0b09; color: #f4ecdf; font-family: "ArchivoXB"; font-size: 34px; letter-spacing: .14em; display: flex; align-items: center; justify-content: center; z-index: 3; }
+      .cal .ring { position: absolute; top: 12px; width: 26px; height: 70px; border-radius: 13px; background: linear-gradient(90deg, #6b645d, #d8d1c8 45%, #57514b); border: 4px solid #0d0b09; z-index: 4; }
+      .cal .page { position: absolute; left: 5px; right: 5px; top: 113px; bottom: 5px; border-radius: 0 0 22px 22px; background: linear-gradient(180deg, #fffdf8, #f3ede3); display: flex; flex-direction: column; align-items: center; justify-content: center; transform-origin: 50% 0; }
+      .cal .mon { font-family: "ArchivoXB"; font-size: 116px; letter-spacing: -.04em; color: #17120e; line-height: 1; }
+      .cal .amt { font-family: "Typewriter"; font-size: 30px; color: #7a6e63; margin-top: 6px; }
+      .yr { position: absolute; width: 330px; padding: 16px 0 18px; border-radius: 26px; background: #17120e; color: #fbf9f5; text-align: center; border: 6px solid #fff; box-shadow: 0 18px 40px rgba(40,26,14,.35); }
+      .yr b { font-family: "ArchivoXB"; font-size: 70px; letter-spacing: -.03em; font-weight: normal; display: block; line-height: 1; }
+      .yr > span { font-family: "Typewriter"; font-size: 24px; color: #cfc6ba; }
+      .gears { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+      .gr { fill: #2f2a25; stroke: #0d0b09; stroke-width: 5; }
+      .gh { fill: #ede7df; stroke: #0d0b09; stroke-width: 5; }
+      .stp4 { position: absolute; left: 560px; top: 1290px; padding: 12px 40px; border: 12px solid #17120e; border-radius: 26px; font-family: "ArchivoXB"; font-size: 120px; letter-spacing: -0.03em; color: #17120e; background: rgba(251, 249, 245, 0.9); box-shadow: 0 18px 40px rgba(40,26,14,.3); opacity: 0; z-index: 5; }
+      .board, .dart { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+      .board .dk { fill: #17120e; stroke: #0d0b09; stroke-width: 4; } .board .lt { fill: #fbf9f5; stroke: #0d0b09; stroke-width: 4; }
+      .board { filter: drop-shadow(0 26px 34px rgba(40,26,14,.3)); }
+      .dart .ds { stroke: #8a7d70; stroke-width: 12; stroke-linecap: round; } .dart .df { fill: #17120e; } .dart .dp { fill: #fbf9f5; stroke: #17120e; stroke-width: 4; }
+      .cks { position: absolute; left: 230px; right: 230px; display: flex; flex-direction: column; gap: 18px; }
+      .ck { display: flex; align-items: center; gap: 22px; padding: 18px 26px; border-radius: 28px; background: #fbf9f5; box-shadow: 0 16px 30px rgba(60,40,24,.16); font-family: "ArchivoXB"; font-size: 52px; letter-spacing: -0.03em; color: #17120e; }
+      .ck b { width: 58px; height: 58px; border-radius: 50%; background: #17120e; color: #fbf9f5; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: normal; flex: none; }
+      .codeb { padding: 26px 30px 30px; display: flex; flex-direction: column; gap: 14px; }
+      .cl4 { display: block; height: 16px; border-radius: 8px; background: rgba(23,18,14,.16); transform-origin: left center; }
+      .phx { position: absolute; left: 640px; top: 560px; width: 340px; height: 690px; border-radius: 62px; background: linear-gradient(145deg, #3a3631, #121010 40%, #2a2724); padding: 14px; box-shadow: 0 0 0 3px #57514a, 0 40px 70px rgba(40,26,14,.35); }
+      .phx .isl { position: absolute; left: 50%; top: 26px; width: 96px; height: 28px; margin-left: -48px; border-radius: 14px; background: #050404; z-index: 2; }
+      .phs { position: relative; width: 100%; height: 100%; border-radius: 50px; background: linear-gradient(180deg, #2b2620, #4a3f35); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; }
+      .ir { width: 200px; height: 200px; transform: rotate(-90deg); }
+      .irb { fill: none; stroke: rgba(251,249,245,.15); stroke-width: 16; } .irf { fill: none; stroke: #fbf9f5; stroke-width: 16; stroke-linecap: round; stroke-dasharray: 503; }
+      .ira, .irk { fill: none; stroke: #fbf9f5; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; transform: rotate(90deg); transform-origin: 100px 100px; } .irk { opacity: 0; }
+      .phs span { font-family: "ArchivoSB"; font-size: 34px; color: #f4ecd8; } #dl-t2 { position: absolute; bottom: 210px; opacity: 0; }
+      .shclip { position: absolute; left: 0; right: 0; top: 520px; height: 640px; overflow: hidden; }
+      .shclip .fan3 { top: 40px; }
+      .shred { position: absolute; left: 230px; right: 230px; top: 1120px; height: 220px; border-radius: 36px; background: linear-gradient(180deg, #4a443e, #1d1915); border: 6px solid #0d0b09; box-shadow: inset 0 6px 0 rgba(255,255,255,.12), 0 30px 50px rgba(40,26,14,.35); z-index: 3; }
+      .shred .sl2 { position: absolute; left: 60px; right: 60px; top: -8px; height: 22px; border-radius: 11px; background: #050404; }
+      .shred .ld2 { position: absolute; right: 40px; top: 60px; width: 26px; height: 26px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ffd2a0, #e07a2f 60%, #6a2e0b); box-shadow: 0 0 16px #ff9a4a; }
+      .shred span { position: absolute; left: 50px; top: 60px; font-family: "ArchivoXB"; font-size: 44px; letter-spacing: .1em; color: #b9b0a5; }
+      .strip { position: absolute; top: 1320px; width: 34px; height: 210px; background: linear-gradient(90deg, #efe9de, #fbf8f1, #e6dfd2); box-shadow: 0 10px 16px rgba(40,26,14,.2); opacity: 0; z-index: 2; }
+      .jar { position: absolute; left: 330px; top: 640px; width: 420px; height: 560px; border-radius: 60px 60px 90px 90px; background: linear-gradient(90deg, rgba(255,255,255,.55), rgba(255,255,255,.18) 40%, rgba(255,255,255,.4)); border: 7px solid #17120e; box-shadow: inset 20px 0 0 rgba(255,255,255,.35), 0 30px 50px rgba(40,26,14,.25); overflow: hidden; }
+      .jar .lid2 { position: absolute; left: -7px; right: -7px; top: -7px; height: 70px; background: linear-gradient(180deg, #4a443e, #17130f); border-bottom: 7px solid #0d0b09; }
+      .jar .jl { position: absolute; left: 40px; right: 40px; top: 210px; padding: 14px 0; border-radius: 14px; background: #fbf9f5; border: 5px solid #17120e; text-align: center; font-family: "ArchivoXB"; font-size: 40px; letter-spacing: .06em; color: #17120e; z-index: 2; }
+      .jar .fill { position: absolute; left: 0; right: 0; bottom: 0; height: 100%; background: repeating-radial-gradient(circle at 30% 40%, #e3b84f 0 22px, #c99632 22px 26px, #f0cf6e 26px 40px); transform-origin: 50% 100%; }
+      .coin2 { position: absolute; top: 700px; width: 92px; height: 92px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ffe7a0, #e3b84f 55%, #a3741d); border: 5px solid #6a4a10; display: flex; align-items: center; justify-content: center; font-family: "ArchivoXB"; font-size: 48px; color: #6a4a10; opacity: 0; z-index: 4; }
+      .hrt2 { position: absolute; top: 560px; font-size: 110px; color: #17120e; opacity: 0; z-index: 4; text-shadow: 0 10px 20px rgba(40,26,14,.25); }
+      .stk3 { background: linear-gradient(#17120e, #17120e) no-repeat 0 55% / 0% 8px; }
+      .cm2 { position: absolute; left: 110px; right: 110px; height: 128px; border-radius: 34px; background: #fbf9f5; display: flex; align-items: center; gap: 22px; padding: 0 28px; box-shadow: 0 18px 36px rgba(60,40,24,.16); }
+      .cm2 div { display: flex; flex-direction: column; gap: 4px; } .cm2 b { font-family: "ArchivoSB"; font-weight: normal; font-size: 36px; color: #17120e; }
+      .av3 { width: 74px; height: 74px; border-radius: 50%; background: linear-gradient(135deg, #c9b9a3, #9fa9b6); display: block; flex: none; }
+      .hr3 { margin-left: auto; font-size: 40px; color: #7a6e63; }

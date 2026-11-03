@@ -1,0 +1,93 @@
+
+      /* ---- Day 10 round 2: cinematic overlays on his footage (mostly him + captions; pages only a few seconds) ---- */
+      .gl { position: absolute; border-radius: 34px; background: rgba(20, 17, 14, 0.52); -webkit-backdrop-filter: blur(22px) saturate(1.2); backdrop-filter: blur(22px) saturate(1.2);
+            border: 1.5px solid rgba(255, 255, 255, 0.22); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18); color: #fbf9f5; z-index: 8; }
+      .gl.lt { background: rgba(251, 249, 245, 0.82); color: #17120e; border-color: rgba(255, 255, 255, 0.7); }
+      .gk { font-family: "Typewriter"; font-size: 24px; letter-spacing: .14em; text-transform: uppercase; opacity: .72; }
+      .gh { font-family: "ArchivoXB"; letter-spacing: -0.03em; line-height: 1; }
+      .gi { font-family: "PlayfairI"; letter-spacing: -0.01em; }
+      /* hook: editing timeline */
+      .tlb { left: 90px; right: 90px; top: 1150px; height: 250px; padding: 26px 30px; }
+      .tlb .trk { position: absolute; left: 30px; right: 30px; top: 76px; height: 120px; display: flex; gap: 8px; }
+      .tlb .trk i { flex: 1; border-radius: 12px; background-size: cover; background-position: center; border: 2px solid rgba(255,255,255,.35); }
+      .tlb .ph { position: absolute; top: 60px; bottom: 30px; width: 4px; margin-left: -2px; background: #fbf9f5; border-radius: 2px; box-shadow: 0 0 14px rgba(255,255,255,.7); }
+      .tlb .ph::before { content: ""; position: absolute; left: -9px; top: -10px; width: 22px; height: 16px; border-radius: 4px; background: #fbf9f5; }
+      .tlb .sl { position: absolute; left: 20px; right: 20px; top: 132px; height: 7px; border-radius: 4px; background: #fbf9f5; transform-origin: 0 50%; transform: scaleX(0); box-shadow: 0 0 18px rgba(255,255,255,.6); }
+      .askt { width: 300px; height: 300px; left: 390px; top: 1160px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+      .askt span { font-family: "ArchivoXB"; font-size: 96px; line-height: 1; }
+      /* month card */
+      .mo2 { left: 110px; right: 110px; top: 1120px; padding: 26px 28px 30px; }
+      .mo2 .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+      .mo2 .gd { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+      .mo2 .c { aspect-ratio: 9 / 12; border-radius: 10px; background: rgba(255,255,255,.08); overflow: hidden; }
+      .mo2 .c img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; }
+      .chip { position: absolute; display: flex; align-items: center; gap: 14px; padding: 14px 26px 16px 18px; border-radius: 999px; font-family: "ArchivoXB"; font-size: 40px; letter-spacing: -0.02em; white-space: nowrap; }
+      .chip svg { flex: none; }
+      /* glass stopwatch */
+      .sw2 { width: 260px; height: 260px; border-radius: 50%; }
+      .sw2 svg { position: absolute; inset: 14px; width: 232px; height: 232px; }
+      .sw2 .rim { fill: none; stroke: rgba(255,255,255,.18); stroke-width: 12; }
+      .sw2 .arc { fill: none; stroke: #fbf9f5; stroke-width: 12; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 116px 116px; }
+      .sw2 .rd { position: absolute; left: 0; right: 0; top: 92px; text-align: center; font-family: "Typewriter"; font-size: 56px; }
+      .sw2 .lb { position: absolute; left: 0; right: 0; top: 160px; text-align: center; font-family: "Typewriter"; font-size: 20px; letter-spacing: .16em; opacity: .7; }
+      /* studio animation page */
+      .studio { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+      .studio .ln { fill: none; stroke: #17120e; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+      .studio .fl { fill: #17120e; }
+      .studio .pp { fill: #e9e2d6; stroke: #17120e; stroke-width: 7; }
+      .studio .lt { fill: #fbf9f5; stroke: #17120e; stroke-width: 7; }
+      .studio .beam { fill: rgba(255, 244, 214, .55); }
+      /* Q list + scrolling list */
+      .ql2 { left: 110px; right: 110px; top: 1130px; padding: 18px; display: flex; flex-direction: column; gap: 12px; background: transparent; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+      .qi { display: flex; align-items: center; gap: 22px; padding: 20px 26px; border-radius: 26px; background: rgba(20,17,14,.55); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); border: 1.5px solid rgba(255,255,255,.22); box-shadow: 0 18px 40px rgba(0,0,0,.3); }
+      .qi b { font-family: "ArchivoXB"; font-weight: normal; font-size: 46px; letter-spacing: -0.02em; color: #fbf9f5; }
+      .qi span { font-family: "Typewriter"; font-size: 26px; padding: 6px 12px; border-radius: 10px; background: #fbf9f5; color: #17120e; flex: none; }
+      .sc2 { left: 110px; right: 110px; top: 1100px; height: 520px; overflow: hidden; }
+      .sc2 .hd { position: absolute; left: 30px; right: 30px; top: 24px; display: flex; justify-content: space-between; align-items: baseline; z-index: 2; }
+      .sc2 .scw { position: absolute; left: 0; right: 0; top: 90px; bottom: 0; overflow: hidden; -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 78%, transparent); mask-image: linear-gradient(transparent, #000 18%, #000 78%, transparent); }
+      .sc2 .in { position: absolute; left: 30px; right: 30px; top: 0; display: flex; flex-direction: column; gap: 0; }
+      .sc2 .r { display: flex; gap: 18px; align-items: baseline; height: 64px; font-family: "ArchivoSB"; font-size: 36px; color: #fbf9f5; white-space: nowrap; }
+      .sc2 .r em { font-style: normal; font-family: "Typewriter"; font-size: 24px; opacity: .6; width: 86px; flex: none; }
+      /* real-footage cards */
+      video.lc { position: absolute; width: 300px; height: 533px; object-fit: cover; border-radius: 28px; border: 6px solid rgba(255,255,255,.9); box-shadow: 0 30px 60px rgba(0,0,0,.45); z-index: 8; opacity: 0; }
+      .lcl { position: absolute; font-family: "PlayfairI"; font-size: 72px; color: #fbf9f5; text-shadow: 0 6px 24px rgba(0,0,0,.5); z-index: 9; opacity: 0; }
+      /* transcript */
+      .tr2 { left: 90px; right: 90px; top: 1110px; height: 500px; overflow: hidden; }
+      .tr2 .hd { position: absolute; left: 30px; right: 30px; top: 22px; display: flex; align-items: center; gap: 14px; }
+      .tr2 .in { position: absolute; left: 30px; right: 30px; top: 92px; display: flex; flex-direction: column; gap: 16px; }
+      .tr2 .ln { display: flex; gap: 16px; align-items: baseline; font-family: "ArchivoSB"; font-size: 33px; white-space: nowrap; }
+      .tr2 .ln em { font-style: normal; font-family: "Typewriter"; font-size: 24px; padding: 3px 10px; border-radius: 8px; background: #fbf9f5; color: #17120e; flex: none; }
+      .tr2 .ln .wd { opacity: .2; }
+      /* clips row */
+      .cl2 { position: absolute; width: 196px; height: 348px; border-radius: 22px; overflow: hidden; border: 5px solid rgba(255,255,255,.9); box-shadow: 0 24px 50px rgba(0,0,0,.4); z-index: 8; }
+      .cl2 img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .cl2 span { position: absolute; left: 10px; bottom: 10px; padding: 3px 10px 5px; border-radius: 10px; background: rgba(20,17,14,.75); color: #fbf9f5; font-family: "Typewriter"; font-size: 22px; }
+      /* hooks */
+      .hk2 { left: 90px; right: 90px; top: 1110px; padding: 24px 26px; }
+      .hk2 .wv { height: 70px; display: flex; align-items: center; gap: 4px; margin: 10px 0 18px; }
+      .hk2 .wv i { flex: 1; border-radius: 3px; background: rgba(255,255,255,.45); }
+      .hk2 .wv i.on { background: #fbf9f5; }
+      .hk2 .row { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.14); }
+      .hk2 .row img { width: 54px; height: 80px; border-radius: 10px; object-fit: cover; flex: none; }
+      .hk2 .row b { font-family: "PlayfairI"; font-weight: normal; font-size: 36px; line-height: 1.15; }
+      /* planner */
+      .pl2 { left: 70px; right: 70px; top: 1080px; padding: 24px 24px 26px; }
+      .pl2 .top { display: flex; justify-content: space-between; align-items: baseline; margin: 0 6px 14px; }
+      .pl2 .dn { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-bottom: 8px; font-family: "Typewriter"; font-size: 20px; letter-spacing: .12em; text-align: center; opacity: .6; }
+      .pl2 .gd { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+      .pl2 .c { position: relative; aspect-ratio: 9 / 13; border-radius: 12px; background: rgba(255,255,255,.07); overflow: hidden; }
+      .pl2 .c img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; }
+      .pl2 .c b { position: absolute; left: 6px; top: 5px; font-family: "Typewriter"; font-weight: normal; font-size: 17px; padding: 1px 6px; border-radius: 6px; background: rgba(20,17,14,.7); color: #fbf9f5; z-index: 2; }
+      .pl2 svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 3; }
+      .pl2 svg path { fill: none; stroke: #fbf9f5; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 2000; stroke-dashoffset: 2000; filter: drop-shadow(0 0 8px rgba(255,255,255,.6)); }
+      /* hours */
+      .hr2 { left: 110px; right: 110px; top: 1130px; padding: 24px 30px 28px; }
+      .hr2 .r { display: flex; align-items: center; gap: 20px; margin-top: 18px; }
+      .hr2 .r span { width: 210px; font-family: "ArchivoXB"; font-size: 40px; letter-spacing: -0.02em; }
+      .hr2 .r i { display: block; height: 30px; border-radius: 15px; background: #fbf9f5; transform-origin: 0 50%; }
+      .hr2 .r em { font-style: normal; font-family: "Typewriter"; font-size: 26px; opacity: .75; }
+      /* orbit */
+      .orb { position: absolute; width: 170px; height: 300px; border-radius: 20px; overflow: hidden; border: 4px solid rgba(255,255,255,.92); box-shadow: 0 18px 40px rgba(0,0,0,.4); z-index: 7; opacity: 0; }
+      .orb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .vig { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 42%, transparent 35%, rgba(0,0,0,.55) 100%); z-index: 6; opacity: 0; pointer-events: none; }
+      .tagx { position: absolute; display: flex; align-items: center; gap: 12px; padding: 14px 24px 16px; border-radius: 999px; font-family: "ArchivoSB"; font-size: 36px; white-space: nowrap; }

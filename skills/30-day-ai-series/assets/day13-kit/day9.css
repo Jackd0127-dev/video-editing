@@ -1,0 +1,85 @@
+      @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); }
+      @font-face { font-family: "Hiragino Sans"; src: local("Hiragino Sans"); }
+      @font-face { font-family: "Geeza Pro"; src: local("Geeza Pro"); }
+      @font-face { font-family: "Kohinoor Devanagari"; src: local("Kohinoor Devanagari"); }
+      @font-face { font-family: "Apple SD Gothic Neo"; src: local("Apple SD Gothic Neo"); }
+      /* ---- Day 9: speak any language ---- */
+      .bw9 { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; z-index: 3; }
+      .bub9 { position: relative; padding: 22px 70px 34px; border-radius: 80px; background: #fbf9f5; font-family: "ArchivoXB", "PingFang SC", "Hiragino Sans", "Geeza Pro", sans-serif; font-size: 160px; line-height: 1.12; letter-spacing: -0.03em; color: #17120e; white-space: nowrap; box-shadow: 0 30px 60px rgba(60,40,24,.22), 0 8px 18px rgba(60,40,24,.12); }
+      .bub9::after { content: ""; position: absolute; left: 90px; bottom: -40px; border-width: 44px 36px 0 0; border-style: solid; border-color: #fbf9f5 transparent transparent transparent; }
+      .bub9.r::after { left: auto; right: 90px; border-width: 44px 0 0 36px; }
+      .bl9 { font-family: "Typewriter"; font-size: 42px; color: #7a6e63; margin-top: 64px; letter-spacing: 0.02em; }
+      .grid9 { position: absolute; left: 50px; right: 50px; display: flex; flex-wrap: wrap; justify-content: center; align-content: flex-start; gap: 24px 22px; z-index: 3; }
+      .gt9 { padding: 14px 34px 20px; border-radius: 44px; background: #fbf9f5; font-family: "ArchivoXB", "PingFang SC", "Hiragino Sans", "Geeza Pro", "Kohinoor Devanagari", "Apple SD Gothic Neo", sans-serif; font-size: 66px; letter-spacing: -0.02em; color: #17120e; white-space: nowrap; box-shadow: 0 16px 34px rgba(60,40,24,.16); }
+      .gt9.dk { background: #17120e; color: #fbf9f5; }
+      .gk9 { font-family: "ArchivoXB", "PingFang SC", "Hiragino Sans", "Geeza Pro", sans-serif; }
+      .gk9 small { font-family: "ArchivoSB"; font-size: 30px; color: #7a6e63; margin-left: 12px; letter-spacing: 0; }
+      /* reach network */
+      .net9 { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; z-index: 2; }
+      .net9 line { stroke: #17120e; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 400; stroke-dashoffset: 400; opacity: .55; }
+      .vc9 { position: absolute; width: 230px; height: 230px; border-radius: 52px; background: #17120e; display: flex; align-items: center; justify-content: center; z-index: 4; box-shadow: 0 30px 60px rgba(60,40,24,.3); }
+      .nd9 { position: absolute; width: 132px; height: 132px; margin: -66px 0 0 -66px; border-radius: 50%; background: #fbf9f5; display: flex; align-items: center; justify-content: center; z-index: 4; box-shadow: 0 16px 30px rgba(60,40,24,.2); }
+      .nd9 b { position: absolute; bottom: -18px; right: -20px; padding: 4px 14px 7px; border-radius: 999px; background: #17120e; color: #fbf9f5; font-family: "ArchivoXB", "PingFang SC", "Geeza Pro", sans-serif; font-size: 28px; }
+      .pk9 { position: absolute; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: #17120e; z-index: 3; opacity: 0; }
+      /* clapper (sticker) */
+      .clap9 { position: relative; width: 250px; height: 200px; }
+      .clap9 .tp9 { position: absolute; left: 0; top: 0; width: 250px; height: 48px; border-radius: 8px; background: repeating-linear-gradient(-55deg, #17120e 0 26px, #fbf9f5 26px 52px); border: 5px solid #17120e; transform-origin: 6px 44px; }
+      .clap9 .bd9 { position: absolute; left: 0; top: 52px; width: 250px; height: 148px; border-radius: 0 0 14px 14px; background: #17120e; color: #fbf9f5; display: flex; flex-direction: column; justify-content: center; padding-left: 24px; }
+      .clap9 .bd9 small { font-family: "Typewriter"; font-size: 26px; opacity: .7; }
+      .clap9 .bd9 span { font-family: "ArchivoXB"; font-size: 56px; letter-spacing: -0.03em; line-height: 1; }
+      /* market cards */
+      .mk9 { position: absolute; width: 290px; height: 390px; border-radius: 40px; background: #fbf9f5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; font-family: "ArchivoXB"; font-size: 50px; letter-spacing: -0.03em; color: #17120e; z-index: 3; box-shadow: 0 30px 60px rgba(60,40,24,.2), 0 8px 18px rgba(60,40,24,.1); }
+      .pp9 { position: absolute; width: 64px; height: 64px; margin-left: -32px; z-index: 2; }
+      /* target (over footage) */
+      .tgt9 { position: absolute; width: 270px; height: 270px; border-radius: 50%; border: 10px solid #fff; background: radial-gradient(circle, #17120e 0 13%, #fbf9f5 13% 29%, #17120e 29% 44%, #fbf9f5 44% 60%, #17120e 60% 75%, #fbf9f5 75%); box-shadow: 0 18px 40px rgba(0,0,0,.35); opacity: 0; z-index: 9; }
+      .dart9 { position: absolute; width: 230px; height: 60px; opacity: 0; z-index: 10; transform-origin: 0 50%; }
+      .tl9 { position: absolute; padding: 12px 28px 16px; border-radius: 999px; background: #fbf9f5; border: 8px solid #fff; color: #17120e; font-family: "ArchivoXB"; font-size: 46px; letter-spacing: -0.02em; white-space: nowrap; box-shadow: 0 14px 30px rgba(0,0,0,.35); opacity: 0; z-index: 10; }
+      .tp9i { position: absolute; width: 58px; height: 58px; opacity: 0; z-index: 10; filter: drop-shadow(0 4px 8px rgba(0,0,0,.4)); }
+      /* screens */
+      .hl9 { position: absolute; border: 7px solid #fff; border-radius: 18px; box-shadow: 0 0 0 5px rgba(23,18,14,.55), 0 10px 30px rgba(0,0,0,.4); opacity: 0; z-index: 5; }
+      .hl9.dk { border-color: #17120e; box-shadow: 0 0 0 5px rgba(255,255,255,.6), 0 10px 30px rgba(0,0,0,.25); }
+      .dz9 { position: absolute; border: 6px dashed #fff; border-radius: 22px; background: rgba(255,255,255,.12); opacity: 0; z-index: 5; }
+      .fc9 { position: absolute; display: flex; align-items: center; gap: 16px; padding: 18px 30px 20px 20px; border-radius: 28px; background: #fbf9f5; font-family: "ArchivoSB"; font-size: 42px; color: #17120e; white-space: nowrap; box-shadow: 0 24px 44px rgba(0,0,0,.35); z-index: 7; }
+      .fc9 .th9 { width: 74px; height: 74px; border-radius: 18px; background: #17120e; display: flex; align-items: center; justify-content: center; }
+      .fc9 .ok9 { width: 52px; height: 52px; border-radius: 50%; background: #17120e; color: #fbf9f5; font-size: 30px; display: flex; align-items: center; justify-content: center; opacity: 0; }
+      .elh9 { position: absolute; left: 90px; width: 900px; border-radius: 30px; overflow: hidden; background: #fdfcfc; z-index: 4; }
+      .elh9 img { display: block; width: 100%; }
+      .lgo9 { position: absolute; display: flex; align-items: center; gap: 22px; z-index: 6; padding: 18px 34px 20px 22px; border-radius: 34px; background: #fbf9f5; font-family: "ArchivoXB"; font-size: 64px; letter-spacing: -0.03em; color: #17120e; box-shadow: 0 22px 44px rgba(60,40,24,.28); white-space: nowrap; }
+      .lgo9 .el9 { width: 84px; height: 84px; border-radius: 22px; background: #fff; border: 3px solid #e5e5e5; display: flex; align-items: center; justify-content: center; }
+      /* unlock rows */
+      .lk9 { position: absolute; left: 150px; width: 780px; height: 190px; border-radius: 50px; background: #fbf9f5; display: flex; align-items: center; gap: 34px; padding: 0 46px; font-family: "ArchivoXB"; font-size: 84px; letter-spacing: -0.035em; color: #17120e; z-index: 3; box-shadow: 0 24px 50px rgba(60,40,24,.18); }
+      .lk9.on { background: #17120e; color: #fbf9f5; }
+      .lk9 svg { width: 104px; height: 104px; flex: none; overflow: visible; }
+      .lk9 .sh9 { transform-box: fill-box; transform-origin: 100% 100%; }
+      /* crowd */
+      .crowd9 { position: absolute; left: 70px; right: 70px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 10px; z-index: 3; }
+      .crowd9 i { position: relative; width: 74px; height: 74px; display: block; }
+      .crowd9 i b { position: absolute; right: -8px; top: -12px; width: 40px; height: 40px; border-radius: 50%; background: #17120e; color: #fbf9f5; font-family: "ArchivoXB"; font-size: 28px; font-style: normal; display: flex; align-items: center; justify-content: center; opacity: 0; }
+      /* pros + button */
+      .pro9 { position: absolute; width: 270px; height: 330px; border-radius: 40px; background: #fbf9f5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; z-index: 3; box-shadow: 0 24px 50px rgba(60,40,24,.18); font-family: "ArchivoSB"; font-size: 38px; color: #17120e; }
+      .pro9 .pf9 { position: relative; width: 150px; height: 150px; border-radius: 50%; background: #ede7df; display: flex; align-items: center; justify-content: center; }
+      .pro9 .pr9 { font-family: "Typewriter"; font-size: 32px; color: #7a6e63; }
+      .btn9 { position: absolute; left: 390px; width: 300px; height: 300px; border-radius: 50%; background: #17120e; display: flex; align-items: center; justify-content: center; z-index: 5; box-shadow: 0 26px 0 #3a312a, 0 40px 60px rgba(60,40,24,.35); }
+      .xx9 { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; z-index: 6; }
+      .xx9 path { fill: none; stroke: #17120e; stroke-width: 26; stroke-linecap: round; stroke-dasharray: 1000; stroke-dashoffset: 1000; }
+      /* convert (V2) */
+      .src9 { position: absolute; left: 250px; width: 580px; height: 300px; border-radius: 44px; background: #17120e; z-index: 4; display: flex; align-items: center; gap: 30px; padding: 0 40px; box-shadow: 0 30px 60px rgba(60,40,24,.3); }
+      .wv9 { display: flex; align-items: center; gap: 9px; height: 120px; }
+      .wv9 i { display: block; width: 12px; border-radius: 6px; background: #fbf9f5; }
+      .wv9.ink i { background: #17120e; width: 9px; }
+      .lbp9 { position: absolute; padding: 8px 22px 11px; border-radius: 999px; background: #fbf9f5; color: #17120e; font-family: "ArchivoXB"; font-size: 34px; }
+      .out9 { position: absolute; width: 290px; height: 230px; border-radius: 40px; background: #fbf9f5; z-index: 4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; box-shadow: 0 24px 50px rgba(60,40,24,.2); }
+      .out9 .lc9 { font-family: "ArchivoXB", "PingFang SC", sans-serif; font-size: 58px; letter-spacing: -0.02em; color: #17120e; }
+      .cv9 { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; z-index: 2; }
+      .cv9 path { fill: none; stroke: #17120e; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 700; stroke-dashoffset: 700; opacity: .6; }
+      /* then (V2) */
+      .cal9 { position: absolute; left: 330px; width: 420px; height: 440px; border-radius: 44px; background: #fbf9f5; overflow: hidden; z-index: 3; box-shadow: 0 30px 60px rgba(60,40,24,.22); }
+      .cal9 .ch9 { height: 110px; background: #17120e; color: #fbf9f5; display: flex; align-items: center; justify-content: center; font-family: "ArchivoXB"; font-size: 50px; letter-spacing: -0.02em; }
+      .cal9 .cy9 { height: 330px; display: flex; align-items: center; justify-content: center; font-family: "ArchivoXB"; font-size: 150px; letter-spacing: -0.05em; color: #17120e; }
+      /* round 2: the screen-recording window (never cropped) and rings inside its zoom layer */
+      .rw9 { position: absolute; border-radius: 22px; overflow: hidden; background: #0f1113; box-shadow: 0 30px 60px rgba(60,40,24,.28), 0 8px 18px rgba(60,40,24,.14); opacity: 0; }
+      .rz9 { position: absolute; left: 0; top: 0; width: 1000px; height: 544px; transform-origin: 0 0; }
+      .rr9 { position: absolute; border: 2.6px solid #fff; border-radius: 6px; box-shadow: 0 0 0 1.6px rgba(23,18,14,.7), 0 3px 10px rgba(0,0,0,.45); opacity: 0; z-index: 3; }
+      .rc9 { position: absolute; width: 18px; height: 18px; border-radius: 50%; border: 2.4px solid #fff; box-shadow: 0 0 0 1.4px rgba(23,18,14,.6); opacity: 0; z-index: 4; }
+      .st9 { opacity: .18; }
+      .op9 { font-family: "ArchivoSB"; font-size: 40px; color: #7a6e63; margin-right: 4px; }

@@ -7,8 +7,9 @@ points. Needs ffmpeg and swift (tools/faces.swift).
   - Jumps: at each visible A-roll cut, compares the face box just before and after. Same
     size with a shifted position reads as a jump cut; a size change reads as a punch-in.
   - Pops: highpass the mix and look for a click spike at each cut versus the local floor.
-  - Face cover: samples every caption window, finds the face and checks it stays below
-    the caption band.
+  - Face cover: samples every caption window, finds the face and checks it stays clear of
+    the caption band (the caption's own data-band="top,bottom" px when the build writes one;
+    otherwise the fixed band above the head).
 Writes qa-report.json and cuts-sheet.jpg (before|after pair for every cut) to --out.
 """
 import json
@@ -32,7 +33,15 @@ CAPTION_TOP = float(sys.argv[sys.argv.index("--caption-top") + 1]) / 1920 if "--
 arg = lambda flag, default: sys.argv[sys.argv.index(flag) + 1] if flag in sys.argv else default
 page = open(arg("--html", "index.html")).read()  # trial reels: --html out/trial-N.html
 scenes = [(float(a), float(a) + float(d)) for a, d in re.findall(r'class="scene clip" id="p\d+" data-start="([\d.]+)" data-duration="([\d.]+)"', page)]
-caps = [(float(a), float(a) + float(d)) for a, d in re.findall(r'class="cap clip" id="\w+" data-start="([\d.]+)" data-duration="([\d.]+)"', page)]
+caps, bands = [], []
+for m in re.finditer(r'<div class="cap clip[^"]*" id="\w+"([^>]*)>', page):
+    attrs = m.group(1)
+    a = re.search(r'data-start="([\d.]+)"', attrs); d = re.search(r'data-duration="([\d.]+)"', attrs)
+    if not (a and d):
+        continue
+    caps.append((float(a.group(1)), float(a.group(1)) + float(d.group(1))))
+    b = re.search(r'data-band="([\d.]+),([\d.]+)"', attrs)  # per-caption band in px (captions placed per face, Day 8 on)
+    bands.append((float(b.group(1)) / 1920, float(b.group(2)) / 1920) if b else None)
 segs = json.load(open(arg("--words", "edit/words.json")))["segments"]  # trial reels: --words edit/trials/N/words.json
 
 
@@ -123,16 +132,21 @@ if os.path.exists("assets/video/aroll.mp4"):
             voice_pops.append({"t": s["start"], "ratio": round(ratio, 1)})
 
 # ---- captions vs face
-samples = []
-for a, b in caps:
+samples, sband = [], []
+for (a, b), band in zip(caps, bands):
     t = a + 0.15
     while t < b - 0.05:
         samples.append(t)
+        sband.append(band)
         t += 0.2
 sframes = [frame(t, f"s{i:04d}.png") for i, t in enumerate(samples)]
 sf = faces(sframes)
 cover = []
-for t, f in zip(samples, sf):
+for t, f, band in zip(samples, sf, sband):
+    if f and band is not None:  # the caption's own band must not touch the face box
+        if f[1] < band[1] + 0.005 and f[1] + f[3] > band[0] - 0.005:
+            cover.append({"t": round(t, 2), "face": [round(f[1], 3), round(f[1] + f[3], 3)], "band": [round(band[0], 3), round(band[1], 3)]})
+        continue
     if f and CAPTION_TOP is None and f[1] < CAPTION_BOTTOM + 0.01:
         cover.append({"t": round(t, 2), "face_top": round(f[1], 3)})
     if f and CAPTION_TOP is not None and f[1] + f[3] > CAPTION_TOP - 0.005:

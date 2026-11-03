@@ -1,0 +1,21 @@
+
+      /* ---- Day 12 round 2: paper notes stuck beside him (series ink-on-paper look, no glass capsules) ---- */
+      .pn { position: absolute; z-index: 8; padding: 20px 22px 22px; border-radius: 6px; color: #17120e; opacity: 0;
+            background: #f3eee5 url("assets/img/paper-clean.jpg") center / 900px auto;
+            box-shadow: 0 22px 44px rgba(0,0,0,.42), 0 3px 8px rgba(0,0,0,.25); }
+      .pn::before { content: ""; position: absolute; left: 50%; top: -16px; width: 110px; height: 34px; margin-left: -55px; transform: rotate(-3deg);
+            background: rgba(232, 222, 200, .78); box-shadow: 0 1px 3px rgba(0,0,0,.18); }
+      .pn .k { width: auto; height: auto; display: block; border-radius: 0; background: none; box-shadow: none; line-height: 1.25; font-family: "Typewriter"; font-size: 21px; letter-spacing: .12em; text-transform: uppercase; color: #7a6e63; }
+      .pn .b { font-family: "ArchivoXB"; letter-spacing: -0.035em; line-height: .95; }
+      .pn .i { font-family: "PlayfairI"; }
+      .pn .ln { display: flex; align-items: center; gap: 12px; margin-top: 12px; font-family: "ArchivoXB"; font-size: 34px; letter-spacing: -0.02em; line-height: 1.05; }
+      .pn .bx { position: relative; width: 34px; height: 34px; flex: none; border: 3.5px solid #17120e; border-radius: 4px; }
+      .pn svg.mk { position: absolute; left: -6px; top: -10px; width: 46px; height: 46px; overflow: visible; }
+      .pn svg.mk path, svg.mk2 path { fill: none; stroke: #17120e; stroke-width: 3.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 100; }
+      svg.mk2 { width: 44px; height: 44px; overflow: visible; flex: none; }
+      .pn .st { position: relative; display: inline-block; }
+      .pn .st i { position: absolute; left: -6px; right: -6px; top: 50%; height: 7px; margin-top: -3px; border-radius: 4px; background: #17120e; transform-origin: 0 50%; transform: scaleX(0); }
+      .pn .bar { height: 8px; border-radius: 4px; background: rgba(23,18,14,.14); margin-top: 12px; overflow: hidden; }
+      .pn .bar i { display: block; height: 100%; background: #17120e; transform-origin: 0 50%; transform: scaleX(0); }
+      .inkst { position: absolute; z-index: 9; padding: 6px 26px 10px; border: 9px solid #17120e; border-radius: 14px; font-family: "ArchivoXB"; font-size: 104px; letter-spacing: -0.03em; color: #17120e; opacity: 0;
+            background: #f3eee5 url("assets/img/paper-clean.jpg") center / 900px auto; box-shadow: 0 18px 40px rgba(0,0,0,.4); }

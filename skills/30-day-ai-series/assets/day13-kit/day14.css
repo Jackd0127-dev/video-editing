@@ -1,0 +1,28 @@
+      /* ---- Day 14: his screen in a white card under his chin; ink rings inside the zoom layer; dark room = white captions ---- */
+      #scrim, #vignette { display: none; }  /* never shade his footage */
+      .w { text-shadow: 0 0 26px rgba(0,0,0,.55), 0 4px 18px rgba(0,0,0,.6), 0 2px 5px rgba(0,0,0,.5); }
+      .scr { position: absolute; border-radius: 22px; overflow: hidden; background: #fff; opacity: 0;
+             box-shadow: 0 30px 70px rgba(0,0,0,.5), 0 6px 16px rgba(0,0,0,.35), 0 0 0 5px rgba(255,255,255,.95); }
+      .scz { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+      .scz video.scv, .scz img.sci { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+      .scz img.sci { opacity: 0; }
+      .rgs { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+      .rgp { fill: none; stroke: #17120e; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 100; opacity: 0; }
+      .pn .url .wd { opacity: 0; display: inline; }
+      .pn .url { font-family: "Typewriter"; letter-spacing: 0; }
+      .inkst.q14 { font-size: 66px; padding: 4px 24px 8px; border-width: 7px; white-space: nowrap; }
+      .inkst.f14 { font-size: 92px; z-index: 50; }
+      .pn .mdl { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+      .pn .mr { display: flex; align-items: center; gap: 14px; font-family: "ArchivoXB"; font-size: 30px; letter-spacing: -0.02em; }
+      .pn .mr em { font-style: normal; font-family: "Typewriter"; font-size: 24px; color: #7a6e63; display: inline-flex; align-items: center; gap: 4px; margin-left: auto; }
+      .pn .mr em svg.mk2 { width: 30px; height: 30px; }
+      .pn i.m14b { display: inline-block; flex: none; width: 64px; height: 46px; border-radius: 6px; background: #17120e; }
+      .pn i.m14s { display: inline-block; flex: none; width: 17px; height: 17px; margin-right: 4px; border: 3.5px solid #17120e; border-radius: 4px; background: none; box-shadow: none; }
+      .pn .m14g { display: inline-flex; align-items: center; width: 64px; flex: none; }
+      .pn .ar { font-family: "ArchivoXB"; font-size: 30px; margin-left: 22px; line-height: 1; }
+      .bigw { border-radius: 26px; }
+      .pg14 { position: absolute; left: 0; top: 0; }
+      .pg14 .rgs { position: absolute; left: 0; top: 0; width: 100%; }
+      .sl14 { position: absolute; inset: 0; opacity: 0; background: #fff; }
+      .sl14 img { position: absolute; left: 0; top: 0; width: 100%; display: block; }
+      .sl14 .rgs { position: absolute; left: 0; top: 0; width: 100%; height: auto; aspect-ratio: auto; }

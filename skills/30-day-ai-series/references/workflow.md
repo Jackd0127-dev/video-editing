@@ -22,8 +22,8 @@ Parakeet word *ends* stretch over pauses — trust starts plus silences. Breath/
 ## B-roll library (every job)
 Jack's shared cutaways live in `broll/` at the workspace root, catalogued in `broll/INDEX.md` (shot, best windows, what to avoid, tags, which video used it).
 ```bash
-sh tools/broll-save.sh footage/<job>/<clip>                 # a whole cutaway clip -> broll/
-sh tools/broll-save.sh footage/<job>/<clip> <start> <end>   # a cutaway moment inside a longer clip
+NAME="<what it shows>" sh tools/broll-save.sh footage/<job>/<clip>                 # a whole cutaway clip -> broll/
+NAME="<what it shows>" sh tools/broll-save.sh footage/<job>/<clip> <start> <end>   # a cutaway moment inside a longer clip
 sh tools/broll-sheet.sh                                     # sheet for clips dropped in by hand
 ```
 **Always harvest:** in step 1 of every edit, sort the job's clips into talking-to-camera and b-roll. Save every usable b-roll clip or moment to the library (never move or change the originals), look at its sheet, and add its row to `broll/INDEX.md` with the job it came from.
@@ -47,17 +47,21 @@ Changing the EDL later: keep the old `words.json`/`tokens.json` and run `python3
 Transcribe every source (`edit/tx/<key>.json`), pick the best take of each line, write `edit/plan.json` (`sources`, `transcripts`, `segments: [[key, first_word_start, last_word_start, label]]`), then:
 ```bash
 python3 -I $S/snap.py edit/plan.json edit/segments.json      # in/out snapped to the quiet around the words
+python3 -I $S/tighten.py edit/segments.json                  # Day 14: every pause inside/between lines -> ~0.12 s (keeps segments-loose.json)
 python3 -I $S/cut_multi.py edit/segments.json assets/video/aroll.mov edit/words.json   # per-source gain, frame-snapped, 12 ms fades
+python3 -I $S/tighten.py --words edit                        # map every word through the tightened pieces (no lost caption words)
 ffmpeg -i assets/video/aroll.mov -c:v copy -af "<voice chain from make-aroll.sh>" -c:a aac -b:a 320k assets/video/aroll.mp4
 npx hyperframes transcribe assets/video/aroll.mp4 --engine parakeet -d edit/txc   # read every join
 ```
-At every join check the energy envelope of both sides (no half syllable, no repeated word) — see rules.md.
+At every join check the energy envelope of both sides (no half syllable, no repeated word) — see rules.md. Then read every line's head and tail: voiced audio before the first word or past the last word's end is a stutter ("he-here's") or an untranscribed "uh" — move the in/out to the deepest dip (edit `segments-loose.json`, re-run `tighten.py`). If a cut has to land mid-fricative, fade it over ~50 ms (`volume='if(between(t,T-0.06,T),(T-t)/0.06,1)':eval=frame` on the A-roll audio). `endcheck.py` skips a cut followed straight by the next word, so never end a line where the next word is joined on.
 ```bash
 python3 -I $S/endcheck.py edit/segments.json      # must print "0 suspect ending(s)"; it suggests a new out-point for each one
 ```
 Re-cutting later: keep `tokens.json`, re-transcribe the cut, then `python3 -I $S/realign.py old-tokens.json edit/txc/transcript.json edit/tokens.json`; append any new words at the end of the token list. Re-map b-roll windows segment by segment and re-run faces.
 
 ## Real website shots
+Payoff sites go big (Day 14): full page at 2× → `site_window()` + `scroll_to()` + `ring()` in `assets/day13-kit/pages14.py`. Live sites with scroll-reveal sections: `npx hyperframes capture` (it scrolls, so sections render) and use its `full-page.png`; a site Claude built: find its `index.html` in `~/Library/Application Support/Claude/scratch-workspaces` (`mdfind <business>`), serve it locally, screenshot with headless Chrome (`--user-data-dir` fresh, `--force-device-scale-factor=2`, freeze rotating words with an injected style).
+
 ```bash
 npx hyperframes capture https://<site> -o edit/site-capture --skip-vision    # scroll-*.png + full-page.png
 ```
@@ -83,23 +87,31 @@ npx hyperframes snapshot --at <t1,t2,…>   # step every page at 0.1–0.25 s
 ## Render, QA, master
 Check free disk first (`df -h .`). Under ~4 GB, add `--workers 1` (streams frames instead of storing them) and delete regenerable frames (`edit/faces`, `edit/track/*/`, `.hyperframes/artifacts/snapshots`).
 ```bash
-npx hyperframes render -q delivery --sdr --skill general-video -o exports/<date>-<job>-vN.mp4   # --sdr: footage is SDR already
-python3 -I $S/qa.py exports/<date>-<job>-vN.mp4 --out edit/qa-vN
+npx hyperframes render -q delivery --sdr --skill general-video -o exports/<date>-<job>/<date>-<job>-vN.mp4   # --sdr: footage is SDR already
+python3 -I $S/qa.py exports/<date>-<job>/<date>-<job>-vN.mp4 --out edit/qa-vN
 cp edit/qa-vN/qa-report.json edit/qa-latest.json    # flagged jumps get focus pulls on the next build
-sh $S/master.sh exports/<date>-<job>-vN.mp4         # −14 LUFS / −1 dBTP
+sh $S/master.sh exports/<date>-<job>/<date>-<job>-vN.mp4         # −14 LUFS / −1 dBTP
 ```
 QA passes when: no pops, no caption/face overlaps, and every reported jump has a focus pull. A pop on a word onset after silence (a hard "T" or "S") is speech, not a click — compare with his other T/S peaks before acting.
 Also compare one face frame with Apple's own (`AVAssetImageGenerator`) — skin and contrast must match.
 
 Anything with video inside a page (phones, cards, slider) is checked in the render itself — snapshots don't always seek page videos correctly.
 
+## Pre-cut footage (Day 13)
+When Jack sends a file he already cut (dead air out, his own "Coming up.." teaser and riser), keep it as the A-roll: no cutting.
+```bash
+ffmpeg -i <his file> -t <after last word + 0.35> -c:v libx264 -crf 14 -pix_fmt yuv420p … -af "<voice chain from make-aroll.sh>" assets/video/aroll-t1.mp4
+ffmpeg -i assets/video/aroll-t1.mp4 -vf "scale=270:480,scdet=threshold=2.5" -an -f null - 2>&1 | grep scd.time   # his cut points -> edit/trials/1/words.json segments
+```
+Parakeet can drop a whole sentence: find word gaps over ~2 s with speech energy and re-transcribe that stretch with `--engine whisper --model medium.en`, then merge the words into `mktokens.py`. If `transcribe` says "Parakeet is not installed", run `npx hyperframes models install parakeet` from a project folder.
+
 ## Music version (when he wants one)
 ```bash
 ~/.venvs/hf-audio/bin/python -I $S/musicgen.py seed23.wav 29 "upbeat modern lo-fi electronic beat for a tech creator video, warm plucky synths, soft punchy drums, steady groove, optimistic, no vocals, minimal and clean" 23
 sh $S/bed.sh seed23.wav <video seconds> bed.wav           # crossfaded loop, fades, 1–4 kHz carved for the voice
-sh $S/mixbed.sh exports/<job>-vN.mp4 bed.wav exports/<job>-vN-music.mp4 [mute_from mute_to]
+sh $S/mixbed.sh exports/<date>-<job>/<date>-<job>-vN.mp4 bed.wav exports/<date>-<job>/<date>-<job>-vN-music.mp4 [mute_from mute_to]
 ```
-Generate two seeds and pick the steadier one (spectrogram: no bright full-band bursts). Deliver both versions.
+Generate two seeds and pick the steadier one (spectrogram: no bright full-band bursts). Deliver both versions. Keep the prompt happy and bright (major key, acoustic/ukulele, "feel-good") — Jack called a darker lo-fi bed "kind of eerie" (Day 13), and wanted it quieter: for a "low volume" bed run `BED_DB=-14 sh $S/mixbed.sh …` (default −9 dB). Trim any breakdown gap out of the loop before `bed.sh`.
 
 ## Hook experiments
 Hooks are A/B-tested: keep his words, change the visuals. `edit/hooks.py` (see `assets/hooks-day03.py`) defines variants; `HOOK=n python3 -I edit/build.py` writes a 0 s → "Hello" clip, `HOOK=n FULL=1` the whole video with that hook. Render them from a sibling project that symlinks `assets/` and `node_modules/` (HyperFrames allows one root composition per project).

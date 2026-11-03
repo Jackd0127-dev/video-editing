@@ -1,0 +1,114 @@
+
+      /* ---------------- Day 8: Genjutsu layer, dividers, stickers on his footage, guitar props */
+      .gv { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      /* divider (lives inside #cam, so it zooms with the footage; sizes are /1.6 because the camera holds 1.6x there) */
+      .dvw { position: absolute; left: 0; top: -40px; bottom: -40px; width: 0; z-index: 6; opacity: 0; }
+      .dvw .dl8 { position: absolute; left: -2px; top: 0; bottom: 0; width: 4px; background: #fff; box-shadow: 0 0 14px rgba(255,255,255,.85), 0 0 2px rgba(0,0,0,.4); }
+      .dvw .kn8 { position: absolute; left: -26px; top: 785px; width: 52px; height: 52px; border-radius: 50%; background: #fff; box-shadow: 0 6px 16px rgba(0,0,0,.35); display: flex; align-items: center; justify-content: center; gap: 4px; }
+      .dvw .kn8 i { display: block; width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
+      .dvw .kn8 i.l { border-right: 9px solid #17120e; } .dvw .kn8 i.r { border-left: 9px solid #17120e; }
+      .dvw .lb8 { position: absolute; top: 868px; padding: 6px 16px 8px; border-radius: 999px; font-family: "ArchivoXB"; font-size: 24px; letter-spacing: 0.02em; white-space: nowrap; box-shadow: 0 6px 14px rgba(0,0,0,.3); }
+      .dvw .lb8.lft { right: 16px; background: #fbf9f5; color: #17120e; }
+      .dvw .lb8.rgt { left: 16px; background: #17120e; color: #fbf9f5; }
+      /* horizontal scan line (wipe) */
+      .scn8 { position: absolute; left: -40px; right: -40px; height: 4px; top: 0; background: #fff; box-shadow: 0 0 18px 4px rgba(255,255,255,.75); z-index: 6; opacity: 0; }
+      /* ring drawn round an object in the footage */
+      .rg8 { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; z-index: 7; pointer-events: none; }
+      .rg8 ellipse { fill: none; stroke: #fff; stroke-width: 7; stroke-linecap: round; filter: drop-shadow(0 4px 10px rgba(0,0,0,.45)); }
+      .rtag8 { position: absolute; padding: 10px 24px 13px; border-radius: 999px; background: #fbf9f5; color: #17120e; font-family: "ArchivoXB"; font-size: 40px; letter-spacing: -0.02em; white-space: nowrap; box-shadow: 0 14px 30px rgba(0,0,0,.35); z-index: 8; opacity: 0; }
+      .rtag8.dk { background: #17120e; color: #fbf9f5; }
+      /* stickers over his footage (white border, tilt, bounce) */
+      .sk8 { position: absolute; display: flex; align-items: center; gap: 16px; padding: 16px 30px 18px 22px; border-radius: 34px; background: #fbf9f5; border: 10px solid #fff; box-shadow: 0 18px 40px rgba(0,0,0,.35); font-family: "ArchivoXB"; font-size: 54px; letter-spacing: -0.03em; color: #17120e; white-space: nowrap; opacity: 0; z-index: 9; }
+      .sk8 .ic8 { width: 70px; height: 70px; flex: none; display: flex; align-items: center; justify-content: center; }
+      .sk8 img { display: block; }
+      .sk8.photo { padding: 12px; border-radius: 26px; flex-direction: column; gap: 8px; font-size: 40px; }
+      .sk8.photo img { border-radius: 14px; }
+      .sk8.big { font-size: 120px; padding: 6px 40px 16px; }
+      .sk8.dk { background: #17120e; color: #fbf9f5; }
+      .ok8 { position: absolute; right: -22px; top: -22px; width: 64px; height: 64px; border-radius: 50%; background: #17120e; color: #fbf9f5; font-size: 38px; display: flex; align-items: center; justify-content: center; border: 5px solid #fff; }
+      .xst8 { position: absolute; padding: 8px 30px; border: 10px solid #17120e; border-radius: 22px; font-family: "ArchivoXB"; font-size: 92px; letter-spacing: -0.03em; color: #17120e; background: rgba(251,249,245,.9); opacity: 0; z-index: 10; white-space: nowrap; }
+      .xst8.wt { border-color: #fff; color: #fff; background: rgba(23,18,14,.55); }
+      /* guitar parts (cut from his real Riven sheet) */
+      .gp8 { position: absolute; display: block; filter: drop-shadow(0 26px 30px rgba(60,40,24,.28)); z-index: 3; }
+      .ll8 { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: visible; z-index: 2; }
+      .ll8 path, .ll8 line { fill: none; stroke: #17120e; stroke-width: 4; stroke-dasharray: 10 10; }
+      .ll8 circle.dt { fill: #17120e; }
+      .xl8 { position: absolute; padding: 10px 26px 13px; border-radius: 999px; background: #17120e; color: #fbf9f5; font-family: "ArchivoXB"; font-size: 44px; letter-spacing: -0.02em; white-space: nowrap; z-index: 6; box-shadow: 0 14px 30px rgba(60,40,24,.25); }
+      .cal8 { position: absolute; width: 300px; height: 300px; border-radius: 50%; overflow: hidden; border: 10px solid #fbf9f5; box-shadow: 0 24px 50px rgba(60,40,24,.3); z-index: 5; }
+      .cal8 img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tl8 { position: absolute; width: 260px; height: 260px; border-radius: 26px; overflow: hidden; background: #2a2724; z-index: 4; }
+      .tl8 img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .cn8 { position: absolute; padding: 12px 34px 16px; border-radius: 30px; background: #17120e; color: #fbf9f5; font-family: "ArchivoXB"; font-size: 90px; letter-spacing: -0.03em; z-index: 7; }
+      .cn8 small { font-family: "ArchivoSB"; font-size: 34px; letter-spacing: 0; color: #cfc6ba; margin-left: 12px; }
+      /* real screenshot window */
+      .win8 { position: absolute; left: 50px; width: 980px; border-radius: 30px; overflow: hidden; background: #fbf9f5; z-index: 3; }
+      .win8 .wb8 { height: 64px; display: flex; align-items: center; gap: 12px; padding: 0 26px; font-family: "ArchivoSB"; font-size: 28px; color: #7a6e63; }
+      .win8 .wb8 i { display: block; width: 18px; height: 18px; border-radius: 50%; background: #d9d0c5; }
+      .win8 img.sc { display: block; width: 100%; }
+      .ring8 { position: absolute; border: 8px solid #17120e; border-radius: 30px; z-index: 6; opacity: 0; }
+      /* real ChatGPT composer */
+      #ovl { z-index: 2; } .scene { z-index: 3; }
+      .cmp8 { position: absolute; left: 60px; width: 960px; height: 62px; border-radius: 31px; overflow: hidden; z-index: 4; }
+      .cmp8 img { display: block; width: 100%; height: 100%; }
+      .cmp8 .pt8 { position: absolute; left: 66px; top: 9px; width: 560px; height: 44px; background: #fff; }
+      .cmp8 .ty8 { position: absolute; left: 72px; top: 12px; font-family: "ArchivoM"; font-size: 30px; color: #1f1e1d; white-space: nowrap; }
+      .cmp8 .ty8 .wd { opacity: 0; }
+      .cmp8 .cr8 { display: inline-block; width: 3px; height: 1em; background: #1f1e1d; vertical-align: -0.12em; margin-left: 3px; }
+      .snd8 { position: absolute; width: 50px; height: 50px; border-radius: 50%; z-index: 5; box-shadow: 0 0 0 0 rgba(23,18,14,.3); }
+      /* reference flow */
+      .ref8 { position: absolute; left: 290px; top: 360px; width: 500px; border-radius: 26px; overflow: hidden; border: 10px solid #fbf9f5; z-index: 5; }
+      .ref8 img { display: block; width: 100%; }
+      .pin8 { position: absolute; left: 520px; top: 330px; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #5d5650, #17120e); z-index: 7; box-shadow: 0 6px 10px rgba(0,0,0,.3); }
+      .stp8 { position: absolute; width: 270px; height: 360px; border-radius: 30px; background: #fbf9f5; display: flex; flex-direction: column; align-items: center; padding-top: 24px; gap: 12px; z-index: 4; }
+      .stp8 .lg8 { width: 84px; height: 84px; display: flex; align-items: center; justify-content: center; }
+      .stp8 .nm8 { font-family: "ArchivoXB"; font-size: 36px; letter-spacing: -0.02em; color: #17120e; }
+      .stp8 .th8 { width: 150px; height: 170px; border-radius: 16px; overflow: hidden; background: #ddd5ca; }
+      .stp8 .th8 img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+      .stp8 b { position: absolute; right: -16px; top: -16px; width: 60px; height: 60px; border-radius: 50%; background: #17120e; color: #fbf9f5; font-size: 34px; display: flex; align-items: center; justify-content: center; }
+      .hal8 { position: absolute; left: 290px; top: 760px; width: 500px; height: 760px; border-radius: 34px; overflow: hidden; background: #8c8885; z-index: 4; }
+      .hal8 img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      /* camera + 4K */
+      .k48 { position: absolute; font-family: "ArchivoXB"; font-size: 300px; letter-spacing: -0.06em; color: #17120e; line-height: .9; z-index: 4; }
+      .res8 { position: absolute; font-family: "Typewriter"; font-size: 44px; color: #7a6e63; z-index: 4; }
+      .camr8 { position: absolute; left: 330px; top: 1180px; width: 420px; height: 290px; z-index: 5; }
+      .camr8 .bd { position: absolute; left: 0; right: 0; top: 50px; bottom: 0; border-radius: 40px; background: linear-gradient(180deg, #3a3430, #17120e); box-shadow: 0 30px 50px rgba(60,40,24,.3); }
+      .camr8 .tp { position: absolute; left: 60px; top: 10px; width: 130px; height: 60px; border-radius: 18px 18px 0 0; background: #2a2521; }
+      .camr8 .ln { position: absolute; left: 130px; top: 95px; width: 170px; height: 170px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #6a7d8c 0 12%, #1d2730 30%, #0b0d10 62%, #3a3430 64%, #17120e 100%); border: 8px solid #5d5650; }
+      .camr8 .fl { position: absolute; left: 300px; top: 0; width: 90px; height: 46px; border-radius: 10px; background: #fbf9f5; border: 5px solid #2a2521; }
+      .burst8 { position: absolute; left: 290px; top: 1080px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,1) 0 30%, rgba(255,255,255,0) 70%); z-index: 6; opacity: 0; }
+      .hfl8 { position: absolute; left: 400px; top: 470px; width: 280px; height: 280px; border-radius: 64px; overflow: hidden; box-shadow: 0 30px 60px rgba(60,40,24,.3); z-index: 5; }
+      .hfl8 img { width: 100%; height: 100%; display: block; }
+      /* Genjutsu box + inputs */
+      .gbx8 { position: absolute; left: 90px; right: 90px; top: 980px; height: 470px; border-radius: 40px; background: #fbf9f5; z-index: 3; }
+      .gbx8 .dz8 { position: absolute; left: 30px; right: 30px; top: 30px; height: 250px; border-radius: 28px; border: 5px dashed rgba(23,18,14,.25); }
+      .gbx8 .pr8 { position: absolute; left: 40px; right: 40px; bottom: 34px; height: 120px; border-radius: 26px; background: #efe9e1; font-family: "ArchivoSB"; font-size: 40px; color: #17120e; padding: 36px 30px; white-space: nowrap; overflow: hidden; }
+      .gbx8 .pr8 .wd { opacity: 0; }
+      .gch8 { position: absolute; width: 230px; height: 230px; border-radius: 26px; overflow: hidden; z-index: 6; background: #2a2724; border: 8px solid #fff; box-shadow: 0 20px 40px rgba(60,40,24,.3); }
+      .gch8 img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .gch8 b { position: absolute; right: 8px; top: 8px; width: 50px; height: 50px; border-radius: 50%; background: #17120e; color: #fbf9f5; font-size: 30px; display: flex; align-items: center; justify-content: center; opacity: 0; }
+      .gch8 span { position: absolute; left: 0; right: 0; bottom: 0; padding: 6px 0 8px; text-align: center; font-family: "ArchivoXB"; font-size: 26px; color: #fff; background: rgba(23,18,14,.7); }
+      .gt8 { position: absolute; display: flex; align-items: center; gap: 22px; z-index: 5; }
+      .gt8 img { width: 110px; height: 110px; border-radius: 28px; }
+      .gt8 span { font-family: "ArchivoXB"; font-size: 96px; letter-spacing: -0.04em; color: #17120e; }
+      /* laptop prop around a real playing clip */
+      .lap8 { position: absolute; z-index: 9; opacity: 0; }
+      .lap8 .lid { position: absolute; left: 0; top: 0; width: 760px; height: 480px; border-radius: 30px; background: #1b1918; box-shadow: 0 30px 60px rgba(0,0,0,.45); }
+      .lap8 .scr { position: absolute; left: 26px; top: 24px; width: 708px; height: 432px; border-radius: 10px; background: #000; }
+      .lap8 .bse { position: absolute; left: -60px; top: 470px; width: 880px; height: 40px; border-radius: 0 0 40px 40px; background: linear-gradient(180deg, #d6d2cd, #9e9893); box-shadow: 0 20px 40px rgba(0,0,0,.4); }
+      .lap8 .bse::after { content: ""; position: absolute; left: 360px; top: 0; width: 160px; height: 14px; border-radius: 0 0 14px 14px; background: #8b8580; }
+      video.lv8 { position: absolute; object-fit: cover; border-radius: 10px; }
+      /* stopwatch, calendar cards, endless grid */
+      .swt8 { position: absolute; left: 290px; top: 1260px; width: 500px; height: 500px; z-index: 9; opacity: 0; }
+      .swt8 .fc { position: absolute; left: 0; top: 60px; width: 440px; height: 440px; margin-left: 30px; border-radius: 50%; background: #fbf9f5; border: 18px solid #17120e; box-shadow: 0 24px 50px rgba(0,0,0,.4); }
+      .swt8 .kb { position: absolute; left: 215px; top: 0; width: 70px; height: 70px; border-radius: 16px; background: #17120e; }
+      .swt8 .hn { position: absolute; left: 246px; top: 120px; width: 8px; height: 170px; border-radius: 4px; background: #17120e; transform-origin: 4px 160px; }
+      .swt8 .rd { position: absolute; left: 0; right: 0; top: 330px; text-align: center; font-family: "ArchivoXB"; font-size: 64px; color: #17120e; letter-spacing: -0.02em; }
+      .dc8 { position: absolute; width: 280px; height: 330px; border-radius: 30px; background: #fbf9f5; overflow: hidden; z-index: 4; display: flex; flex-direction: column; align-items: center; }
+      .dc8 .tp8 { width: 100%; height: 70px; background: #17120e; color: #fbf9f5; font-family: "ArchivoSB"; font-size: 30px; display: flex; align-items: center; justify-content: center; letter-spacing: .08em; }
+      .dc8 .n8 { font-family: "ArchivoXB"; font-size: 140px; letter-spacing: -0.05em; color: #17120e; line-height: 1.25; }
+      .dc8 .u8 { font-family: "ArchivoSB"; font-size: 34px; color: #7a6e63; margin-top: -10px; }
+      .grd8 { position: absolute; left: 540px; top: 960px; width: 0; height: 0; z-index: 3; }
+      .grd8 .tl8 { width: 200px; height: 200px; border-radius: 22px; }
+      .inf8 { position: absolute; left: 0; right: 0; top: 1500px; text-align: center; font-family: "ArchivoXB"; font-size: 220px; color: #17120e; z-index: 6; line-height: 1; }
+      .fol8 { position: absolute; left: 290px; top: 1450px; width: 500px; height: 120px; border-radius: 30px; background: #0095f6; color: #fff; font-family: "ArchivoXB"; font-size: 58px; display: flex; align-items: center; justify-content: center; gap: 16px; box-shadow: 0 20px 40px rgba(0,0,0,.4); z-index: 9; opacity: 0; letter-spacing: -0.02em; }
+      .fol8.done { background: #efefef; color: #17120e; }
