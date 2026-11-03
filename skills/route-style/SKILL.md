@@ -1,6 +1,6 @@
 ---
 name: route-style
-description: Edit a raw talking-head video in Jack's "Route" style — a cobalt-and-lime transit map of the video's steps (ZERO → … → the payoff station) that a lime train travels as he talks, a small route HUD over his untouched footage, cobalt pages that wipe in on a lime line, real logos and real cursor clicks, and captions above his head with the spoken word in a lime block. Best for roadmap / step-by-step / "how I'd do X from zero" videos. Use when Jack asks for the Route style, "like the learn-AI-from-zero video", or a roadmap/steps video in a new look. Built on HyperFrames + ffmpeg. Also use for every new Route idea, script, hook or caption (loads hook-lab, short-script, viral-shorts-course + viral-hook-creator).
+description: Edit a raw talking-head video in Jack's "Route" style — a cobalt-and-lime transit map of the video's steps (ZERO → … → the payoff station) that a lime train travels as he talks, a small route HUD over his untouched footage, cobalt pages that wipe in on a lime line, real logos and real cursor clicks, and captions above his head with the spoken word in a lime block. Best for roadmap / step-by-step / "how I'd do X from zero" videos. Use when Jack asks for the Route style, "like the learn-AI-from-zero video", or a roadmap/steps video in a new look. Built on HyperFrames + ffmpeg.
 ---
 
 # Route
@@ -8,14 +8,6 @@ description: Edit a raw talking-head video in Jack's "Route" style — a cobalt-
 The video is a journey, so the edit draws the map. A transit route of the video's steps appears in the hook, a lime train travels it as he reaches each step, a small HUD over his footage shows "you are here", and the payoff is the train arriving at the last station. Everything else is cobalt pages with white cards, real logos and real clicks.
 
 Approved reference: "If I had to learn AI from zero" (26 Oct 2026), project `projects/2026-10-26-socials/`, generator `assets/build-socials-1026.py` on `assets/template.html`. Read `references/rules.md` before designing; numbers live in `references/style-system.md`; commands in `references/workflow.md`.
-
-## Script and hooks (new ideas, before he films)
-
-Whenever Jack has a new idea or asks for a script, load `hook-lab` (hooks), `short-script` (scripts), `viral-shorts-course` (structure, retention) and `viral-hook-creator` (extra hook patterns) first, and write the script with them before anything is filmed. Put the plan in his Notion Social content database with `notion-socials`:
-- **Hooks:** 3–5 options from different patterns; each works muted on the first frame and opens a loop in ≤5 words where possible.
-- **Structure:** hook → foreshadow the payoff (line 2, hook + foreshadow < 4 s) → first action (never "let's get started") → middle written as "but / therefore", never "and then" → payoff held to the end, with a twist → end right after it. The series sign-off/CTA stays, but ≤2.5 s.
-- **Words:** 5th-grade reading level; swap "business", "strategy", "profit", "workflow" for plain words.
-- **Shot list:** with the script, list the screen recordings, results and b-roll each beat needs, so they're filmed the same day.
 
 ## Workflow
 

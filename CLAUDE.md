@@ -1,6 +1,6 @@
 # Video Editing
 
-Claude is the editor. Jack supplies footage and references; Claude cuts, designs, animates and renders.
+Claude is the editor. Jack supplies footage and references; Claude cuts, designs, animates and renders. This workspace is for editing only: scripts, hooks and content plans are written elsewhere.
 
 ## Locked stack
 
@@ -40,6 +40,5 @@ Do not use Remotion.
 - **Edits run in the chat on Jack's Claude plan.** Don't spend API credit on edits.
 - **Always load the style's skill first** (e.g. `30-day-ai-series`) for every episode and follow its rules and audits; never rebuild an episode by copying the last one from memory. **Day 13 is the approved series look** (Jack: "super good clean and nice … all our series days are now way more like that"): mostly his face with clean captions, one small taped paper note with ink ticks per key moment placed off his face, punch-ins through long takes, speaker tags for other voices, about three short pages (day card, CTA card, end card). Start every episode from `skills/30-day-ai-series/assets/day13-kit/` and read `references/day13-audit.md`. Pacing: something changes every ~1–1.5 s; real screenshots only, no drawn app UIs. **The video is mostly Jack with captions**: paper pages/canvases only to show one thing for a few seconds; everything else is an overlay on his footage. **He goes off-script, usually so the next sentence makes sense**: keep those lines and check every sentence in the cut makes sense.
 - **No fight sound effects, no repeated whoosh/click bursts.** Never put sound effects on sword slashes, fights, hits or clashes, and never fire the same effect again and again in a row (Jack hated the repeating whoosh + click in Terra vs Sol). Character fights and action stay silent unless he asks for sound.
-- **New ideas and scripts:** load `hook-lab` (hooks: spoken line, on-screen text, first frame), `short-script` (20–60 s scripts), `viral-shorts-course` (structure, retention) and `viral-hook-creator` (extra hook patterns) first, and follow the style skill's "Script and hooks" section (3–5 hook options, foreshadow, but/therefore middle, payoff at the end, 5th-grade words). Add or update the plan in his Notion Social content database with `notion-socials`.
 - **If he asks for a second version of a series video, it's evergreen.** It gets posted at a different time, so it never says which day it is: cut "this is day N of 30", "see you on day N+1" and "that wraps up day N", and drop the day page, the 30-block tracker and the Day N end card. It ends on the CTA (or the payoff), and its caption has no day number either. The main edit keeps the series framing.
 - **Ask for what the edit needs when he films:** the screen recordings, results and b-roll each beat needs.
