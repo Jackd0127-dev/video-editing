@@ -2,7 +2,7 @@
 
 Jack, 3 Nov 2026: "i loved day 13 it was super good clean and nice … all our series days are now way more like that." **Day 13 is the default look for every episode from now on.** Day 12's round-2 notes (1 Nov) led straight into it, so they are listed first.
 
-Reference: `exports/Series/30 Day AI Series/Day 13 - AI Receptionist for Wedding Venues/Day 13 - V1.mp4` (V2 evergreen alongside). Build kit: `assets/day13-kit/` (see its README).
+Reference: `projects/Series/30 Day AI Series/Day 13 - AI Receptionist for Wedding Venues/Exports/Day 13 - V1.mp4` (V2 evergreen alongside). Build kit: `assets/day13-kit/` (see its README).
 
 ## Day 12 notes that shaped it
 | # | Note | Root cause | Fix (now a rule) |
