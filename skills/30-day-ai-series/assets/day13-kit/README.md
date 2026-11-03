@@ -1,4 +1,4 @@
-# Day 13 kit — start every episode here
+# Series kit — start every episode here (now the approved Day 14 build; the folder keeps its name)
 
 The build behind the approved Day 13 look (`references/day13-audit.md`). Copy these files into a new project's `edit/` and keep the machinery; write only the episode's own `pagesNN.py`.
 

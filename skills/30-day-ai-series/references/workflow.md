@@ -87,10 +87,10 @@ npx hyperframes snapshot --at <t1,t2,…>   # step every page at 0.1–0.25 s
 ## Render, QA, master
 Check free disk first (`df -h .`). Under ~4 GB, add `--workers 1` (streams frames instead of storing them) and delete regenerable frames (`edit/faces`, `edit/track/*/`, `.hyperframes/artifacts/snapshots`).
 ```bash
-npx hyperframes render -q delivery --sdr --skill general-video -o "$EXPORTS/<Video title>.mp4"   # --sdr: footage is SDR already
-python3 -I $S/qa.py "$EXPORTS/<Video title>.mp4" --out edit/qa-vN
+npx hyperframes render -q delivery --sdr --skill general-video -o "$EXPORTS/V1/Day N - V1.mp4"   # --sdr: footage is SDR already
+python3 -I $S/qa.py "$EXPORTS/V1/Day N - V1.mp4" --out edit/qa-vN
 cp edit/qa-vN/qa-report.json edit/qa-latest.json    # flagged jumps get focus pulls on the next build
-sh $S/master.sh "$EXPORTS/<Video title>.mp4"         # −14 LUFS / −1 dBTP
+sh $S/master.sh "$EXPORTS/V1/Day N - V1.mp4"         # −14 LUFS / −1 dBTP
 ```
 QA passes when: no pops, no caption/face overlaps, and every reported jump has a focus pull. A pop on a word onset after silence (a hard "T" or "S") is speech, not a click — compare with his other T/S peaks before acting.
 Also compare one face frame with Apple's own (`AVAssetImageGenerator`) — skin and contrast must match.
@@ -109,7 +109,7 @@ Parakeet can drop a whole sentence: find word gaps over ~2 s with speech energy 
 ```bash
 ~/.venvs/hf-audio/bin/python -I $S/musicgen.py seed23.wav 29 "upbeat modern lo-fi electronic beat for a tech creator video, warm plucky synths, soft punchy drums, steady groove, optimistic, no vocals, minimal and clean" 23
 sh $S/bed.sh seed23.wav <video seconds> bed.wav           # crossfaded loop, fades, 1–4 kHz carved for the voice
-sh $S/mixbed.sh "$EXPORTS/<Video title>.mp4" bed.wav "$EXPORTS/<Video title> (music).mp4" [mute_from mute_to]
+sh $S/mixbed.sh "$EXPORTS/V1/Day N - V1.mp4" bed.wav "$EXPORTS/V1/Day N - V1 (music).mp4" [mute_from mute_to]
 ```
 Generate two seeds and pick the steadier one (spectrogram: no bright full-band bursts). Deliver both versions. Keep the prompt happy and bright (major key, acoustic/ukulele, "feel-good") — Jack called a darker lo-fi bed "kind of eerie" (Day 13), and wanted it quieter: for a "low volume" bed run `BED_DB=-14 sh $S/mixbed.sh …` (default −9 dB). Trim any breakdown gap out of the loop before `bed.sh`.
 

@@ -1,5 +1,7 @@
 # Day 14 audit — "sell websites to local businesses"
 
+**This is the approved look, the default for every episode** (Jack, 3 Nov 2026: "i really loved the vid u made today"). Read this first, then `day13-audit.md`. The round 4 settings are final: where earlier rounds conflict, round 4 wins.
+
 Four phone takes (hook, intro, a long walk-through at the desk, the payoff + sign-off) plus a silent 3024×1900 screen recording (Google → Advanced Search → Maps → Karizma → Claude). Shipped as **three versions** at Jack's request: V1 series (3:04), V2 evergreen (2:06), V3 evergreen 60 s (1:03), each with and without a quiet music bed. Build: `projects/2026-11-03-day14` (`edit/pages14.py`, `edit/tighten.py`); the reusable parts are in `assets/day13-kit/` and `scripts/tighten.py`.
 
 ## Jack's notes (two rounds) and their fixes

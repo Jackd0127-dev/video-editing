@@ -2,7 +2,10 @@
 
 Each one came from a review note. Breaking any of them got a version rejected.
 
-## The approved look (Day 13 — the default for every episode)
+## The approved look (Day 14 — the default for every episode)
+Jack, 3 Nov 2026, on Day 14: "i really loved the vid u made today". Day 14 = everything below from Day 13, plus the "Cut tight" section and `references/day14-audit.md`: full-resolution screens in big cards, rings that hug, the payoff site low with his face above, gentle steady camera, subtle sound.
+
+### The base look (Day 13)
 Jack, 3 Nov 2026: "i loved day 13 it was super good clean and nice … all our series days are now way more like that." Details and the build kit: `references/day13-audit.md`, `assets/day13-kit/`.
 - **Mostly his face with clean captions.** About three paper pages per video: the Day N card, a CTA card, the end card (each ≤ ~2.5 s).
 - **One small taped paper note per key moment, on his footage**, landing on its word: counters, ink bars, checklists that tick, a "who/what" card. Placed from the face track (beside his face, or low on his chest in close-ups), **never on his face or hair**, never over what his hands are showing. One note at a time; between notes, his face + captions + a punch-in.
