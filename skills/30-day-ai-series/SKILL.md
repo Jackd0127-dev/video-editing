@@ -1,6 +1,6 @@
 ---
 name: 30-day-ai-series
-description: Edit a raw talking-head video into Jack's "30 Day AI Series" style — the approved Day 13 look: mostly his real footage with clean word-synced captions above the head and face-aware punch-ins, small taped paper notes with hand-drawn ink ticks placed beside him (never on his face) on each key moment, and only a few short ink-on-paper pages (day card, CTA card, end card), finished with sound design (a music bed only if he asks) and a -14 LUFS master. Handles single-take and multi-take recordings from an iPhone. Use when Jack asks for a 30 Day AI Series episode, a "Day N" video, or "edit this like Day 1 / Day 2". Built on HyperFrames + ffmpeg. Also use for every new Day N idea, script, hook or caption (loads hook-lab, short-script, viral-shorts-course + viral-hook-creator).
+description: Edit a raw talking-head video into Jack's "30 Day AI Series" style — the approved Day 13 look: mostly his real footage with clean word-synced captions above the head and face-aware punch-ins, small taped paper notes with hand-drawn ink ticks placed beside him (never on his face) on each key moment, and only a few short ink-on-paper pages (day card, CTA card, end card), finished with sound design (a music bed only if he asks) and a -14 LUFS master. Handles single-take and multi-take recordings from an iPhone. Use when Jack asks for a 30 Day AI Series episode, a "Day N" video, or "edit this like Day 1 / Day 2". Built on HyperFrames + ffmpeg.
 ---
 
 # 30 Day AI Series
@@ -16,14 +16,6 @@ Approved references: **Day 13, "AI receptionist for wedding venues" — the defa
 ## Stack
 
 HyperFrames (composition, render) · ffmpeg (cuts, voice, master) · `npx hyperframes transcribe --engine parakeet` (word timings) · Vision via `scripts/faces.swift` (face boxes) · MusicGen via `scripts/musicgen.py` when no licensed bed exists. Load `/hyperframes` and `/hyperframes-core` before writing composition HTML.
-
-## Script and hooks (new ideas, before he films)
-
-Whenever Jack has a new idea or asks for a script, load `hook-lab` (hooks), `short-script` (scripts), `viral-shorts-course` (structure, retention) and `viral-hook-creator` (extra hook patterns) first, and write the script with them before anything is filmed. Put the plan in his Notion Social content database with `notion-socials`:
-- **Hooks:** 3–5 options from different patterns; each works muted on the first frame and opens a loop in ≤5 words where possible.
-- **Structure:** hook → foreshadow the payoff (line 2, hook + foreshadow < 4 s) → first action (never "let's get started") → middle written as "but / therefore", never "and then" → payoff held to the end, with a twist → end right after it. The series sign-off/CTA stays, but ≤2.5 s.
-- **Words:** 5th-grade reading level; swap "business", "strategy", "profit", "workflow" for plain words.
-- **Shot list:** with the script, list the screen recordings, results and b-roll each beat needs, so they're filmed the same day.
 
 ## Workflow
 

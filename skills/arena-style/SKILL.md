@@ -1,6 +1,6 @@
 ---
 name: arena-style
-description: Edit a raw talking-head video in Jack's "Arena" style — a crowd of little animated pixel-art agents (coder, coffee, headphones, chef, wizard, reader, detective, rocket) acts out what he says on clean bone-paper pages and over his untouched footage: they battle with swords and guns, fill a tournament bracket, get knocked out, and the winner puts on a crown. Ink type, one coral accent, word-synced captions above his head. Best for AI-agent, competition, ranking, "X vs Y" and scale videos. Use when Jack asks for the Arena style, the pixel agents, or "like the 100 Claude agents video". Built on HyperFrames + ffmpeg. Also use for every new Arena idea, script, hook or caption (loads hook-lab, short-script, viral-shorts-course + viral-hook-creator).
+description: Edit a raw talking-head video in Jack's "Arena" style — a crowd of little animated pixel-art agents (coder, coffee, headphones, chef, wizard, reader, detective, rocket) acts out what he says on clean bone-paper pages and over his untouched footage: they battle with swords and guns, fill a tournament bracket, get knocked out, and the winner puts on a crown. Ink type, one coral accent, word-synced captions above his head. Best for AI-agent, competition, ranking, "X vs Y" and scale videos. Use when Jack asks for the Arena style, the pixel agents, or "like the 100 Claude agents video". Built on HyperFrames + ffmpeg.
 ---
 
 # Arena
@@ -8,14 +8,6 @@ description: Edit a raw talking-head video in Jack's "Arena" style — a crowd o
 The idea he talks about is acted out by characters. Whatever the video is about, a crowd of small pixel agents does it: one agent gets a bad answer, 99 more pop out, they arm up and fight, they fill a bracket, a judge knocks them out, one picks up the crown. The characters are the hero; the page around them stays quiet and clean.
 
 Approved reference: "100 Claude Agents Arena" (29 Oct 2026), project `projects/2026-10-28-claude-agents-arena/`, generator `assets/build-claude-agents-arena.py` on `assets/template.html`, sprites from `assets/sprites.py`. Read `references/rules.md` before designing; numbers live in `references/style-system.md`; commands in `references/workflow.md`.
-
-## Script and hooks (new ideas, before he films)
-
-Whenever Jack has a new idea or asks for a script, load `hook-lab` (hooks), `short-script` (scripts), `viral-shorts-course` (structure, retention) and `viral-hook-creator` (extra hook patterns) first, and write the script with them before anything is filmed. Put the plan in his Notion Social content database with `notion-socials`:
-- **Hooks:** 3–5 options from different patterns; each works muted on the first frame and opens a loop in ≤5 words where possible.
-- **Structure:** hook → foreshadow the payoff (line 2, hook + foreshadow < 4 s) → first action (never "let's get started") → middle written as "but / therefore", never "and then" → payoff held to the end, with a twist → end right after it. Sign-off/CTA ≤2.5 s.
-- **Words:** 5th-grade reading level; swap "business", "strategy", "profit", "workflow" for plain words.
-- **Shot list:** with the script, list the screen recordings and results each beat needs, so they're filmed the same day.
 
 ## Workflow
 
