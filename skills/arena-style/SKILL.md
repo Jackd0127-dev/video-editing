@@ -18,7 +18,7 @@ Approved reference: "100 Claude Agents Arena" (29 Oct 2026), project `projects/2
 5. **Rhythm before pixels.** Lay the beats out as face | page windows and decide what can be a chest-band overlay instead of a page (see the page budget in `references/rules.md`).
 6. **Build.** Run `sprites.py` (add new personalities there), then write the beat functions from the library in the generator: `pg_crowd`, `pg_battle`, `pg_arena`, `pg_type`, `pg_judge`, `pg_crown`, `pg_zoom`, `pg_board`, `ov_vs`, `ov_cta`… Beats are timed from his words with `w("phrase")` / `T("phrase")`, never by hand. `TRIAL=n python3 -I edit/build.py`.
 7. **Check and look.** `npx hyperframes check`, snapshots of every page at its key words, zoom anything suspicious. Show Jack a look strip before the final render of a new video type.
-8. **Render, QA, master:** `sh tools/render-trials.sh projects/<project> <date>-<job>`, one render at a time; it writes to the video's `Exports/`. QA passes with 0 caption/face overlaps and 0 voice-cut pops. Send it with a suggested caption.
+8. **Render, QA, master:** `sh tools/render-trials.sh projects/<project> <date>-<job>`, one render at a time; it writes to the video's `Exports/`. QA passes with 0 caption/face overlaps and 0 voice-cut pops. Send it with a suggested caption. Then file it with the `planner-delivery` skill.
 
 ## References
 | File | Use |

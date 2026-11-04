@@ -18,7 +18,7 @@ Approved reference: "If I had to learn AI from zero" (26 Oct 2026), project `pro
 5. **Rhythm before pixels.** Lay the beats out as face | page windows: never more than ~6 s of pages in a row, never under 1 s of face between pages (pages within 1 s hand off by dissolving). Steps he names while on camera move the HUD instead of getting a page.
 6. **Build** from `assets/template.html` with a generator like `assets/build-socials-1026.py` (`TRIAL=n python3 -I edit/build.py` → `../<project>-trials/out/trial-n.html`): set `STATIONS`/`RPTS` for this video's route, write the page functions (each has 2 variants where V2 differs), captions, camera, HUD plan.
 7. **Check and look.** `npx hyperframes check` (word-by-word caption `line_unread` warnings and HUD-under-page overlap warnings are expected), snapshots of every page at its key words, zoom anything suspicious. Show Jack a look strip before the final render.
-8. **Render, QA, master:** `sh tools/render-trials.sh projects/<project> <date>-<job>` writes to the video's `Exports/`. QA passes with 0 caption/face overlaps and 0 voice-cut pops; flagged mix "pops" must be matched against the A-roll (word onsets are speech) or a placed SFX. Clear `$TMPDIR/hyperframes-extract-cache-*` when no other render runs, send it with a suggested caption.
+8. **Render, QA, master:** `sh tools/render-trials.sh projects/<project> <date>-<job>` writes to the video's `Exports/`. QA passes with 0 caption/face overlaps and 0 voice-cut pops; flagged mix "pops" must be matched against the A-roll (word onsets are speech) or a placed SFX. Clear `$TMPDIR/hyperframes-extract-cache-*` when no other render runs, send it with a suggested caption. Then file it with the `planner-delivery` skill.
 
 ## References
 | File | Use |

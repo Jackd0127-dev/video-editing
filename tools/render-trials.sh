@@ -1,8 +1,8 @@
 #!/bin/sh
 # Build, render, QA and master a video into its own Exports folder.
 # Usage (workspace root): sh tools/render-trials.sh projects/<project> <date>-<job> [n ...]
-#   No numbers (or just 1): one edit -> Exports/<Video title>.mp4. Extra versions only when Jack asks: 1 2 -> "<Label> - V1.mp4", "<Label> - V2.mp4" (tools/TRIAL-REELS.md).
-#   MUSIC=path/bed.wav also makes a "(music)" copy, only when he asks for one (scripts/mixbed.sh).
+#   Each version gets its own folder, which is what its planner item links to: Exports/V1/<Label> - V1.mp4. No numbers = one edit (V1). Extra versions only when Jack asks: 1 2 (tools/TRIAL-REELS.md).
+#   MUSIC=path/bed.wav also makes "<Label> - V1 (music).mp4" in the same folder, only when he asks (scripts/mixbed.sh).
 # The project's edit/build.py must honour TRIAL=<n> and write ../<project>-trials/out/trial-<n>.html.
 # A trial with its own cut keeps it in edit/trials/<n>/ (segments.json, words.json); otherwise the main cut is used.
 set -e
@@ -32,7 +32,7 @@ for n in $TRIALS; do
   (cd "$T" && npx hyperframes check 2>&1 | grep -E "✗|Check passed|failed" | head -5)
   free=$(df -g "$ROOT" | awk 'NR==2 {print $4}')
   workers=auto; [ "$free" -lt 6 ] && workers=1
-  if [ "$TRIALS" = 1 ]; then out="$EXPORTS/$TITLE.mp4"; else out="$EXPORTS/$LABEL - V$n.mp4"; fi
+  mkdir -p "$EXPORTS/V$n"; out="$EXPORTS/V$n/$LABEL - V$n.mp4"
   # keep the last round: an old export must not pass for a failed render, and must not be lost either
   for old in "$out" "${out%.mp4} (music).mp4"; do
     if [ -f "$old" ]; then mkdir -p "$EXPORTS/Drafts"; mv "$old" "$EXPORTS/Drafts/$(basename "${old%.mp4}") - before $(date +%Y-%m-%d-%H%M%S).mp4"; fi
