@@ -44,4 +44,4 @@ Keep the series identity: palette, type, caption system, end card and the series
 3. Structure changes get their own cut: `edit/trials/<n>/segments.json` → `cut_multi.py` → `assets/video/aroll-t<n>.mp4` + `edit/trials/<n>/words.json`, re-transcribe, `endcheck.py`, faces. Hook-only changes reuse the main cut.
 4. The project's `edit/build.py` reads `TRIAL=<n>` (like Day 3's `HOOK`/`FULL`) and writes `../<project>-trials/out/trial-<n>.html`.
 5. Render, QA and master all five: `sh tools/render-trials.sh projects/<project> <date>-<job> [1 2 3 4 5]` (add `MUSIC=path/to/bed.wav` for music versions).
-6. Deliver to the video's `Exports/` folder (`tools/render-trials.sh` does this: `Day N - V<n>.mp4` or `<Title> - V<n>.mp4`; music as `… (music).mp4`), with a table: trial, hook line, length, what's different, suggested on-screen title.
+6. Deliver to the video's `Exports/` folder (`tools/render-trials.sh` does this: `V<n>/Day N - V<n>.mp4` or `V<n>/<Title> - V<n>.mp4`; music as `… (music).mp4` in the same folder), with a table: trial, hook line, length, what's different, suggested on-screen title.
